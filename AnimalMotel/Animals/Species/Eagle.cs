@@ -96,7 +96,7 @@ namespace AnimalMotel.Animals.Species
 
         public override string GetSpecie()
         {
-            throw new NotImplementedException();
+            return this.GetType().Name;
         }
 
         /// <summary>
