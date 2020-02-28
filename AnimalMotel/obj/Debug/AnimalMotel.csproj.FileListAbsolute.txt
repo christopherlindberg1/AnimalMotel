@@ -1,0 +1,9 @@
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\bin\Debug\AnimalMotel.exe.config
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\bin\Debug\AnimalMotel.exe
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\bin\Debug\AnimalMotel.pdb
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\obj\Debug\AnimalMotel.csprojAssemblyReference.cache
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\obj\Debug\AnimalMotel.Properties.Resources.resources
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\obj\Debug\AnimalMotel.csproj.GenerateResource.cache
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\obj\Debug\AnimalMotel.exe
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\obj\Debug\AnimalMotel.pdb
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul2\assignment\AnimalMotel\AnimalMotel\obj\Debug\AnimalMotel.FormMain.resources
