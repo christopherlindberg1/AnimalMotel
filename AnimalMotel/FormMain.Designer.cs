@@ -51,6 +51,9 @@
             this.textBoxNrOfTeeth = new System.Windows.Forms.TextBox();
             this.lblTailLength = new System.Windows.Forms.Label();
             this.groupBoxAnimalSpecs = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblShowEaterType = new System.Windows.Forms.Label();
+            this.lblEaterType = new System.Windows.Forms.Label();
             this.groupBoxSpecieSpecificData = new System.Windows.Forms.GroupBox();
             this.textBoxNrOfLives = new System.Windows.Forms.TextBox();
             this.textBoxBreed = new System.Windows.Forms.TextBox();
@@ -68,6 +71,7 @@
             this.groupBoxGender.SuspendLayout();
             this.groupBoxAnimalList.SuspendLayout();
             this.groupBoxAnimalSpecs.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBoxSpecieSpecificData.SuspendLayout();
             this.groupBoxAnimalCategorySpecs.SuspendLayout();
             this.SuspendLayout();
@@ -76,17 +80,17 @@
             // 
             this.listBoxCategory.FormattingEnabled = true;
             this.listBoxCategory.ItemHeight = 18;
-            this.listBoxCategory.Location = new System.Drawing.Point(248, 43);
+            this.listBoxCategory.Location = new System.Drawing.Point(214, 37);
             this.listBoxCategory.Name = "listBoxCategory";
-            this.listBoxCategory.Size = new System.Drawing.Size(192, 202);
+            this.listBoxCategory.Size = new System.Drawing.Size(152, 202);
             this.listBoxCategory.TabIndex = 4;
             this.listBoxCategory.SelectedIndexChanged += new System.EventHandler(this.listBoxCategory_SelectedIndexChanged);
             // 
             // textBoxFlyingSpeed
             // 
-            this.textBoxFlyingSpeed.Location = new System.Drawing.Point(304, 35);
+            this.textBoxFlyingSpeed.Location = new System.Drawing.Point(224, 22);
             this.textBoxFlyingSpeed.Name = "textBoxFlyingSpeed";
-            this.textBoxFlyingSpeed.Size = new System.Drawing.Size(112, 24);
+            this.textBoxFlyingSpeed.Size = new System.Drawing.Size(29, 24);
             this.textBoxFlyingSpeed.TabIndex = 9;
             // 
             // lblFlyingSpeed
@@ -102,22 +106,22 @@
             // 
             this.textBoxTailLength.Location = new System.Drawing.Point(170, 74);
             this.textBoxTailLength.Name = "textBoxTailLength";
-            this.textBoxTailLength.Size = new System.Drawing.Size(126, 24);
+            this.textBoxTailLength.Size = new System.Drawing.Size(43, 24);
             this.textBoxTailLength.TabIndex = 7;
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(86, 45);
+            this.textBoxName.Location = new System.Drawing.Point(77, 39);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(126, 24);
+            this.textBoxName.Size = new System.Drawing.Size(119, 24);
             this.textBoxName.TabIndex = 1;
             // 
             // groupBoxGender
             // 
             this.groupBoxGender.Controls.Add(this.listBoxGender);
-            this.groupBoxGender.Location = new System.Drawing.Point(24, 132);
+            this.groupBoxGender.Location = new System.Drawing.Point(15, 104);
             this.groupBoxGender.Name = "groupBoxGender";
-            this.groupBoxGender.Size = new System.Drawing.Size(188, 118);
+            this.groupBoxGender.Size = new System.Drawing.Size(181, 109);
             this.groupBoxGender.TabIndex = 6;
             this.groupBoxGender.TabStop = false;
             this.groupBoxGender.Text = "Gender";
@@ -133,15 +137,15 @@
             // 
             // textBoxAge
             // 
-            this.textBoxAge.Location = new System.Drawing.Point(86, 83);
+            this.textBoxAge.Location = new System.Drawing.Point(77, 69);
             this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.Size = new System.Drawing.Size(126, 24);
+            this.textBoxAge.Size = new System.Drawing.Size(119, 24);
             this.textBoxAge.TabIndex = 2;
             // 
             // lblAnimalObject
             // 
             this.lblAnimalObject.AutoSize = true;
-            this.lblAnimalObject.Location = new System.Drawing.Point(536, 19);
+            this.lblAnimalObject.Location = new System.Drawing.Point(441, 13);
             this.lblAnimalObject.Name = "lblAnimalObject";
             this.lblAnimalObject.Size = new System.Drawing.Size(53, 18);
             this.lblAnimalObject.TabIndex = 0;
@@ -150,7 +154,7 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(307, 22);
+            this.lblCategory.Location = new System.Drawing.Point(259, 16);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(68, 18);
             this.lblCategory.TabIndex = 0;
@@ -159,7 +163,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(20, 45);
+            this.lblName.Location = new System.Drawing.Point(11, 39);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(48, 18);
             this.lblName.TabIndex = 0;
@@ -247,7 +251,7 @@
             // lblAge
             // 
             this.lblAge.AutoSize = true;
-            this.lblAge.Location = new System.Drawing.Point(20, 83);
+            this.lblAge.Location = new System.Drawing.Point(11, 69);
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(33, 18);
             this.lblAge.TabIndex = 1;
@@ -257,7 +261,7 @@
             // 
             this.textBoxNrOfTeeth.Location = new System.Drawing.Point(170, 34);
             this.textBoxNrOfTeeth.Name = "textBoxNrOfTeeth";
-            this.textBoxNrOfTeeth.Size = new System.Drawing.Size(126, 24);
+            this.textBoxNrOfTeeth.Size = new System.Drawing.Size(43, 24);
             this.textBoxNrOfTeeth.TabIndex = 6;
             // 
             // lblTailLength
@@ -271,6 +275,7 @@
             // 
             // groupBoxAnimalSpecs
             // 
+            this.groupBoxAnimalSpecs.Controls.Add(this.groupBox1);
             this.groupBoxAnimalSpecs.Controls.Add(this.groupBoxSpecieSpecificData);
             this.groupBoxAnimalSpecs.Controls.Add(this.checkBoxListAllAnimals);
             this.groupBoxAnimalSpecs.Controls.Add(this.btnAddAnimal);
@@ -286,10 +291,39 @@
             this.groupBoxAnimalSpecs.Controls.Add(this.lblName);
             this.groupBoxAnimalSpecs.Location = new System.Drawing.Point(14, 14);
             this.groupBoxAnimalSpecs.Name = "groupBoxAnimalSpecs";
-            this.groupBoxAnimalSpecs.Size = new System.Drawing.Size(982, 399);
+            this.groupBoxAnimalSpecs.Size = new System.Drawing.Size(1156, 399);
             this.groupBoxAnimalSpecs.TabIndex = 2;
             this.groupBoxAnimalSpecs.TabStop = false;
             this.groupBoxAnimalSpecs.Text = "Animal Specifications";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblShowEaterType);
+            this.groupBox1.Controls.Add(this.lblEaterType);
+            this.groupBox1.Location = new System.Drawing.Point(772, 26);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(378, 299);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Feeding schedule";
+            // 
+            // lblShowEaterType
+            // 
+            this.lblShowEaterType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblShowEaterType.Location = new System.Drawing.Point(198, 22);
+            this.lblShowEaterType.Name = "lblShowEaterType";
+            this.lblShowEaterType.Size = new System.Drawing.Size(174, 20);
+            this.lblShowEaterType.TabIndex = 1;
+            this.lblShowEaterType.Text = "Carnivore";
+            this.lblShowEaterType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblEaterType
+            // 
+            this.lblEaterType.Location = new System.Drawing.Point(6, 22);
+            this.lblEaterType.Name = "lblEaterType";
+            this.lblEaterType.Size = new System.Drawing.Size(79, 18);
+            this.lblEaterType.TabIndex = 0;
+            this.lblEaterType.Text = "Eater type";
             // 
             // groupBoxSpecieSpecificData
             // 
@@ -301,37 +335,37 @@
             this.groupBoxSpecieSpecificData.Controls.Add(this.lblBreed);
             this.groupBoxSpecieSpecificData.Controls.Add(this.lblBeakLength);
             this.groupBoxSpecieSpecificData.Controls.Add(this.lblClawLength);
-            this.groupBoxSpecieSpecificData.Location = new System.Drawing.Point(708, 34);
+            this.groupBoxSpecieSpecificData.Location = new System.Drawing.Point(569, 26);
             this.groupBoxSpecieSpecificData.Name = "groupBoxSpecieSpecificData";
-            this.groupBoxSpecieSpecificData.Size = new System.Drawing.Size(248, 231);
+            this.groupBoxSpecieSpecificData.Size = new System.Drawing.Size(197, 231);
             this.groupBoxSpecieSpecificData.TabIndex = 10;
             this.groupBoxSpecieSpecificData.TabStop = false;
             this.groupBoxSpecieSpecificData.Text = "Default";
             // 
             // textBoxNrOfLives
             // 
-            this.textBoxNrOfLives.Location = new System.Drawing.Point(135, 90);
+            this.textBoxNrOfLives.Location = new System.Drawing.Point(71, 90);
             this.textBoxNrOfLives.Name = "textBoxNrOfLives";
             this.textBoxNrOfLives.Size = new System.Drawing.Size(112, 24);
             this.textBoxNrOfLives.TabIndex = 7;
             // 
             // textBoxBreed
             // 
-            this.textBoxBreed.Location = new System.Drawing.Point(128, 56);
+            this.textBoxBreed.Location = new System.Drawing.Point(64, 56);
             this.textBoxBreed.Name = "textBoxBreed";
             this.textBoxBreed.Size = new System.Drawing.Size(112, 24);
             this.textBoxBreed.TabIndex = 6;
             // 
             // textBoxBeakLength
             // 
-            this.textBoxBeakLength.Location = new System.Drawing.Point(109, 43);
+            this.textBoxBeakLength.Location = new System.Drawing.Point(45, 43);
             this.textBoxBeakLength.Name = "textBoxBeakLength";
             this.textBoxBeakLength.Size = new System.Drawing.Size(112, 24);
             this.textBoxBeakLength.TabIndex = 5;
             // 
             // textBoxClawLength
             // 
-            this.textBoxClawLength.Location = new System.Drawing.Point(135, 12);
+            this.textBoxClawLength.Location = new System.Drawing.Point(71, 12);
             this.textBoxClawLength.Name = "textBoxClawLength";
             this.textBoxClawLength.Size = new System.Drawing.Size(112, 24);
             this.textBoxClawLength.TabIndex = 4;
@@ -375,7 +409,7 @@
             // checkBoxListAllAnimals
             // 
             this.checkBoxListAllAnimals.AutoSize = true;
-            this.checkBoxListAllAnimals.Location = new System.Drawing.Point(678, 286);
+            this.checkBoxListAllAnimals.Location = new System.Drawing.Point(399, 290);
             this.checkBoxListAllAnimals.Name = "checkBoxListAllAnimals";
             this.checkBoxListAllAnimals.Size = new System.Drawing.Size(126, 22);
             this.checkBoxListAllAnimals.TabIndex = 8;
@@ -385,9 +419,9 @@
             // 
             // btnAddAnimal
             // 
-            this.btnAddAnimal.Location = new System.Drawing.Point(479, 321);
+            this.btnAddAnimal.Location = new System.Drawing.Point(510, 324);
             this.btnAddAnimal.Name = "btnAddAnimal";
-            this.btnAddAnimal.Size = new System.Drawing.Size(192, 50);
+            this.btnAddAnimal.Size = new System.Drawing.Size(166, 47);
             this.btnAddAnimal.TabIndex = 9;
             this.btnAddAnimal.Text = "Add animal";
             this.btnAddAnimal.UseVisualStyleBackColor = true;
@@ -401,9 +435,9 @@
             this.groupBoxAnimalCategorySpecs.Controls.Add(this.textBoxNrOfTeeth);
             this.groupBoxAnimalCategorySpecs.Controls.Add(this.lblNrOfTeeth);
             this.groupBoxAnimalCategorySpecs.Controls.Add(this.lblTailLength);
-            this.groupBoxAnimalCategorySpecs.Location = new System.Drawing.Point(24, 256);
+            this.groupBoxAnimalCategorySpecs.Location = new System.Drawing.Point(15, 250);
             this.groupBoxAnimalCategorySpecs.Name = "groupBoxAnimalCategorySpecs";
-            this.groupBoxAnimalCategorySpecs.Size = new System.Drawing.Size(416, 112);
+            this.groupBoxAnimalCategorySpecs.Size = new System.Drawing.Size(352, 98);
             this.groupBoxAnimalCategorySpecs.TabIndex = 0;
             this.groupBoxAnimalCategorySpecs.TabStop = false;
             this.groupBoxAnimalCategorySpecs.Text = "Mammal specifications";
@@ -421,9 +455,9 @@
             // 
             this.listBoxSpecies.FormattingEnabled = true;
             this.listBoxSpecies.ItemHeight = 18;
-            this.listBoxSpecies.Location = new System.Drawing.Point(479, 43);
+            this.listBoxSpecies.Location = new System.Drawing.Point(384, 37);
             this.listBoxSpecies.Name = "listBoxSpecies";
-            this.listBoxSpecies.Size = new System.Drawing.Size(192, 256);
+            this.listBoxSpecies.Size = new System.Drawing.Size(166, 256);
             this.listBoxSpecies.TabIndex = 5;
             this.listBoxSpecies.SelectedIndexChanged += new System.EventHandler(this.listBoxSpecies_SelectedIndexChanged);
             // 
@@ -431,7 +465,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 766);
+            this.ClientSize = new System.Drawing.Size(1182, 766);
             this.Controls.Add(this.groupBoxAnimalList);
             this.Controls.Add(this.groupBoxAnimalSpecs);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -442,6 +476,7 @@
             this.groupBoxAnimalList.PerformLayout();
             this.groupBoxAnimalSpecs.ResumeLayout(false);
             this.groupBoxAnimalSpecs.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.groupBoxSpecieSpecificData.ResumeLayout(false);
             this.groupBoxSpecieSpecificData.PerformLayout();
             this.groupBoxAnimalCategorySpecs.ResumeLayout(false);
@@ -489,6 +524,9 @@
         private System.Windows.Forms.GroupBox groupBoxAnimalCategorySpecs;
         private System.Windows.Forms.Label lblNrOfTeeth;
         private System.Windows.Forms.ListBox listBoxSpecies;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblEaterType;
+        private System.Windows.Forms.Label lblShowEaterType;
     }
 }
 

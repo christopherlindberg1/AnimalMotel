@@ -47,49 +47,6 @@ namespace AnimalMotel
             InitializeApp();
         }
 
-
-        /// <summary>
-        ///   Initializes the entire app to the
-        ///   starting state
-        /// </summary>
-        private void InitializeApp()
-        {
-            InitializeGUI();
-        }
-
-
-        /// <summary>
-        ///   Initializes the GUI of the app
-        /// </summary>
-        private void InitializeGUI()
-        {
-            StartPosition = FormStartPosition.CenterScreen;
-            listBoxGender.Items.AddRange(Enum.GetNames(typeof(Gender)));
-            listBoxCategory.Items.AddRange(Enum.GetNames(typeof(Category)));
-            groupBoxAnimalCategorySpecs.Text = "";
-            groupBoxSpecieSpecificData.Text = "";
-
-            ClearInput();
-            InitializeCategorySpecificFields();
-            InitializeSpecieSpecificFields();
-            SetFormToDefaultState();
-        }
-
-        private void InitializeCategorySpecificFields()
-        {
-            // Fields for mammal
-            lblNrOfTeeth.Location = new Point(16, 30);
-            lblTailLength.Location = new Point(16, 60);
-            textBoxNrOfTeeth.Location = new Point(120, 28);
-            textBoxTailLength.Location = new Point(120, 59);
-
-            // Fields for birds
-            lblFlyingSpeed.Location = new Point(16, 30);
-            textBoxFlyingSpeed.Location = new Point(120, 28);
-
-            HideAllAnimalCategoryFields();
-        }
-
         private void HideAllAnimalCategoryFields()
         {
             ShowMammalInputFields(false);
@@ -114,27 +71,6 @@ namespace AnimalMotel
         {
             lblFlyingSpeed.Visible = show;
             textBoxFlyingSpeed.Visible = show;
-        }
-
-        private void InitializeSpecieSpecificFields()
-        {
-            // Fields for Eagle
-            lblClawLength.Location = new Point(5, 25);
-            textBoxClawLength.Location = new Point(90, 24);
-
-            // Fields for Pigeon
-            lblBeakLength.Location = new Point(5, 25);
-            textBoxBeakLength.Location = new Point(90, 24);
-
-            // Fields for Cat
-            lblNrOfLives.Location = new Point(5, 25);
-            textBoxNrOfLives.Location = new Point(90, 24);
-
-            // Fields for Dog
-            lblBreed.Location = new Point(5, 25);
-            textBoxBreed.Location = new Point(90, 24);
-
-            HideAllSpecieFields();
         }
 
         private void HideAllSpecieFields()
@@ -175,6 +111,12 @@ namespace AnimalMotel
             textBoxBreed.Visible = show;
         }
 
+        private void ShowFoodScheduleFields(bool show)
+        {
+            lblEaterType.Visible = show;
+            lblShowEaterType.Visible = show;
+        }
+
         /// <summary>
         ///   Sets the form controls to the default state.
         /// </summary>
@@ -186,6 +128,7 @@ namespace AnimalMotel
             ClearInput();
             HideSpecieFieldsAndLabel();
             HideAnimalCategoryFieldsAndLabel();
+            ShowFoodScheduleFields(false);
         }
 
         /// <summary>
@@ -300,6 +243,55 @@ namespace AnimalMotel
 
             }
         }
+
+        private void UpdateFoodScheduleFields(string specie)
+        {
+            switch (specie)
+            {
+                case "Eagle":
+                    ShowFoodScheduleEagle();
+                    break;
+
+                case "Pigeon":
+                    ShowFoodSchedulePigeon();
+                    break;
+
+                case "Cat":
+                    ShowFoodScheduleCat();
+                    break;
+
+                case "Dog":
+                    ShowFoodScheduleDog();
+                    break;
+
+                default:
+                    throw new ArgumentException("specie did not match any case", "specie");
+            }
+
+            ShowFoodScheduleFields(true);
+        }
+
+        private void ShowFoodScheduleEagle()
+        {
+            lblShowEaterType.Text = EaterType.Carnivore.ToString();
+        }
+
+        private void ShowFoodSchedulePigeon()
+        {
+            lblShowEaterType.Text = EaterType.Omnivorous.ToString();
+        }
+
+        private void ShowFoodScheduleCat()
+        {
+            lblShowEaterType.Text = EaterType.Carnivore.ToString();
+        }
+
+        private void ShowFoodScheduleDog()
+        {
+            lblShowEaterType.Text = EaterType.Carnivore.ToString();
+        }
+
+
 
         /// <summary>
         ///   Clears and resets all input fields.
@@ -521,6 +513,7 @@ namespace AnimalMotel
 
             HideAnimalCategoryFieldsAndLabel();
             HideSpecieFieldsAndLabel();
+            ShowFoodScheduleFields(false);
 
             if (checkBoxListAllAnimals.Checked)
             {
@@ -541,6 +534,7 @@ namespace AnimalMotel
                 Category category = GetAnimalCategoryByAnimal();
                 UpdateAnimalCategoryInputFields(category);
                 UpdateSpecieInputFields(listBoxSpecies.SelectedItem.ToString());
+                UpdateFoodScheduleFields(listBoxSpecies.SelectedItem.ToString());
             }
         }
 

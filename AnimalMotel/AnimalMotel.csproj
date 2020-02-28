@@ -63,6 +63,9 @@
     <Compile Include="Factories\BirdFactory.cs" />
     <Compile Include="Factories\MammalFactory.cs" />
     <Compile Include="FoodSchedule.cs" />
+    <Compile Include="FormMain.Init.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.Valitator.cs">
       <SubType>Form</SubType>
     </Compile>
