@@ -13,6 +13,7 @@ namespace AnimalMotel.Animals.Species
     public class Pigeon: Bird
     {
         private float _beakLength;
+        private FoodSchedule _foodSchedule;
 
 
         // ======================= Properties ======================= //
@@ -69,23 +70,20 @@ namespace AnimalMotel.Animals.Species
             : base(name, age, gender, flyingSpeed)
         {
             BeakLength = beakLength;
-        }
 
-        /// <summary>
-        ///   Constructor taking a Bird object as argument and filling those values.
-        /// </summary>
-        /// <param name="mammal">Bird object</param>
-        public Pigeon(Bird bird)
-        {
-            Name = bird.Name;
-            Age = bird.Age;
-            Gender = bird.Gender;
-            FlyingSpeed = bird.FlyingSpeed;
+            _foodSchedule = new FoodSchedule(
+                new List<string>
+                {
+                    "(1) Morning: nuts and water.",
+                    "(2) Lunch: insects and water.",
+                    "(3) Evening: nuts and water."
+                }
+            );
         }
 
         public override EaterType GetEaterType()
         {
-            throw new NotImplementedException();
+            return EaterType.Omnivorous;
         }
 
         public override FoodSchedule GetFoodSchedule()
@@ -109,7 +107,7 @@ namespace AnimalMotel.Animals.Species
             StringBuilder strRepr = new StringBuilder(
                 base.ToString() + String.Format("Beak length: {0}. ", BeakLength));
 
-            strRepr.Insert(15, this.GetType().Name);
+            strRepr.Insert(15, GetSpecie());
 
             return strRepr.ToString();
         }

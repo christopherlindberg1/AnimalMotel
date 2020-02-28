@@ -58,9 +58,6 @@ namespace AnimalMotel.Animals.Categories
             FlyingSpeed = flyingSpeed;
         }
 
-        
-
-
         /// <summary>
         ///   String representation of a Bird object. Makes use of its base class.
         /// </summary>

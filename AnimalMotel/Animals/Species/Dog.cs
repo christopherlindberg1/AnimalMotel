@@ -14,7 +14,7 @@ namespace AnimalMotel.Animals.Species
     public class Dog : Mammal
     {
         private string _breed;
-
+        private FoodSchedule _foodSchedule;
 
         // ======================= Properties ======================= //
 
@@ -68,35 +68,34 @@ namespace AnimalMotel.Animals.Species
         /// <summary>
         ///   Constructor taking all arguments for Dog objects.
         ///   Calls base constructor that handle all arguments for Mammal objects.
+        ///   Hard codes a food schedule.
         /// </summary>
         public Dog(string name, int age,
             Gender gender, int nrOfTeeth, float tailLength, string breed)
             : base(name, age, gender, nrOfTeeth, tailLength)
         {
             Breed = breed;
-        }
 
-        /// <summary>
-        ///   Constructor taking a Mammal object as argument and filling those values.
-        /// </summary>
-        /// <param name="mammal">Mammal object</param>
-        public Dog(Mammal mammal)
-        {
-            Name = mammal.Name;
-            Age = mammal.Age;
-            Gender = mammal.Gender;
-            NrOfTeeth = mammal.NrOfTeeth;
-            TailLegth = mammal.TailLegth;
+            // Hard coding food schedule.
+            _foodSchedule = new FoodSchedule(
+                new List<string>
+                {
+                    "(1) Morning: bones and one glas of milk.",
+                    "(2) Lunch: dog food and water.",
+                    "(3) 3 PM: Sweets and water.",
+                    "(4) Evening: Rests from a chicken and water."
+                }
+            );
         }
 
         public override EaterType GetEaterType()
         {
-            throw new NotImplementedException();
+            return EaterType.Carnivore;
         }
 
         public override FoodSchedule GetFoodSchedule()
         {
-            throw new NotImplementedException();
+            return _foodSchedule;
         }
 
         public override string GetSpecie()
@@ -114,7 +113,7 @@ namespace AnimalMotel.Animals.Species
             StringBuilder strRepr = new StringBuilder(
                 base.ToString() + String.Format("Breed: {0}. ", Breed));
 
-            strRepr.Insert(15, this.GetType().Name);
+            strRepr.Insert(15, GetSpecie());
 
             return strRepr.ToString();
         }

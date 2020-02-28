@@ -14,6 +14,7 @@ namespace AnimalMotel.Animals.Species
     public class Cat : Mammal
     {
         private int _lives;
+        private FoodSchedule _foodSchedule;
 
 
         // ======================= Properties ======================= //
@@ -60,29 +61,26 @@ namespace AnimalMotel.Animals.Species
             : base(name, age, gender, nrOfTeeth, tailLength)
         {
             Lives = lives;
-        }
 
-        /// <summary>
-        ///   Constructor taking a Mammal object as argument and filling those fields.
-        /// </summary>
-        /// <param name="mammal">Mammal object</param>
-        public Cat(Mammal mammal)
-        {
-            Name = mammal.Name;
-            Age = mammal.Age;
-            Gender = mammal.Gender;
-            NrOfTeeth = mammal.NrOfTeeth;
-            TailLegth = mammal.TailLegth;
+            _foodSchedule = new FoodSchedule(
+                new List<string> 
+                {
+                    "(1) Morning: tuna and water.",
+                    "(2) Lunch: Cat food and water.",
+                    "(3) 3 PM: Wiskers and milk.",
+                    "(4) Evening: tuna and water."
+                }
+            );
         }
 
         public override EaterType GetEaterType()
         {
-            throw new NotImplementedException();
+            return EaterType.Carnivore;
         }
 
         public override FoodSchedule GetFoodSchedule()
         {
-            throw new NotImplementedException();
+            return _foodSchedule;
         }
 
         public override string GetSpecie()
@@ -100,7 +98,7 @@ namespace AnimalMotel.Animals.Species
             StringBuilder strRepr = new StringBuilder(
                 base.ToString() + String.Format("Nr of lives: {0}. ", Lives));
 
-            strRepr.Insert(15, this.GetType().Name);
+            strRepr.Insert(15, GetSpecie());
 
             return strRepr.ToString();
         }

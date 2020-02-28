@@ -14,6 +14,7 @@ namespace AnimalMotel.Animals.Species
     public class Eagle : Bird
     {
         private float _clawLength;
+        private FoodSchedule _foodSchedule;
 
 
         // ======================= Properties ======================= //
@@ -70,27 +71,25 @@ namespace AnimalMotel.Animals.Species
             : base(name, age, gender, flyingSpeed)
         {
             ClawLength = clawLength;
-        }
 
-        /// <summary>
-        ///   Constructor taking a Bird object as argument and filling those values.
-        /// </summary>
-        /// <param name="mammal">Bird object</param>
-        public Eagle(Bird bird)
-        {
-            Name = bird.Name;
-            Age = bird.Age;
-            Gender = bird.Gender;
-            FlyingSpeed = bird.FlyingSpeed;
+            _foodSchedule = new FoodSchedule(
+                new List<string>
+                {
+                    "(1) Morning: raw meat and water.",
+                    "(2) Lunch: chicken and water.",
+                    "(3) Evening: rabbit and water."
+                }
+            );
         }
 
         public override EaterType GetEaterType()
         {
-            throw new NotImplementedException();
+            return EaterType.Carnivore;
         }
 
         public override FoodSchedule GetFoodSchedule()
         {
+            
             throw new NotImplementedException();
         }
 
@@ -110,7 +109,7 @@ namespace AnimalMotel.Animals.Species
             StringBuilder strRepr = new StringBuilder(
                 base.ToString() + String.Format("Claw length: {0}. ", ClawLength));
 
-            strRepr.Insert(15, this.GetType().Name);
+            strRepr.Insert(15, GetSpecie());
 
             return strRepr.ToString();
         }
