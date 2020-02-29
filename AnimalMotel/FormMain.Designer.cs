@@ -68,6 +68,7 @@
             this.groupBoxAnimalCategorySpecs = new System.Windows.Forms.GroupBox();
             this.lblNrOfTeeth = new System.Windows.Forms.Label();
             this.listBoxSpecies = new System.Windows.Forms.ListBox();
+            this.listBoxFoodSchedule = new System.Windows.Forms.ListBox();
             this.groupBoxGender.SuspendLayout();
             this.groupBoxAnimalList.SuspendLayout();
             this.groupBoxAnimalSpecs.SuspendLayout();
@@ -180,7 +181,7 @@
             this.groupBoxAnimalList.Controls.Add(this.listBoxRegisteredAnimals);
             this.groupBoxAnimalList.Location = new System.Drawing.Point(14, 420);
             this.groupBoxAnimalList.Name = "groupBoxAnimalList";
-            this.groupBoxAnimalList.Size = new System.Drawing.Size(982, 334);
+            this.groupBoxAnimalList.Size = new System.Drawing.Size(1156, 334);
             this.groupBoxAnimalList.TabIndex = 1;
             this.groupBoxAnimalList.TabStop = false;
             this.groupBoxAnimalList.Text = "List of registered animals";
@@ -245,7 +246,7 @@
             this.listBoxRegisteredAnimals.ItemHeight = 18;
             this.listBoxRegisteredAnimals.Location = new System.Drawing.Point(24, 68);
             this.listBoxRegisteredAnimals.Name = "listBoxRegisteredAnimals";
-            this.listBoxRegisteredAnimals.Size = new System.Drawing.Size(931, 238);
+            this.listBoxRegisteredAnimals.Size = new System.Drawing.Size(1105, 238);
             this.listBoxRegisteredAnimals.TabIndex = 0;
             // 
             // lblAge
@@ -298,6 +299,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listBoxFoodSchedule);
             this.groupBox1.Controls.Add(this.lblShowEaterType);
             this.groupBox1.Controls.Add(this.lblEaterType);
             this.groupBox1.Location = new System.Drawing.Point(772, 26);
@@ -461,6 +463,17 @@
             this.listBoxSpecies.TabIndex = 5;
             this.listBoxSpecies.SelectedIndexChanged += new System.EventHandler(this.listBoxSpecies_SelectedIndexChanged);
             // 
+            // listBoxFoodSchedule
+            // 
+            this.listBoxFoodSchedule.BackColor = System.Drawing.SystemColors.Control;
+            this.listBoxFoodSchedule.Enabled = false;
+            this.listBoxFoodSchedule.FormattingEnabled = true;
+            this.listBoxFoodSchedule.ItemHeight = 18;
+            this.listBoxFoodSchedule.Location = new System.Drawing.Point(144, 83);
+            this.listBoxFoodSchedule.Name = "listBoxFoodSchedule";
+            this.listBoxFoodSchedule.Size = new System.Drawing.Size(120, 94);
+            this.listBoxFoodSchedule.TabIndex = 2;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -527,6 +540,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblEaterType;
         private System.Windows.Forms.Label lblShowEaterType;
+        private System.Windows.Forms.ListBox listBoxFoodSchedule;
     }
 }
 

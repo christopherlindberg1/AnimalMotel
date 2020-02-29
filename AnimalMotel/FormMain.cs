@@ -12,6 +12,7 @@ using System.Windows.Forms;
 // Own namespaces
 using AnimalMotel.Enums;
 using AnimalMotel.Factories;
+using AnimalMotel.Animals.Species;
 
 
 namespace AnimalMotel
@@ -115,6 +116,7 @@ namespace AnimalMotel
         {
             lblEaterType.Visible = show;
             lblShowEaterType.Visible = show;
+            listBoxFoodSchedule.Visible = show;
         }
 
         /// <summary>
@@ -246,6 +248,8 @@ namespace AnimalMotel
 
         private void UpdateFoodScheduleFields(string specie)
         {
+            listBoxFoodSchedule.Items.Clear();
+
             switch (specie)
             {
                 case "Eagle":
@@ -274,21 +278,57 @@ namespace AnimalMotel
         private void ShowFoodScheduleEagle()
         {
             lblShowEaterType.Text = EaterType.Carnivore.ToString();
+            
+            Eagle eagle = new Eagle();
+
+            listBoxFoodSchedule.Items.Add("Feeding instructions for eagles:");
+            
+            for (int i = 0; i < eagle.FoodSchedule.NrOfFoodDescriptions; i++)
+            {
+                listBoxFoodSchedule.Items.Add(eagle.FoodSchedule.GetFoodSchedule(i));
+            }
         }
 
         private void ShowFoodSchedulePigeon()
         {
             lblShowEaterType.Text = EaterType.Omnivorous.ToString();
+
+            Pigeon pigeon = new Pigeon();
+
+            listBoxFoodSchedule.Items.Add("Feeding instructions for Pigeons:");
+
+            for (int i = 0; i < pigeon.FoodSchedule.NrOfFoodDescriptions; i++)
+            {
+                listBoxFoodSchedule.Items.Add(pigeon.FoodSchedule.GetFoodSchedule(i));
+            }
         }
 
         private void ShowFoodScheduleCat()
         {
             lblShowEaterType.Text = EaterType.Carnivore.ToString();
+
+            Cat cat = new Cat();
+
+            listBoxFoodSchedule.Items.Add("Feeding instructions for cats:");
+
+            for (int i = 0; i < cat.FoodSchedule.NrOfFoodDescriptions; i++)
+            {
+                listBoxFoodSchedule.Items.Add(cat.FoodSchedule.GetFoodSchedule(i));
+            }
         }
 
         private void ShowFoodScheduleDog()
         {
             lblShowEaterType.Text = EaterType.Carnivore.ToString();
+
+            Dog dog = new Dog();
+
+            listBoxFoodSchedule.Items.Add("Feeding instructions for dogs:");
+
+            for (int i = 0; i < dog.FoodSchedule.NrOfFoodDescriptions; i++)
+            {
+                listBoxFoodSchedule.Items.Add(dog.FoodSchedule.GetFoodSchedule(i));
+            }
         }
 
 

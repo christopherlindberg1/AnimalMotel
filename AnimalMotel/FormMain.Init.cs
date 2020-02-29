@@ -64,22 +64,22 @@ namespace AnimalMotel
         private void InitializeSpecieSpecificFields()
         {
             // Fields for Eagle
-            lblClawLength.Location = new Point(5, 25);
+            lblClawLength.Location = new Point(8, 25);
             textBoxClawLength.Location = new Point(80, 24);
             textBoxClawLength.Size = new Size(50, 24);
 
             // Fields for Pigeon
-            lblBeakLength.Location = new Point(5, 25);
+            lblBeakLength.Location = new Point(8, 25);
             textBoxBeakLength.Location = new Point(80, 24);
             textBoxBeakLength.Size = new Size(50, 24);
 
             // Fields for Cat
-            lblNrOfLives.Location = new Point(5, 25);
+            lblNrOfLives.Location = new Point(8, 25);
             textBoxNrOfLives.Location = new Point(80, 24);
             textBoxNrOfLives.Size = new Size(50, 24);
 
             // Fields for Dog
-            lblBreed.Location = new Point(5, 25);
+            lblBreed.Location = new Point(8, 25);
             textBoxBreed.Location = new Point(55, 24);
             textBoxBreed.Size = new Size(100, 24);
 
@@ -88,10 +88,13 @@ namespace AnimalMotel
 
         private void InitializeFoodScheduleSection()
         {
-            lblEaterType.Location = new Point(5, 25);
+            lblEaterType.Location = new Point(8, 25);
             lblShowEaterType.Text = "";
             lblShowEaterType.Location = new Point(90, 24);
-            lblShowEaterType.Size = new Size(270, 22);
+            lblShowEaterType.Size = new Size(275, 22);
+            listBoxFoodSchedule.Enabled = false;
+            listBoxFoodSchedule.Location = new Point(10, 60);
+            listBoxFoodSchedule.Size = new Size(355, 230);
         }
     }
 }

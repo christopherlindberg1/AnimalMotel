@@ -31,6 +31,16 @@ namespace AnimalMotel.Animals.Species
             }
         }
 
+        public FoodSchedule FoodSchedule
+        {
+            get { return _foodSchedule; }
+        }
+
+
+
+
+        // ======================= Methods ======================= //
+
         /// <summary>
         ///   Parameterless constructor chain calling another constructor
         ///   and passing in default values.

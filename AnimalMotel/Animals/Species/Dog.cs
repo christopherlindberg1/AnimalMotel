@@ -31,6 +31,12 @@ namespace AnimalMotel.Animals.Species
             }
         }
 
+        public FoodSchedule FoodSchedule
+        {
+            get { return _foodSchedule; }
+        }
+
+
 
 
         // ======================= Methods ======================= //

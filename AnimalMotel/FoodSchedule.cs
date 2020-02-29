@@ -8,7 +8,7 @@ namespace AnimalMotel
 {
     public class FoodSchedule
     {
-        private readonly List<string> _foodDescriptionList = new List<string>();
+        private readonly List<string> _foodDescriptionList;
 
 
 
@@ -28,12 +28,12 @@ namespace AnimalMotel
 
         public FoodSchedule()
         {
-
+            _foodDescriptionList = new List<string>();
         }
 
         public FoodSchedule(List<string> foodList)
         {
-            
+            _foodDescriptionList = foodList;
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace AnimalMotel
         /// <returns>string with no feeding-information.</returns>
         public string DescribeNoFeedingRequired()
         {
-            return "Animals of this specie are self feeding";
+            return "Animals of this specie are self feeding.";
         }
 
         /// <summary>
@@ -122,6 +122,11 @@ namespace AnimalMotel
         public string GetFoodSchedule(int index)
         {
             return _foodDescriptionList[index];
+        }
+
+        public List<string> GetFoodScheduleListCopy()
+        {
+            return new List<string>(_foodDescriptionList);
         }
 
         /// <summary>
