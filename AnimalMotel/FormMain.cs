@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 // Own namespaces
 using AnimalMotel.Enums;
+using AnimalMotel.Enums.Sorting;
 using AnimalMotel.Factories;
 using AnimalMotel.Animals.Species;
 
@@ -25,6 +26,7 @@ namespace AnimalMotel
     partial class FormMain : Form
     {
         private readonly AnimalManager _animalManager = new AnimalManager();
+
 
 
 

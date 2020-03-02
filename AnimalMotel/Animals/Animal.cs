@@ -10,7 +10,7 @@ using AnimalMotel.Animals;
 
 namespace AnimalMotel
 {
-    public abstract class Animal : IAnimal
+    public abstract class Animal : IAnimal, IComparable<Animal>
     {
         private int _id;
         private string _name;
@@ -72,6 +72,16 @@ namespace AnimalMotel
             Name = name;
             Age = age;
             Gender = gender;
+        }
+
+        public int CompareTo(Animal other)
+        {
+            if (this.Age < other.Age)
+                return -1;
+            else if (this.Age == other.Age)
+                return 0;
+            else
+                return 1;
         }
 
         public abstract EaterType GetEaterType();

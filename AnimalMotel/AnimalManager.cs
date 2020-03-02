@@ -15,7 +15,7 @@ namespace AnimalMotel
     public partial class AnimalManager
     {
         private static int _lastGeneratedId = 1;
-        private List<Animal> _animals = new List<Animal>();
+        private readonly List<Animal> _animals = new List<Animal>();
 
 
 
