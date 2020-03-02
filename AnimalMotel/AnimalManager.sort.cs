@@ -16,10 +16,16 @@ namespace AnimalMotel
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
 
 
+
+        /// <summary>
+        ///   Sorts animals by their ID.
+        ///   Checks the current state to determine if to sort
+        ///   ascending ordescending, and then updates state.
+        /// </summary>
         public void SortById()
         {
             /*
-             If previous sort wasn't by name or if previous sort was by name
+             If previous sort wasn't by id or if previous sort was by id
              in descending order.
              */
             if ((_lastUsedSortingParameter != SortingParameters.Id)
@@ -51,10 +57,15 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Sorts animals by their specie.
+        ///   Checks the current state to determine if to sort
+        ///   ascending ordescending, and then updates state.
+        /// </summary>
         public void SortBySpecie()
         {
             /*
-             If previous sort wasn't by name or if previous sort was by name
+             If previous sort wasn't by specie or if previous sort was by specie
              in descending order.
              */
             if ((_lastUsedSortingParameter != SortingParameters.Specie)
@@ -86,6 +97,11 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Sorts animals by their Name.
+        ///   Checks the current state to determine if to sort
+        ///   ascending ordescending, and then updates state.
+        /// </summary>
         public void SortByName()
         {
             /*
@@ -121,10 +137,15 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Sorts animals by their age.
+        ///   Checks the current state to determine if to sort
+        ///   ascending ordescending, and then updates state.
+        /// </summary>
         public void SortByAge()
         {
             /*
-             If previous sort wasn't by name or if previous sort was by name
+             If previous sort wasn't by age or if previous sort was by age
              in descending order.
              */
             if ((_lastUsedSortingParameter != SortingParameters.Age)
@@ -156,10 +177,15 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Sorts animals by their gender.
+        ///   Checks the current state to determine if to sort
+        ///   ascending ordescending, and then updates state.
+        /// </summary>
         public void SortByGender()
         {
             /*
-             If previous sort wasn't by name or if previous sort was by name
+             If previous sort wasn't by gender or if previous sort was by gender
              in descending order.
              */
             if ((_lastUsedSortingParameter != SortingParameters.Gender)
@@ -191,11 +217,17 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Sorts animals by their special characteristics (just compares
+        ///   the strings that represent all special characteristics).
+        ///   Checks the current state to determine if to sort
+        ///   ascending ordescending, and then updates state.
+        /// </summary>
         public void SortBySpecialCharacteristics()
         {
             /*
-             If previous sort wasn't by name or if previous sort was by name
-             in descending order.
+             If previous sort wasn't by special characteristics or if
+             previous sort was by special characteristics in descending order.
              */
             if ((_lastUsedSortingParameter != SortingParameters.Specialcharacteristics)
                 || (_lastUsedSortingParameter == SortingParameters.Specialcharacteristics
