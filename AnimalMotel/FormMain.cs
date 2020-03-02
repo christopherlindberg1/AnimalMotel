@@ -496,30 +496,30 @@ namespace AnimalMotel
             AddAnimalsToGUIList();
         }
 
-
-        /// <summary>
-        ///   Adds an animal to the list of animals.
-        ///   Makes use of the animals ToString method.
-        /// </summary>
-        /// <param name="animal">Object created from the Animal
-        /// class or its sub classes</param>
-        private void AddAnimalToGUIList(Animal animal)
-        {
-            listBoxRegisteredAnimals.Items.Add(animal.ToString());
-        }
-
         /// <summary>
         ///   Clears the list with animals in the GUI and then
         ///   adds all animals that are stored in the AnimalManager.
         /// </summary>
         private void AddAnimalsToGUIList()
         {
-            listBoxRegisteredAnimals.Items.Clear();
+            listViewAnimals.Items.Clear();
+
+            Animal animal;
 
             for (int i = 0; i < AnimalManager.ListCount; i++)
             {
-                listBoxRegisteredAnimals.Items.Add(
-                    AnimalManager.GetAnimalAt(i).ToString());
+                animal = AnimalManager.GetAnimalAt(i);
+
+                ListViewItem item = new ListViewItem(
+                    animal.Id.ToString());
+
+                item.SubItems.Add(animal.GetSpecie());
+                item.SubItems.Add(animal.Name);
+                item.SubItems.Add(animal.Age.ToString());
+                item.SubItems.Add(animal.Gender.ToString());
+                item.SubItems.Add(animal.GetSpecialCharacteristics());
+
+                listViewAnimals.Items.Add(item);
             }
         }
 
@@ -593,6 +593,44 @@ namespace AnimalMotel
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+        }
+
+        private void listViewAnimals_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            int columnIndex = e.Column;
+
+            switch (columnIndex)
+            {
+                case 0:
+                    AnimalManager.SortById();
+                    break;
+
+                case 1:
+                    AnimalManager.SortBySpecie();
+                    break;
+
+                case 2:
+                    AnimalManager.SortByName();
+                    break;
+
+                case 3:
+                    AnimalManager.SortByAge();
+                    break;
+
+                case 4:
+                    AnimalManager.SortByGender();
+                    break;
+
+                case 5:
+                    AnimalManager.SortBySpecialCharacteristics();
+                    break;
+
+                default:
+                    throw new InvalidOperationException(
+                        "Column index was not in within the range");
+            }
+
+            AddAnimalsToGUIList();
         }
     }
 }

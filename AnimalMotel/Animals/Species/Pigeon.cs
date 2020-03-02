@@ -106,6 +106,12 @@ namespace AnimalMotel.Animals.Species
             return this.GetType().Name;
         }
 
+        public override string GetSpecialCharacteristics()
+        {
+            return String.Format("Flying speed: {0, -7} Beak legth: {1, -7}.",
+                FlyingSpeed, BeakLength);
+        }
+
         /// <summary>
         ///   Overrides the default ToString method.
         ///   Formats a string by adding beak length to the string

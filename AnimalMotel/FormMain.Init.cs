@@ -31,7 +31,10 @@ namespace AnimalMotel
             InitializeCategorySpecificFields();
             InitializeSpecieSpecificFields();
             InitializeFoodScheduleSection();
+            InitializeListViewAnimals();
             SetFormToDefaultState();
+
+            SetSampleData();
         }
 
         /// <summary>
@@ -95,6 +98,38 @@ namespace AnimalMotel
             listBoxFoodSchedule.Enabled = false;
             listBoxFoodSchedule.Location = new Point(10, 60);
             listBoxFoodSchedule.Size = new Size(355, 230);
+        }
+
+        private void InitializeListViewAnimals()
+        {
+            // Setting width for columns
+            listViewAnimals.Columns[0].Width = 50;      // id
+            listViewAnimals.Columns[1].Width = 100;     // specie
+            listViewAnimals.Columns[2].Width = 120;     // name
+            listViewAnimals.Columns[3].Width = 50;      // age
+            listViewAnimals.Columns[4].Width = 80;      // gender
+            listViewAnimals.Columns[5].Width = 726;     // special characteristics
+
+            // Set the view to show details.
+            listViewAnimals.View = View.Details;
+            // Allow the user to rearrange columns.
+            listViewAnimals.AllowColumnReorder = true;
+            // Select the item and subitems when selection is made.
+            listViewAnimals.FullRowSelect = true;
+            // Display grid lines.
+            listViewAnimals.GridLines = true;
+        }
+
+        private void SetSampleData()
+        {
+            textBoxName.Text = "Bosse";
+            textBoxAge.Text = "5";
+            listBoxGender.SelectedIndex = 1;
+            listBoxCategory.SelectedIndex = 0;
+            listBoxSpecies.SelectedIndex = 0;
+            textBoxNrOfTeeth.Text = "20";
+            textBoxClawLength.Text = "4";
+            textBoxFlyingSpeed.Text = "200";
         }
     }
 }

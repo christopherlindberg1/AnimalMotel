@@ -98,6 +98,13 @@ namespace AnimalMotel.Animals.Species
             return this.GetType().Name;
         }
 
+        public override string GetSpecialCharacteristics()
+        {
+            return String.Format("Nr of teeth: {0, -7} Tail length: {1, -7}" +
+                "Nr of lives: {2}",
+                NrOfTeeth, TailLegth, Lives);
+        }
+
         /// <summary>
         ///   Formats a string by building ontop of the ToString method
         ///   defined in the base class.

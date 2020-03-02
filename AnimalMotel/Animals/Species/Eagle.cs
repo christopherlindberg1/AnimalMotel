@@ -109,6 +109,12 @@ namespace AnimalMotel.Animals.Species
             return this.GetType().Name;
         }
 
+        public override string GetSpecialCharacteristics()
+        {
+            return String.Format("Flying speed: {0, -7} Claw legth: {1, -7}",
+                FlyingSpeed, ClawLength);
+        }
+
         /// <summary>
         ///   Overrides the default ToString method.
         ///   Formats a string by building ontop of the ToString method

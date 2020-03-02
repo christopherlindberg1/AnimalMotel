@@ -80,6 +80,8 @@ namespace AnimalMotel
 
         public abstract string GetSpecie();
 
+        public abstract string GetSpecialCharacteristics();
+
         /// <summary>
         ///   String representation of an Animal object.
         /// </summary>

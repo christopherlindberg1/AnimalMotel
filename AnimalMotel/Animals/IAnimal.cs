@@ -26,5 +26,7 @@ namespace AnimalMotel.Animals
         FoodSchedule GetFoodSchedule();
 
         string GetSpecie();
+
+        string GetSpecialCharacteristics();
     }
 }

@@ -40,18 +40,19 @@
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.groupBoxAnimalList = new System.Windows.Forms.GroupBox();
-            this.lblSpecie = new System.Windows.Forms.Label();
-            this.lblRegSpecialCharacteristics = new System.Windows.Forms.Label();
-            this.lblRegGender = new System.Windows.Forms.Label();
-            this.lblRegAge = new System.Windows.Forms.Label();
-            this.lblRegName = new System.Windows.Forms.Label();
-            this.lblRegId = new System.Windows.Forms.Label();
-            this.listBoxRegisteredAnimals = new System.Windows.Forms.ListBox();
+            this.listViewAnimals = new System.Windows.Forms.ListView();
+            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.specie = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.age = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gender = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.specialCharacteristics = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblAge = new System.Windows.Forms.Label();
             this.textBoxNrOfTeeth = new System.Windows.Forms.TextBox();
             this.lblTailLength = new System.Windows.Forms.Label();
             this.groupBoxAnimalSpecs = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBoxFoodSchedule = new System.Windows.Forms.ListBox();
             this.lblShowEaterType = new System.Windows.Forms.Label();
             this.lblEaterType = new System.Windows.Forms.Label();
             this.groupBoxSpecieSpecificData = new System.Windows.Forms.GroupBox();
@@ -68,7 +69,6 @@
             this.groupBoxAnimalCategorySpecs = new System.Windows.Forms.GroupBox();
             this.lblNrOfTeeth = new System.Windows.Forms.Label();
             this.listBoxSpecies = new System.Windows.Forms.ListBox();
-            this.listBoxFoodSchedule = new System.Windows.Forms.ListBox();
             this.groupBoxGender.SuspendLayout();
             this.groupBoxAnimalList.SuspendLayout();
             this.groupBoxAnimalSpecs.SuspendLayout();
@@ -172,13 +172,7 @@
             // 
             // groupBoxAnimalList
             // 
-            this.groupBoxAnimalList.Controls.Add(this.lblSpecie);
-            this.groupBoxAnimalList.Controls.Add(this.lblRegSpecialCharacteristics);
-            this.groupBoxAnimalList.Controls.Add(this.lblRegGender);
-            this.groupBoxAnimalList.Controls.Add(this.lblRegAge);
-            this.groupBoxAnimalList.Controls.Add(this.lblRegName);
-            this.groupBoxAnimalList.Controls.Add(this.lblRegId);
-            this.groupBoxAnimalList.Controls.Add(this.listBoxRegisteredAnimals);
+            this.groupBoxAnimalList.Controls.Add(this.listViewAnimals);
             this.groupBoxAnimalList.Location = new System.Drawing.Point(14, 420);
             this.groupBoxAnimalList.Name = "groupBoxAnimalList";
             this.groupBoxAnimalList.Size = new System.Drawing.Size(1156, 334);
@@ -186,68 +180,47 @@
             this.groupBoxAnimalList.TabStop = false;
             this.groupBoxAnimalList.Text = "List of registered animals";
             // 
-            // lblSpecie
+            // listViewAnimals
             // 
-            this.lblSpecie.AutoSize = true;
-            this.lblSpecie.Location = new System.Drawing.Point(82, 42);
-            this.lblSpecie.Name = "lblSpecie";
-            this.lblSpecie.Size = new System.Drawing.Size(53, 18);
-            this.lblSpecie.TabIndex = 1;
-            this.lblSpecie.Text = "Specie";
+            this.listViewAnimals.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.specie,
+            this.name,
+            this.age,
+            this.gender,
+            this.specialCharacteristics});
+            this.listViewAnimals.HideSelection = false;
+            this.listViewAnimals.Location = new System.Drawing.Point(14, 33);
+            this.listViewAnimals.Name = "listViewAnimals";
+            this.listViewAnimals.Size = new System.Drawing.Size(1130, 246);
+            this.listViewAnimals.TabIndex = 2;
+            this.listViewAnimals.UseCompatibleStateImageBehavior = false;
+            this.listViewAnimals.View = System.Windows.Forms.View.Details;
+            this.listViewAnimals.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewAnimals_ColumnClick);
             // 
-            // lblRegSpecialCharacteristics
+            // id
             // 
-            this.lblRegSpecialCharacteristics.AutoSize = true;
-            this.lblRegSpecialCharacteristics.Location = new System.Drawing.Point(496, 42);
-            this.lblRegSpecialCharacteristics.Name = "lblRegSpecialCharacteristics";
-            this.lblRegSpecialCharacteristics.Size = new System.Drawing.Size(156, 18);
-            this.lblRegSpecialCharacteristics.TabIndex = 0;
-            this.lblRegSpecialCharacteristics.Text = "Special characteristics";
+            this.id.Text = "ID";
             // 
-            // lblRegGender
+            // specie
             // 
-            this.lblRegGender.AutoSize = true;
-            this.lblRegGender.Location = new System.Drawing.Point(344, 44);
-            this.lblRegGender.Name = "lblRegGender";
-            this.lblRegGender.Size = new System.Drawing.Size(57, 18);
-            this.lblRegGender.TabIndex = 0;
-            this.lblRegGender.Text = "Gender";
+            this.specie.Text = "Specie";
             // 
-            // lblRegAge
+            // name
             // 
-            this.lblRegAge.AutoSize = true;
-            this.lblRegAge.Location = new System.Drawing.Point(272, 42);
-            this.lblRegAge.Name = "lblRegAge";
-            this.lblRegAge.Size = new System.Drawing.Size(33, 18);
-            this.lblRegAge.TabIndex = 0;
-            this.lblRegAge.Text = "Age";
+            this.name.Text = "Name";
             // 
-            // lblRegName
+            // age
             // 
-            this.lblRegName.AutoSize = true;
-            this.lblRegName.Location = new System.Drawing.Point(178, 42);
-            this.lblRegName.Name = "lblRegName";
-            this.lblRegName.Size = new System.Drawing.Size(48, 18);
-            this.lblRegName.TabIndex = 0;
-            this.lblRegName.Text = "Name";
+            this.age.Text = "Age";
             // 
-            // lblRegId
+            // gender
             // 
-            this.lblRegId.AutoSize = true;
-            this.lblRegId.Location = new System.Drawing.Point(42, 42);
-            this.lblRegId.Name = "lblRegId";
-            this.lblRegId.Size = new System.Drawing.Size(22, 18);
-            this.lblRegId.TabIndex = 0;
-            this.lblRegId.Text = "ID";
+            this.gender.Text = "Gender";
             // 
-            // listBoxRegisteredAnimals
+            // specialCharacteristics
             // 
-            this.listBoxRegisteredAnimals.FormattingEnabled = true;
-            this.listBoxRegisteredAnimals.ItemHeight = 18;
-            this.listBoxRegisteredAnimals.Location = new System.Drawing.Point(24, 68);
-            this.listBoxRegisteredAnimals.Name = "listBoxRegisteredAnimals";
-            this.listBoxRegisteredAnimals.Size = new System.Drawing.Size(1105, 238);
-            this.listBoxRegisteredAnimals.TabIndex = 0;
+            this.specialCharacteristics.Text = "Special characteristics";
             // 
             // lblAge
             // 
@@ -292,7 +265,7 @@
             this.groupBoxAnimalSpecs.Controls.Add(this.lblName);
             this.groupBoxAnimalSpecs.Location = new System.Drawing.Point(14, 14);
             this.groupBoxAnimalSpecs.Name = "groupBoxAnimalSpecs";
-            this.groupBoxAnimalSpecs.Size = new System.Drawing.Size(1156, 399);
+            this.groupBoxAnimalSpecs.Size = new System.Drawing.Size(1156, 362);
             this.groupBoxAnimalSpecs.TabIndex = 2;
             this.groupBoxAnimalSpecs.TabStop = false;
             this.groupBoxAnimalSpecs.Text = "Animal Specifications";
@@ -308,6 +281,17 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Feeding schedule";
+            // 
+            // listBoxFoodSchedule
+            // 
+            this.listBoxFoodSchedule.BackColor = System.Drawing.SystemColors.Control;
+            this.listBoxFoodSchedule.Enabled = false;
+            this.listBoxFoodSchedule.FormattingEnabled = true;
+            this.listBoxFoodSchedule.ItemHeight = 18;
+            this.listBoxFoodSchedule.Location = new System.Drawing.Point(144, 83);
+            this.listBoxFoodSchedule.Name = "listBoxFoodSchedule";
+            this.listBoxFoodSchedule.Size = new System.Drawing.Size(120, 94);
+            this.listBoxFoodSchedule.TabIndex = 2;
             // 
             // lblShowEaterType
             // 
@@ -421,9 +405,9 @@
             // 
             // btnAddAnimal
             // 
-            this.btnAddAnimal.Location = new System.Drawing.Point(510, 324);
+            this.btnAddAnimal.Location = new System.Drawing.Point(569, 300);
             this.btnAddAnimal.Name = "btnAddAnimal";
-            this.btnAddAnimal.Size = new System.Drawing.Size(166, 47);
+            this.btnAddAnimal.Size = new System.Drawing.Size(197, 47);
             this.btnAddAnimal.TabIndex = 9;
             this.btnAddAnimal.Text = "Add animal";
             this.btnAddAnimal.UseVisualStyleBackColor = true;
@@ -463,17 +447,6 @@
             this.listBoxSpecies.TabIndex = 5;
             this.listBoxSpecies.SelectedIndexChanged += new System.EventHandler(this.listBoxSpecies_SelectedIndexChanged);
             // 
-            // listBoxFoodSchedule
-            // 
-            this.listBoxFoodSchedule.BackColor = System.Drawing.SystemColors.Control;
-            this.listBoxFoodSchedule.Enabled = false;
-            this.listBoxFoodSchedule.FormattingEnabled = true;
-            this.listBoxFoodSchedule.ItemHeight = 18;
-            this.listBoxFoodSchedule.Location = new System.Drawing.Point(144, 83);
-            this.listBoxFoodSchedule.Name = "listBoxFoodSchedule";
-            this.listBoxFoodSchedule.Size = new System.Drawing.Size(120, 94);
-            this.listBoxFoodSchedule.TabIndex = 2;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -486,7 +459,6 @@
             this.Text = "Animal Motel";
             this.groupBoxGender.ResumeLayout(false);
             this.groupBoxAnimalList.ResumeLayout(false);
-            this.groupBoxAnimalList.PerformLayout();
             this.groupBoxAnimalSpecs.ResumeLayout(false);
             this.groupBoxAnimalSpecs.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -512,13 +484,6 @@
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.GroupBox groupBoxAnimalList;
-        private System.Windows.Forms.Label lblSpecie;
-        private System.Windows.Forms.Label lblRegSpecialCharacteristics;
-        private System.Windows.Forms.Label lblRegGender;
-        private System.Windows.Forms.Label lblRegAge;
-        private System.Windows.Forms.Label lblRegName;
-        private System.Windows.Forms.Label lblRegId;
-        private System.Windows.Forms.ListBox listBoxRegisteredAnimals;
         private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.TextBox textBoxNrOfTeeth;
         private System.Windows.Forms.Label lblTailLength;
@@ -541,6 +506,13 @@
         private System.Windows.Forms.Label lblEaterType;
         private System.Windows.Forms.Label lblShowEaterType;
         private System.Windows.Forms.ListBox listBoxFoodSchedule;
+        private System.Windows.Forms.ListView listViewAnimals;
+        private System.Windows.Forms.ColumnHeader id;
+        private System.Windows.Forms.ColumnHeader specie;
+        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ColumnHeader age;
+        private System.Windows.Forms.ColumnHeader gender;
+        private System.Windows.Forms.ColumnHeader specialCharacteristics;
     }
 }
 

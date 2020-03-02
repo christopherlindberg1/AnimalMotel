@@ -12,10 +12,10 @@ using AnimalMotel.Animals.Species;
 
 namespace AnimalMotel
 {
-    public class AnimalManager
+    public partial class AnimalManager
     {
         private static int _lastGeneratedId = 1;
-        private readonly List<Animal> _animals = new List<Animal>();
+        private List<Animal> _animals = new List<Animal>();
 
 
 

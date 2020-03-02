@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimalManager.cs" />
+    <Compile Include="AnimalManager.sort.cs" />
     <Compile Include="Animals\Animal.cs" />
     <Compile Include="Animals\Categories\Bird.cs" />
     <Compile Include="Animals\Categories\Mammal.cs" />
@@ -60,6 +61,8 @@
     <Compile Include="Enums\Category.cs" />
     <Compile Include="Enums\EaterType.cs" />
     <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\Sorting\SortingDirections.cs" />
+    <Compile Include="Enums\Sorting\SortingParameters.cs" />
     <Compile Include="Factories\BirdFactory.cs" />
     <Compile Include="Factories\MammalFactory.cs" />
     <Compile Include="FoodSchedule.cs" />
