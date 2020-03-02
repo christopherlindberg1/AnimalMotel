@@ -188,6 +188,11 @@ namespace AnimalMotel
             return species;
         }
 
+        /// <summary>
+        ///   Updates the label of the section covering animal category
+        ///   specific input fields. Hides irrelevant fields.
+        /// </summary>
+        /// <param name="animalCategory">Animal category.</param>
         private void UpdateAnimalCategoryInputFields(Category animalCategory)
         {
             StringBuilder category = new StringBuilder(animalCategory.ToString());
@@ -214,6 +219,11 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Updates the label of the section covering specie specific input
+        ///   fields. Hides irrelevant fields.
+        /// </summary>
+        /// <param name="specie">Name of the specie.</param>
         private void UpdateSpecieInputFields(string specie)
         {
             StringBuilder specieBuilder = new StringBuilder(specie);
@@ -248,6 +258,11 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Updates the section for the food schedule depending on what
+        ///   specie is selcted.
+        /// </summary>
+        /// <param name="specie">Name of the specie.</param>
         private void UpdateFoodScheduleFields(string specie)
         {
             listBoxFoodSchedule.Items.Clear();
@@ -277,6 +292,9 @@ namespace AnimalMotel
             ShowFoodScheduleFields(true);
         }
 
+        /// <summary>
+        ///   Shows the food schedule for eagles.
+        /// </summary>
         private void ShowFoodScheduleEagle()
         {
             lblShowEaterType.Text = EaterType.Carnivore.ToString();
@@ -291,6 +309,9 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Shows the food schedule for pigeons.
+        /// </summary>
         private void ShowFoodSchedulePigeon()
         {
             lblShowEaterType.Text = EaterType.Omnivorous.ToString();
@@ -305,6 +326,9 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Shows the food schedule for cats.
+        /// </summary>
         private void ShowFoodScheduleCat()
         {
             lblShowEaterType.Text = EaterType.Carnivore.ToString();
@@ -332,8 +356,6 @@ namespace AnimalMotel
                 listBoxFoodSchedule.Items.Add(dog.FoodSchedule.GetFoodSchedule(i));
             }
         }
-
-
 
         /// <summary>
         ///   Clears and resets all input fields.
@@ -465,6 +487,9 @@ namespace AnimalMotel
             return data;
         }
 
+        /// <summary>
+        ///   Adds animal to the storage and to the GUI.
+        /// </summary>
         private void AddAnimal()
         {
             Animal animal;
@@ -532,6 +557,10 @@ namespace AnimalMotel
 
         // ========================== Events ========================== //
 
+        /// <summary>
+        ///   Event triggered when the selected index on listBoxCategory is changed.
+        ///   Updates the GUI accordingly.
+        /// </summary>
         private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = listBoxCategory.SelectedIndex;
@@ -549,6 +578,10 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Event triggered when the user clicks the checkbox for showing all animals.
+        ///   Updates the GUI accordingliy.
+        /// </summary>
         private void checkBoxListAllAnimals_CheckedChanged(object sender, EventArgs e)
         {
             listBoxCategory.SelectedIndex = -1;
@@ -569,6 +602,10 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Event triggered when the selected index for listBoxSpecies is changes.
+        ///   Updates the state of the GUI to match the selected item.
+        /// </summary>
         private void listBoxSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxSpecies.SelectedIndex != -1)
@@ -580,6 +617,9 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Click event for adding an animal.
+        /// </summary>
         private void btnAddAnimal_Click(object sender, EventArgs e)
         {
             if (ValidateInput())
@@ -597,6 +637,10 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Event for sorting the animals by their attricutes when the 
+        ///   user clicks in a column heading.
+        /// </summary>
         private void listViewAnimals_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             int columnIndex = e.Column;

@@ -9,6 +9,10 @@ using AnimalMotel.Enums.Sorting;
 
 namespace AnimalMotel
 {
+    /// <summary>
+    ///   Partial AnimalManager class. This file contains methods
+    ///   sort the animal objects.
+    /// </summary>
     public partial class AnimalManager
     {
         private IOrderedEnumerable<Animal> _sortedAnimals;

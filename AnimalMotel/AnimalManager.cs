@@ -12,6 +12,10 @@ using AnimalMotel.Animals.Species;
 
 namespace AnimalMotel
 {
+    /// <summary>
+    ///   Partial AnimalManager class. This file contains methods
+    ///   used to manipulate the storage, but not sorting.
+    /// </summary>
     public partial class AnimalManager
     {
         private static int _lastGeneratedId = 1;
