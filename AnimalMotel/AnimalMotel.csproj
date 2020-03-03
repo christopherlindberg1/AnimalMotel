@@ -52,6 +52,12 @@
     <Compile Include="Animals\Categories\Bird.cs" />
     <Compile Include="Animals\Categories\Mammal.cs" />
     <Compile Include="Animals\IAnimal.cs" />
+    <Compile Include="Animals\Sorting\SortAnimalByAge.cs" />
+    <Compile Include="Animals\Sorting\SortAnimalByGender.cs" />
+    <Compile Include="Animals\Sorting\SortAnimalById.cs" />
+    <Compile Include="Animals\Sorting\SortAnimalByName.cs" />
+    <Compile Include="Animals\Sorting\SortAnimalBySpecialCharacteristics.cs" />
+    <Compile Include="Animals\Sorting\SortAnimalBySpecie.cs" />
     <Compile Include="Animals\Species\Cat.cs" />
     <Compile Include="Animals\Species\Dog.cs" />
     <Compile Include="Animals\Species\Eagle.cs" />

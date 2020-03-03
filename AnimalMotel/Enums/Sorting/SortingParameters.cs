@@ -17,6 +17,6 @@ namespace AnimalMotel.Enums.Sorting
         Name,
         Age,
         Gender,
-        Specialcharacteristics,
+        SpecialCharacteristics,
     }
 }

@@ -48,6 +48,8 @@ namespace AnimalMotel
         {
             InitializeComponent();
             InitializeApp();
+            Cat cat = new Cat();
+            
         }
 
         private void HideAllAnimalCategoryFields()

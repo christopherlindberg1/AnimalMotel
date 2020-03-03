@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 // Own namespaces
 using AnimalMotel.Enums.Sorting;
+using AnimalMotel.Animals.Sorting;
 
 namespace AnimalMotel
 {
@@ -18,6 +19,12 @@ namespace AnimalMotel
         private IOrderedEnumerable<Animal> _sortedAnimals;
         private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
+        private SortAnimalByAge _sortAnimalByAge = new SortAnimalByAge();
+        private SortAnimalByGender _sortAnimalByGender = new SortAnimalByGender();
+        private SortAnimalById _sortAnimalById = new SortAnimalById();
+        private SortAnimalByName _sortAnimalByName = new SortAnimalByName();
+        private SortAnimalBySpecialCharacteristics _sortAnimalBySpecialCharacteristics = new SortAnimalBySpecialCharacteristics();
+        private SortAnimalBySpecie _sortAnimalBySpecie = new SortAnimalBySpecie();
 
 
 
@@ -32,6 +39,8 @@ namespace AnimalMotel
              If previous sort wasn't by id or if previous sort was by id
              in descending order.
              */
+            
+            
             if ((_lastUsedSortingParameter != SortingParameters.Id)
                 || (_lastUsedSortingParameter == SortingParameters.Id
                 && _lastUsedSortingDirection == SortingDirections.Desc))
@@ -233,15 +242,15 @@ namespace AnimalMotel
              If previous sort wasn't by special characteristics or if
              previous sort was by special characteristics in descending order.
              */
-            if ((_lastUsedSortingParameter != SortingParameters.Specialcharacteristics)
-                || (_lastUsedSortingParameter == SortingParameters.Specialcharacteristics
+            if ((_lastUsedSortingParameter != SortingParameters.SpecialCharacteristics)
+                || (_lastUsedSortingParameter == SortingParameters.SpecialCharacteristics
                 && _lastUsedSortingDirection == SortingDirections.Desc))
             {
                 _sortedAnimals = from animal in _animals
                                  orderby animal.GetSpecialCharacteristics() ascending
                                  select animal;
 
-                _lastUsedSortingParameter = SortingParameters.Specialcharacteristics;
+                _lastUsedSortingParameter = SortingParameters.SpecialCharacteristics;
                 _lastUsedSortingDirection = SortingDirections.Asc;
             }
             else
@@ -250,7 +259,7 @@ namespace AnimalMotel
                                  orderby animal.GetSpecialCharacteristics() descending
                                  select animal;
 
-                _lastUsedSortingParameter = SortingParameters.Specialcharacteristics;
+                _lastUsedSortingParameter = SortingParameters.SpecialCharacteristics;
                 _lastUsedSortingDirection = SortingDirections.Desc;
             }
 
