@@ -12,263 +12,124 @@ namespace AnimalMotel
 {
     /// <summary>
     ///   Partial AnimalManager class. This file contains methods
-    ///   sort the animal objects.
+    ///   for sorting the animal objects.
     /// </summary>
     public partial class AnimalManager
     {
-        private IOrderedEnumerable<Animal> _sortedAnimals;
-        private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
-        private SortAnimalByAge _sortAnimalByAge = new SortAnimalByAge();
-        private SortAnimalByGender _sortAnimalByGender = new SortAnimalByGender();
-        private SortAnimalById _sortAnimalById = new SortAnimalById();
-        private SortAnimalByName _sortAnimalByName = new SortAnimalByName();
-        private SortAnimalBySpecialCharacteristics _sortAnimalBySpecialCharacteristics = new SortAnimalBySpecialCharacteristics();
-        private SortAnimalBySpecie _sortAnimalBySpecie = new SortAnimalBySpecie();
-
+        private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
 
 
         /// <summary>
-        ///   Sorts animals by their ID.
-        ///   Checks the current state to determine if to sort
-        ///   ascending ordescending, and then updates state.
+        ///   Sorts animals by any parameter. Takes a sorting class that implements
+        ///   the IComparer interface as an argument, which performs the sort.
+        ///   This method keeps track of the state in order to determine if to sort
+        ///   in ascending or descending order.
         /// </summary>
-        public void SortById()
+        /// <param name="sorter">Sorting class that implements the IComparer interface.</param>
+        private void SortAnimals(IComparer<Animal> sorter)
         {
-            /*
-             If previous sort wasn't by id or if previous sort was by id
-             in descending order.
-             */
-            
-            
-            if ((_lastUsedSortingParameter != SortingParameters.Id)
-                || (_lastUsedSortingParameter == SortingParameters.Id
+            SortingParameters wantToSortBy;
+
+            // Stores sorting option to be able to keep track of state.
+            if (sorter is SortAnimalByAge)
+            {
+                wantToSortBy = SortingParameters.Age;
+            }
+            else if (sorter is SortAnimalByGender)
+            {
+                wantToSortBy = SortingParameters.Gender;
+            }
+            else if (sorter is SortAnimalById)
+            {
+                wantToSortBy = SortingParameters.Id;
+            }
+            else if (sorter is SortAnimalByName)
+            {
+                wantToSortBy = SortingParameters.Name;
+            }
+            else if (sorter is SortAnimalBySpecialCharacteristics)
+            {
+                wantToSortBy = SortingParameters.SpecialCharacteristics;
+            }
+            else if (sorter is SortAnimalBySpecie)
+            {
+                wantToSortBy = SortingParameters.Specie;
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    "Sorter class did not match any sorting option.");
+            }
+
+            // Performs sort
+            if ((_lastUsedSortingParameter != wantToSortBy)
+                || (_lastUsedSortingParameter == wantToSortBy
                 && _lastUsedSortingDirection == SortingDirections.Desc))
             {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Id ascending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Id;
+                _animals.Sort(sorter);
+                
                 _lastUsedSortingDirection = SortingDirections.Asc;
             }
             else
             {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Id descending
-                                 select animal;
+                _animals.Sort(sorter);
+                _animals.Reverse();
 
-                _lastUsedSortingParameter = SortingParameters.Id;
                 _lastUsedSortingDirection = SortingDirections.Desc;
             }
 
-            List<Animal> sortedAnimals = _sortedAnimals.ToList<Animal>();
+            // Updates state
+            _lastUsedSortingParameter = wantToSortBy;
+        }
 
-            for (int i = 0; i < ListCount; i++)
-            {
-                _animals[i] = sortedAnimals[i];
-            }
+        /// <summary>
+        ///   Sorts animals by their ID.
+        /// </summary>
+        public void SortById()
+        {
+            SortAnimals(new SortAnimalById());
         }
 
         /// <summary>
         ///   Sorts animals by their specie.
-        ///   Checks the current state to determine if to sort
-        ///   ascending ordescending, and then updates state.
         /// </summary>
         public void SortBySpecie()
         {
-            /*
-             If previous sort wasn't by specie or if previous sort was by specie
-             in descending order.
-             */
-            if ((_lastUsedSortingParameter != SortingParameters.Specie)
-                || (_lastUsedSortingParameter == SortingParameters.Specie
-                && _lastUsedSortingDirection == SortingDirections.Desc))
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.GetSpecie() ascending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Specie;
-                _lastUsedSortingDirection = SortingDirections.Asc;
-            }
-            else
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.GetSpecie() descending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Specie;
-                _lastUsedSortingDirection = SortingDirections.Desc;
-            }
-
-            List<Animal> sortedAnimals = _sortedAnimals.ToList<Animal>();
-
-            for (int i = 0; i < ListCount; i++)
-            {
-                _animals[i] = sortedAnimals[i];
-            }
+            SortAnimals(new SortAnimalBySpecie());
         }
 
         /// <summary>
         ///   Sorts animals by their Name.
-        ///   Checks the current state to determine if to sort
-        ///   ascending ordescending, and then updates state.
         /// </summary>
         public void SortByName()
         {
-            /*
-             If previous sort wasn't by name or if previous sort was by name
-             in descending order.
-             */
-            if ((_lastUsedSortingParameter != SortingParameters.Name)
-                || (_lastUsedSortingParameter == SortingParameters.Name
-                && _lastUsedSortingDirection == SortingDirections.Desc))
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Name ascending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Name;
-                _lastUsedSortingDirection = SortingDirections.Asc;
-            }
-            else
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Name descending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Name;
-                _lastUsedSortingDirection = SortingDirections.Desc;
-            }
-
-            List<Animal> sortedAnimals = _sortedAnimals.ToList<Animal>();
-
-            for (int i = 0; i < ListCount; i++)
-            {
-                _animals[i] = sortedAnimals[i];
-            }
+            SortAnimals(new SortAnimalByName());
         }
 
         /// <summary>
         ///   Sorts animals by their age.
-        ///   Checks the current state to determine if to sort
-        ///   ascending ordescending, and then updates state.
         /// </summary>
         public void SortByAge()
         {
-            /*
-             If previous sort wasn't by age or if previous sort was by age
-             in descending order.
-             */
-            if ((_lastUsedSortingParameter != SortingParameters.Age)
-                || (_lastUsedSortingParameter == SortingParameters.Age
-                && _lastUsedSortingDirection == SortingDirections.Desc))
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Age ascending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Age;
-                _lastUsedSortingDirection = SortingDirections.Asc;
-            }
-            else
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Age descending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Age;
-                _lastUsedSortingDirection = SortingDirections.Desc;
-            }
-
-            List<Animal> sortedAnimals = _sortedAnimals.ToList<Animal>();
-
-            for (int i = 0; i < ListCount; i++)
-            {
-                _animals[i] = sortedAnimals[i];
-            }
+            SortAnimals(new SortAnimalByAge());
         }
 
         /// <summary>
         ///   Sorts animals by their gender.
-        ///   Checks the current state to determine if to sort
-        ///   ascending ordescending, and then updates state.
         /// </summary>
         public void SortByGender()
         {
-            /*
-             If previous sort wasn't by gender or if previous sort was by gender
-             in descending order.
-             */
-            if ((_lastUsedSortingParameter != SortingParameters.Gender)
-                || (_lastUsedSortingParameter == SortingParameters.Gender
-                && _lastUsedSortingDirection == SortingDirections.Desc))
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Gender ascending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Gender;
-                _lastUsedSortingDirection = SortingDirections.Asc;
-            }
-            else
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.Gender descending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.Gender;
-                _lastUsedSortingDirection = SortingDirections.Desc;
-            }
-
-            List<Animal> sortedAnimals = _sortedAnimals.ToList<Animal>();
-
-            for (int i = 0; i < ListCount; i++)
-            {
-                _animals[i] = sortedAnimals[i];
-            }
+            SortAnimals(new SortAnimalByGender());
         }
 
         /// <summary>
         ///   Sorts animals by their special characteristics (just compares
         ///   the strings that represent all special characteristics).
-        ///   Checks the current state to determine if to sort
-        ///   ascending ordescending, and then updates state.
         /// </summary>
         public void SortBySpecialCharacteristics()
         {
-            /*
-             If previous sort wasn't by special characteristics or if
-             previous sort was by special characteristics in descending order.
-             */
-            if ((_lastUsedSortingParameter != SortingParameters.SpecialCharacteristics)
-                || (_lastUsedSortingParameter == SortingParameters.SpecialCharacteristics
-                && _lastUsedSortingDirection == SortingDirections.Desc))
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.GetSpecialCharacteristics() ascending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.SpecialCharacteristics;
-                _lastUsedSortingDirection = SortingDirections.Asc;
-            }
-            else
-            {
-                _sortedAnimals = from animal in _animals
-                                 orderby animal.GetSpecialCharacteristics() descending
-                                 select animal;
-
-                _lastUsedSortingParameter = SortingParameters.SpecialCharacteristics;
-                _lastUsedSortingDirection = SortingDirections.Desc;
-            }
-
-            List<Animal> sortedAnimals = _sortedAnimals.ToList<Animal>();
-
-            for (int i = 0; i < ListCount; i++)
-            {
-                _animals[i] = sortedAnimals[i];
-            }
+            SortAnimals(new SortAnimalBySpecialCharacteristics());
         }
     }
 }

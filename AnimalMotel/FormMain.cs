@@ -679,6 +679,37 @@ namespace AnimalMotel
             }
 
             AddAnimalsToGUIList();
+
+            /*switch (columnIndex)
+            {
+                case 0:
+                    AnimalManager.SortById();
+                    break;
+
+                case 1:
+                    AnimalManager.SortBySpecie();
+                    break;
+
+                case 2:
+                    AnimalManager.SortByName();
+                    break;
+
+                case 3:
+                    AnimalManager.SortByAge();
+                    break;
+
+                case 4:
+                    AnimalManager.SortByGender();
+                    break;
+
+                case 5:
+                    AnimalManager.SortBySpecialCharacteristics();
+                    break;
+
+                default:
+                    throw new InvalidOperationException(
+                        "Column index was not in within the range");
+            */
         }
     }
 }
