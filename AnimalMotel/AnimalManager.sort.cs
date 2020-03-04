@@ -18,6 +18,7 @@ namespace AnimalMotel
     {
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
         private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
+        private IComparer<Animal> _lastUsedSortingClass = new SortAnimalById();
 
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace AnimalMotel
 
             // Updates state
             _lastUsedSortingParameter = wantToSortBy;
+            _lastUsedSortingClass = sorter;
         }
 
         /// <summary>
@@ -130,6 +132,21 @@ namespace AnimalMotel
         public void SortBySpecialCharacteristics()
         {
             SortAnimals(new SortAnimalBySpecialCharacteristics());
+        }
+
+        /// <summary>
+        ///   Performs the last sort that was made. This method is used
+        ///   whenever animal objects are added, changed or deleted to preserve
+        ///   the correct order.
+        /// </summary>
+        private void RepeatLatestSort()
+        {
+            _animals.Sort(_lastUsedSortingClass);
+
+            if (_lastUsedSortingDirection == SortingDirections.Desc)
+            {
+                _animals.Reverse();
+            }
         }
     }
 }

@@ -59,6 +59,7 @@ namespace AnimalMotel
         {
             animal.Id = AnimalManager.GenerateUniqueId();
             _animals.Add(animal);
+            RepeatLatestSort();
         }
 
         
