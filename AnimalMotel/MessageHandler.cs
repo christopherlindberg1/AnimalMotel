@@ -50,7 +50,7 @@ namespace AnimalMotel
         ///   Returns a string representation of all messages.
         /// </summary>
         /// <returns>String with message.</returns>
-        public string getMessages()
+        public string GetMessages()
         {
             StringBuilder messageBuilder = new StringBuilder();
 

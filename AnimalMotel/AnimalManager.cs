@@ -16,10 +16,9 @@ namespace AnimalMotel
     ///   Partial AnimalManager class. This file contains methods
     ///   used to manipulate the storage, but not sorting.
     /// </summary>
-    public partial class AnimalManager
+    public partial class AnimalManager : ListManager<Animal>
     {
         private static int _lastGeneratedId = 1;
-        private readonly List<Animal> _animals = new List<Animal>();
 
 
 
@@ -33,7 +32,7 @@ namespace AnimalMotel
 
         public int ListCount
         {
-            get { return _animals.Count; }
+            get { return base.Count; }
         }
 
         
@@ -58,11 +57,9 @@ namespace AnimalMotel
         public void AddAnimal(Animal animal)
         {
             animal.Id = AnimalManager.GenerateUniqueId();
-            _animals.Add(animal);
+            base.Add(animal);
             RepeatLatestSort();
         }
-
-        
 
         /// <summary>
         ///   Returns a reference to an Animal object at a given index.
@@ -71,17 +68,7 @@ namespace AnimalMotel
         /// <returns>Animal object.</returns>
         public Animal GetAnimalAt(int index)
         {
-            if (index < 0)
-            {
-                throw new ArgumentOutOfRangeException("Index cannot be less than 0", "index");
-            }
-
-            if (index > ListCount - 1)
-            {
-                throw new IndexOutOfRangeException("Index is out of range");
-            }
-
-            return _animals[index];
+            return base.GetAt(index);
         }
 
         /// <summary>
@@ -90,14 +77,7 @@ namespace AnimalMotel
         /// <returns>array with string representation of alla nimals.</returns>
         public string[] GetAnimalsStringRepr()
         {
-            string[] animals =  new string[ListCount];
-
-            for (int i = 0; i < ListCount; i++)
-            {
-                animals[i] = _animals[i].ToString();
-            }
-
-            return animals;
+            return base.ToStringArray();
         }
     }
 }

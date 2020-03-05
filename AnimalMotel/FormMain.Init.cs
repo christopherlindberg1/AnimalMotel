@@ -27,7 +27,6 @@ namespace AnimalMotel
             groupBoxAnimalCategorySpecs.Text = "";
             groupBoxSpecieSpecificData.Text = "";
 
-            ClearInput();
             InitializeCategorySpecificFields();
             InitializeSpecieSpecificFields();
             InitializeFoodScheduleSection();
@@ -108,7 +107,7 @@ namespace AnimalMotel
             listViewAnimals.Columns[2].Width = 120;     // name
             listViewAnimals.Columns[3].Width = 50;      // age
             listViewAnimals.Columns[4].Width = 80;      // gender
-            listViewAnimals.Columns[5].Width = 726;     // special characteristics
+            listViewAnimals.Columns[5].Width = 370;     // special characteristics
 
             // Set the view to show details.
             listViewAnimals.View = View.Details;

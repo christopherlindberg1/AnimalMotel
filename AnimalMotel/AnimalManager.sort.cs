@@ -68,15 +68,13 @@ namespace AnimalMotel
                 || (_lastUsedSortingParameter == wantToSortBy
                 && _lastUsedSortingDirection == SortingDirections.Desc))
             {
-                _animals.Sort(sorter);
-                
+                base.List.Sort(sorter);
                 _lastUsedSortingDirection = SortingDirections.Asc;
             }
             else
             {
-                _animals.Sort(sorter);
-                _animals.Reverse();
-
+                base.List.Sort(sorter);
+                base.List.Reverse();
                 _lastUsedSortingDirection = SortingDirections.Desc;
             }
 
@@ -141,11 +139,11 @@ namespace AnimalMotel
         /// </summary>
         private void RepeatLatestSort()
         {
-            _animals.Sort(_lastUsedSortingClass);
+            base.List.Sort(_lastUsedSortingClass);
 
             if (_lastUsedSortingDirection == SortingDirections.Desc)
             {
-                _animals.Reverse();
+                base.List.Reverse();
             }
         }
     }

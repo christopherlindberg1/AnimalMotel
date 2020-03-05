@@ -40,6 +40,8 @@
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.groupBoxAnimalList = new System.Windows.Forms.GroupBox();
+            this.btnDeleteAnimal = new System.Windows.Forms.Button();
+            this.btnChangeAnimal = new System.Windows.Forms.Button();
             this.listViewAnimals = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.specie = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -172,13 +174,33 @@
             // 
             // groupBoxAnimalList
             // 
+            this.groupBoxAnimalList.Controls.Add(this.btnDeleteAnimal);
+            this.groupBoxAnimalList.Controls.Add(this.btnChangeAnimal);
             this.groupBoxAnimalList.Controls.Add(this.listViewAnimals);
-            this.groupBoxAnimalList.Location = new System.Drawing.Point(14, 420);
+            this.groupBoxAnimalList.Location = new System.Drawing.Point(14, 397);
             this.groupBoxAnimalList.Name = "groupBoxAnimalList";
-            this.groupBoxAnimalList.Size = new System.Drawing.Size(1156, 334);
+            this.groupBoxAnimalList.Size = new System.Drawing.Size(1156, 329);
             this.groupBoxAnimalList.TabIndex = 1;
             this.groupBoxAnimalList.TabStop = false;
             this.groupBoxAnimalList.Text = "List of registered animals";
+            // 
+            // btnDeleteAnimal
+            // 
+            this.btnDeleteAnimal.Location = new System.Drawing.Point(434, 269);
+            this.btnDeleteAnimal.Name = "btnDeleteAnimal";
+            this.btnDeleteAnimal.Size = new System.Drawing.Size(150, 40);
+            this.btnDeleteAnimal.TabIndex = 4;
+            this.btnDeleteAnimal.Text = "Delete";
+            this.btnDeleteAnimal.UseVisualStyleBackColor = true;
+            // 
+            // btnChangeAnimal
+            // 
+            this.btnChangeAnimal.Location = new System.Drawing.Point(200, 270);
+            this.btnChangeAnimal.Name = "btnChangeAnimal";
+            this.btnChangeAnimal.Size = new System.Drawing.Size(150, 40);
+            this.btnChangeAnimal.TabIndex = 3;
+            this.btnChangeAnimal.Text = "Change";
+            this.btnChangeAnimal.UseVisualStyleBackColor = true;
             // 
             // listViewAnimals
             // 
@@ -192,11 +214,12 @@
             this.listViewAnimals.HideSelection = false;
             this.listViewAnimals.Location = new System.Drawing.Point(14, 33);
             this.listViewAnimals.Name = "listViewAnimals";
-            this.listViewAnimals.Size = new System.Drawing.Size(1130, 246);
+            this.listViewAnimals.Size = new System.Drawing.Size(774, 226);
             this.listViewAnimals.TabIndex = 2;
             this.listViewAnimals.UseCompatibleStateImageBehavior = false;
             this.listViewAnimals.View = System.Windows.Forms.View.Details;
             this.listViewAnimals.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewAnimals_ColumnClick);
+            this.listViewAnimals.SelectedIndexChanged += new System.EventHandler(this.listViewAnimals_SelectedIndexChanged);
             // 
             // id
             // 
@@ -280,7 +303,7 @@
             this.groupBox1.Size = new System.Drawing.Size(378, 299);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Feeding schedule";
+            this.groupBox1.Text = "Feeding details";
             // 
             // listBoxFoodSchedule
             // 
@@ -323,7 +346,7 @@
             this.groupBoxSpecieSpecificData.Controls.Add(this.lblClawLength);
             this.groupBoxSpecieSpecificData.Location = new System.Drawing.Point(569, 26);
             this.groupBoxSpecieSpecificData.Name = "groupBoxSpecieSpecificData";
-            this.groupBoxSpecieSpecificData.Size = new System.Drawing.Size(197, 231);
+            this.groupBoxSpecieSpecificData.Size = new System.Drawing.Size(181, 231);
             this.groupBoxSpecieSpecificData.TabIndex = 10;
             this.groupBoxSpecieSpecificData.TabStop = false;
             this.groupBoxSpecieSpecificData.Text = "Default";
@@ -407,7 +430,7 @@
             // 
             this.btnAddAnimal.Location = new System.Drawing.Point(569, 300);
             this.btnAddAnimal.Name = "btnAddAnimal";
-            this.btnAddAnimal.Size = new System.Drawing.Size(197, 47);
+            this.btnAddAnimal.Size = new System.Drawing.Size(183, 47);
             this.btnAddAnimal.TabIndex = 9;
             this.btnAddAnimal.Text = "Add animal";
             this.btnAddAnimal.UseVisualStyleBackColor = true;
@@ -451,7 +474,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 766);
+            this.ClientSize = new System.Drawing.Size(1232, 719);
             this.Controls.Add(this.groupBoxAnimalList);
             this.Controls.Add(this.groupBoxAnimalSpecs);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -513,6 +536,8 @@
         private System.Windows.Forms.ColumnHeader age;
         private System.Windows.Forms.ColumnHeader gender;
         private System.Windows.Forms.ColumnHeader specialCharacteristics;
+        private System.Windows.Forms.Button btnDeleteAnimal;
+        private System.Windows.Forms.Button btnChangeAnimal;
     }
 }
 

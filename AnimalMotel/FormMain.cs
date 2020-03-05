@@ -26,7 +26,7 @@ namespace AnimalMotel
     partial class FormMain : Form
     {
         private readonly AnimalManager _animalManager = new AnimalManager();
-
+        private FormStaffPlanning _formStaffPlanning = new FormStaffPlanning();
 
 
 
@@ -130,11 +130,21 @@ namespace AnimalMotel
         {
             listBoxSpecies.Items.Clear();
             checkBoxListAllAnimals.Checked = false;
+            btnAddAnimal.Enabled = true;
+            btnChangeAnimal.Enabled = false;
+            btnDeleteAnimal.Enabled = false;
 
             ClearInput();
             HideSpecieFieldsAndLabel();
             HideAnimalCategoryFieldsAndLabel();
             ShowFoodScheduleFields(false);
+        }
+
+        private void SetFormToEditState()
+        {
+            btnAddAnimal.Enabled = false;
+            btnChangeAnimal.Enabled = true;
+            btnDeleteAnimal.Enabled = true;
         }
 
         /// <summary>
@@ -552,6 +562,18 @@ namespace AnimalMotel
             }
         }
 
+        private void ChangeAnimal()
+        {
+
+        }
+
+        private void DeleteAnimal()
+        {
+
+        }
+
+
+
 
 
 
@@ -632,7 +654,7 @@ namespace AnimalMotel
             else
             {
                 MessageBox.Show(
-                    MessageHandler.getMessages(),
+                    MessageHandler.GetMessages(),
                     "Info",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -679,6 +701,16 @@ namespace AnimalMotel
             }
 
             AddAnimalsToGUIList();
+        }
+
+        private void listViewAnimals_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewAnimals.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+
+            SetFormToEditState();
         }
     }
 }
