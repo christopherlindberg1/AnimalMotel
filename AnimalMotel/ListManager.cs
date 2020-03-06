@@ -32,6 +32,25 @@ namespace AnimalMotel
         // ========================= Methods ========================= //
 
         /// <summary>
+        ///   Indexer for getting the object at a given index.
+        ///   Throws error if index is out of range.
+        /// </summary>
+        /// <param name="index">Index of the object.</param>
+        /// <returns>Object of the specified type.</returns>
+        public T this[int index]
+        {
+            get
+            { 
+                if (index < 0 || index >= Count)
+                {
+                    throw new IndexOutOfRangeException("Index is out of range.");
+                }
+
+                return List[index]; 
+            }
+        }
+
+        /// <summary>
         ///   Method for adding an object to the list.
         /// </summary>
         /// <param name="obj">Object to add.</param>

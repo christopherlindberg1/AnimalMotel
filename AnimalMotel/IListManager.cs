@@ -18,6 +18,14 @@ namespace AnimalMotel
         int Count { get; }
 
         /// <summary>
+        ///   Indexer for getting the object at a given index.
+        ///   Should throw error if index is out of range.
+        /// </summary>
+        /// <param name="index">Index of the object.</param>
+        /// <returns>Object of the specified type</returns>
+        T this[int index] { get; }
+
+        /// <summary>
         ///   Method for adding an object to the list.
         /// </summary>
         /// <param name="aType">Object to add to list.</param>
