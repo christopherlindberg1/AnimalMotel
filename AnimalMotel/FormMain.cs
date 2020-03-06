@@ -48,8 +48,6 @@ namespace AnimalMotel
         {
             InitializeComponent();
             InitializeApp();
-            Cat cat = new Cat();
-            
         }
 
         private void HideAllAnimalCategoryFields()
@@ -133,6 +131,8 @@ namespace AnimalMotel
             btnAddAnimal.Enabled = true;
             btnChangeAnimal.Enabled = true;
             btnDeleteAnimal.Enabled = true;
+            listBoxCategory.Enabled = true;
+            listBoxSpecies.Enabled = true;
 
             ClearInput();
             HideSpecieFieldsAndLabel();
@@ -141,13 +141,15 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///     MIGHT NOT NEED THIS METHOD
+        ///   Updates the GUI elements so that animal objects can be changed.
         /// </summary>
         private void SetFormToEditState()
         {
             btnAddAnimal.Enabled = true;
             btnChangeAnimal.Enabled = true;
             btnDeleteAnimal.Enabled = true;
+            listBoxCategory.Enabled = false;
+            listBoxSpecies.Enabled = false;
         }
 
         /// <summary>
@@ -443,20 +445,6 @@ namespace AnimalMotel
                     "Check all AnimalCategory-enums");
         }
 
-
-        /// <summary>
-        ///   Returns bool showing is the selected specie is a mammal.
-        /// </summary>
-        /// <returns>bool showing if specie is mammal.</returns>
-        private bool SelectedSpecieIsMammal()
-        {
-            if (listBoxSpecies.SelectedIndex == -1)
-                return false;
-
-            return Enum.IsDefined(typeof(MammalSpecies),
-                listBoxSpecies.SelectedItem.ToString());
-        }
-
         /// <summary>
         ///   Returns the name of the selected specie in the listbox with species.
         /// </summary>
@@ -473,31 +461,31 @@ namespace AnimalMotel
         ///   Returns a dictionary containing the string data for ALL fields in 
         ///   the form.
         /// </summary>
-        /// <param name="selectedCategory">Animal category</param>
         /// <returns>Dictionary with user input data.</returns>
-        private Dictionary<string, string> GetUserInput(Category selectedCategory)
+        private Dictionary<string, string> GetUserInput()
         {
-            Dictionary<string, string> data = new Dictionary<string, string>();
+            Dictionary<string, string> data = new Dictionary<string, string>
+            {
+                // General animal data
+                { "name", textBoxName.Text },
+                { "age", textBoxAge.Text },
+                { "gender", listBoxGender.SelectedItem.ToString() },
 
-            // General animal data
-            data.Add("name", textBoxName.Text);
-            data.Add("age", textBoxAge.Text);
-            data.Add("gender", listBoxGender.SelectedItem.ToString());
+                // Data for mammals
+                { "nrOfTeeth", textBoxNrOfTeeth.Text },
+                { "tailLength", textBoxTailLength.Text },
 
-            // Data for mammals
-            data.Add("nrOfTeeth", textBoxNrOfTeeth.Text);
-            data.Add("tailLength", textBoxTailLength.Text);
+                // Data for birds
+                { "flyingSpeed", textBoxFlyingSpeed.Text },
 
-            // Data for birds
-            data.Add("flyingSpeed", textBoxFlyingSpeed.Text);
-
-            /*
-             Data specific for species
-             */
-            data.Add("clawLength", textBoxClawLength.Text);   // For eagles
-            data.Add("beakLength", textBoxBeakLength.Text);   // For pigeons
-            data.Add("breed", textBoxBreed.Text);             // For dogs
-            data.Add("lives", textBoxNrOfLives.Text);         // For cats
+                /*
+                 Data specific for species
+                 */
+                { "clawLength", textBoxClawLength.Text },   // For eagles
+                { "beakLength", textBoxBeakLength.Text },   // For pigeons
+                { "breed", textBoxBreed.Text },             // For dogs
+                { "lives", textBoxNrOfLives.Text }         // For cats
+            };
 
             return data;
         }
@@ -513,7 +501,7 @@ namespace AnimalMotel
             String specie = GetSelectedSpecie();
 
             // Storing user input in a dictionary so it can be passed to a factory class.
-            Dictionary<string, string> animalData = GetUserInput(category);
+            Dictionary<string, string> animalData = GetUserInput();
 
             switch (category)
             {
@@ -567,10 +555,45 @@ namespace AnimalMotel
 
         private void ChangeAnimal()
         {
+            if (listViewAnimals.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+
+            int animalId = GetSelectedAnimalId();
+            int index = listViewAnimals.SelectedIndices[0];
+
+            Animal animal = AnimalManager.GetAnimalAt(index);
+            MessageBox.Show(animalId.ToString());
+        }
+
+        private void FillGUIWithAnimalData(Animal animal)
+        {
+            textBoxName.Text = animal.Name;
+            textBoxAge.Text = animal.Age.ToString();
 
         }
 
-        private void DeleteAnimal()
+        private int GetSelectedAnimalId()
+        {
+            // Return -1 if no animal or multiple animals are selected.
+            if (listViewAnimals.SelectedItems.Count == 0
+                || listViewAnimals.SelectedItems.Count > 1)
+            {
+                return -1;
+            }
+
+            int id = -1;
+
+            int.TryParse(listViewAnimals.SelectedItems[0].SubItems[0].Text, out id);
+
+            return id;
+        }
+
+        /// <summary>
+        ///   Deletes
+        /// </summary>
+        private void DeleteMarkedAnimals()
         {
             int nrOfAnimalsToDelete = listViewAnimals.SelectedIndices.Count;
 
@@ -744,21 +767,46 @@ namespace AnimalMotel
                 return;
             }
 
-            SetFormToEditState();
+            // SetFormToEditState();
         }
 
         private void btnChangeAnimal_Click(object sender, EventArgs e)
         {
+            // Check that an animal is selected.
+            if (listViewAnimals.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show(
+                    "You have to select an animal to change.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
+                return;
+            }
+
+            // Check that no more than one animal is selected.
+            if (listViewAnimals.SelectedIndices.Count > 1)
+            {
+                MessageBox.Show(
+                    "Make sure you only mark one animal to change at the time!",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            SetFormToEditState();
+            ChangeAnimal();
         }
 
         private void btnDeleteAnimal_Click(object sender, EventArgs e)
         {
+            // Check that an animal is selected.
             if (listViewAnimals.SelectedIndices.Count == 0)
             {
-                MessageHandler.AddMessage("You have to select an animal to delete.");
                 MessageBox.Show(
-                    MessageHandler.GetMessages(),
+                    "You have to select an animal to delete.",
                     "Info",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -766,7 +814,7 @@ namespace AnimalMotel
                 return;
             }
 
-            DeleteAnimal();
+            DeleteMarkedAnimals();
         }
     }
 }
