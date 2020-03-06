@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AnimalMotel
 {
-    class RecipeManager
+    public class RecipeManager : ListManager<Recipe>
     {
+
     }
 }
