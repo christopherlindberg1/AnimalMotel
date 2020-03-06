@@ -15,6 +15,12 @@ namespace AnimalMotel
         private readonly MessageHandler _messageHandler = new MessageHandler();
 
 
+
+        private MessageHandler MessageHandler
+        {
+            get { return _messageHandler; }
+        }
+
         private bool ValidateInput()
         {
             bool nameOk = ValidateName();
@@ -27,7 +33,7 @@ namespace AnimalMotel
         {
             if (String.IsNullOrWhiteSpace(textBoxName.Text))
             {
-                _messageHandler.AddMessage("Name cannot be empty.");
+                MessageHandler.AddMessage("Name cannot be empty.");
                 return false;
             }
 
@@ -38,7 +44,7 @@ namespace AnimalMotel
         {
             if (String.IsNullOrWhiteSpace(textBoxQualification.Text))
             {
-                _messageHandler.AddMessage("Qualification cannot be empty.");
+                MessageHandler.AddMessage("Qualification cannot be empty.");
                 return false;
             }
 

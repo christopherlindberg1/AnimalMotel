@@ -192,6 +192,7 @@
             this.btnDeleteAnimal.TabIndex = 4;
             this.btnDeleteAnimal.Text = "Delete";
             this.btnDeleteAnimal.UseVisualStyleBackColor = true;
+            this.btnDeleteAnimal.Click += new System.EventHandler(this.btnDeleteAnimal_Click);
             // 
             // btnChangeAnimal
             // 
@@ -201,6 +202,7 @@
             this.btnChangeAnimal.TabIndex = 3;
             this.btnChangeAnimal.Text = "Change";
             this.btnChangeAnimal.UseVisualStyleBackColor = true;
+            this.btnChangeAnimal.Click += new System.EventHandler(this.btnChangeAnimal_Click);
             // 
             // listViewAnimals
             // 

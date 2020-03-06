@@ -131,8 +131,8 @@ namespace AnimalMotel
             listBoxSpecies.Items.Clear();
             checkBoxListAllAnimals.Checked = false;
             btnAddAnimal.Enabled = true;
-            btnChangeAnimal.Enabled = false;
-            btnDeleteAnimal.Enabled = false;
+            btnChangeAnimal.Enabled = true;
+            btnDeleteAnimal.Enabled = true;
 
             ClearInput();
             HideSpecieFieldsAndLabel();
@@ -140,9 +140,12 @@ namespace AnimalMotel
             ShowFoodScheduleFields(false);
         }
 
+        /// <summary>
+        ///     MIGHT NOT NEED THIS METHOD
+        /// </summary>
         private void SetFormToEditState()
         {
-            btnAddAnimal.Enabled = false;
+            btnAddAnimal.Enabled = true;
             btnChangeAnimal.Enabled = true;
             btnDeleteAnimal.Enabled = true;
         }
@@ -569,7 +572,38 @@ namespace AnimalMotel
 
         private void DeleteAnimal()
         {
+            int nrOfAnimalsToDelete = listViewAnimals.SelectedIndices.Count;
 
+            if (nrOfAnimalsToDelete == 0)
+            {
+                return;
+            }
+
+            StringBuilder deleteConfirmMessage = new StringBuilder();
+            deleteConfirmMessage.Append(
+                $"Are you sure you want to delete the marked {nrOfAnimalsToDelete} animal");
+
+            if (nrOfAnimalsToDelete > 1)
+                deleteConfirmMessage.Append("s?");
+            else
+                deleteConfirmMessage.Append("?");
+
+            DialogResult result = MessageBox.Show(
+                deleteConfirmMessage.ToString(),
+                "Warning",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.OK)
+            {
+                while (nrOfAnimalsToDelete > 0)
+                {
+                    AnimalManager.DeleteAt(listViewAnimals.SelectedItems[0].Index);
+                    nrOfAnimalsToDelete--;
+                }
+
+                AddAnimalsToGUIList();
+            }
         }
 
 
@@ -711,6 +745,28 @@ namespace AnimalMotel
             }
 
             SetFormToEditState();
+        }
+
+        private void btnChangeAnimal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteAnimal_Click(object sender, EventArgs e)
+        {
+            if (listViewAnimals.SelectedIndices.Count == 0)
+            {
+                MessageHandler.AddMessage("You have to select an animal to delete.");
+                MessageBox.Show(
+                    MessageHandler.GetMessages(),
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                
+                return;
+            }
+
+            DeleteAnimal();
         }
     }
 }

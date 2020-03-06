@@ -117,6 +117,10 @@ namespace AnimalMotel
             listViewAnimals.FullRowSelect = true;
             // Display grid lines.
             listViewAnimals.GridLines = true;
+
+            // Filling the app with sample data
+            AnimalManager.FillManagerWithSampleData();
+            AddAnimalsToGUIList();
         }
 
         private void SetSampleData()

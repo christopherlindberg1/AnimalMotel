@@ -102,7 +102,7 @@ namespace AnimalMotel
             else
             {
                 MessageBox.Show(
-                    _messageHandler.GetMessages(),
+                    MessageHandler.GetMessages(),
                     "Info",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

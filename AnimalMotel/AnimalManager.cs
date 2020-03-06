@@ -79,5 +79,33 @@ namespace AnimalMotel
         {
             return base.ToStringArray();
         }
+
+        /// <summary>
+        ///   METHOD ONLY USED FOR MORE EFFICIENT TESTING.
+        ///   STORES SOME DEFAULT ANIMAL OBJECTS WITH DIFFERENT ATTRIBUTES / SPECIES
+        ///   SO THAT CHANGING, SORTING AND DELETING CAN BE TESTED WITHOUT
+        ///   HAVING TO MANUALLY ADD OBJECTS EACH TIME THE APP IS RESTARTED.
+        /// </summary>
+        public void FillManagerWithSampleData()
+        {
+            Cat c1 = new Cat("Zimba", 10, Gender.Male, 23, 40, 4);
+            Cat c2 = new Cat("Lilleman", 3, Gender.Male, 24, 45, 6);
+            Cat c3 = new Cat("Molly", 7, Gender.Female, 24, 38, 5);
+            
+            Dog d1 = new Dog("Bosse", 12, Gender.Male, 28, 12, "Huskey");
+            Dog d2 = new Dog("Alice", 5, Gender.Female, 28, 35, "White something");
+            
+            Pigeon p1 = new Pigeon("Hans", 6, Gender.Unknown, 40, 2.6f);
+            
+            Eagle e1 = new Eagle("Donald Trump", 72, Gender.Male, 200000, 40023);
+
+            AddAnimal(c1);
+            AddAnimal(c2);
+            AddAnimal(c3);
+            AddAnimal(d1);
+            AddAnimal(d2);
+            AddAnimal(p1);
+            AddAnimal(e1);
+        }
     }
 }
