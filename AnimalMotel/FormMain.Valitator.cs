@@ -19,12 +19,11 @@ namespace AnimalMotel
         private readonly MessageHandler _messageHandler = new MessageHandler();
 
 
-
         // ======================= Properties ======================= //
 
         private MessageHandler MessageHandler
         {
-            get { return this._messageHandler; }
+            get { return _messageHandler; }
         }
 
 
@@ -132,15 +131,6 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided name
-        /// </summary>
-        /// <returns>bool showing if name validated correctly</returns>
-        private bool ValidateName()
-        {
-            return ValidateTextBoxString(textBoxName, "Name cannot be empty.");
-        }
-
-        /// <summary>
         ///   General method for vaildating the integer values
         ///   in text box elements
         /// </summary>
@@ -177,6 +167,15 @@ namespace AnimalMotel
             }
 
             return true;
+        }
+
+        /// <summary>
+        ///   Validates the provided name
+        /// </summary>
+        /// <returns>bool showing if name validated correctly</returns>
+        private bool ValidateName()
+        {
+            return ValidateTextBoxString(textBoxName, "Name cannot be empty.");
         }
 
         /// <summary>

@@ -90,13 +90,13 @@ namespace AnimalMotel
 
         private void InitializeFoodScheduleSection()
         {
-            lblEaterType.Location = new Point(8, 25);
+            //lblEaterType.Location = new Point(8, 25);
             lblShowEaterType.Text = "";
-            lblShowEaterType.Location = new Point(90, 24);
-            lblShowEaterType.Size = new Size(275, 22);
+            //lblShowEaterType.Location = new Point(90, 24);
+            //lblShowEaterType.Size = new Size(275, 22);
             listBoxFoodSchedule.Enabled = false;
-            listBoxFoodSchedule.Location = new Point(10, 60);
-            listBoxFoodSchedule.Size = new Size(355, 230);
+            //listBoxFoodSchedule.Location = new Point(10, 60);
+            //listBoxFoodSchedule.Size = new Size(355, 230);
         }
 
         private void InitializeListViewAnimals()

@@ -25,9 +25,13 @@ namespace AnimalMotel
     /// </summary>
     partial class FormMain : Form
     {
+        // Managers
         private readonly AnimalManager _animalManager = new AnimalManager();
-        private FormStaffPlanning _formStaffPlanning = new FormStaffPlanning();
+        private readonly RecipeManager _recipeManager = new RecipeManager();
 
+        // Forms
+        private FormRecipe _formRecipe = new FormRecipe();
+        private FormStaffPlanning _formStaffPlanning = new FormStaffPlanning();
 
 
 
@@ -35,7 +39,24 @@ namespace AnimalMotel
 
         private AnimalManager AnimalManager
         {
-            get { return this._animalManager; }
+            get { return _animalManager; }
+        }
+
+        private RecipeManager RecipeManager
+        {
+            get { return _recipeManager; }
+        }
+
+        private FormRecipe FormRecipe
+        {
+            get { return _formRecipe; }
+            set { _formRecipe = value; }
+        }
+
+        private FormStaffPlanning FormStaffPlanning
+        {
+            get { return _formStaffPlanning; }
+            set { _formStaffPlanning = value; }
         }
 
 
@@ -635,7 +656,6 @@ namespace AnimalMotel
 
 
 
-
         // ========================== Events ========================== //
 
         /// <summary>
@@ -815,6 +835,22 @@ namespace AnimalMotel
             }
 
             DeleteMarkedAnimals();
+        }
+
+        private void btnAddFood_Click(object sender, EventArgs e)
+        {
+            DialogResult result = FormRecipe.ShowDialog();
+            
+            if (result == DialogResult.OK)
+            {
+                Recipe recipe = FormRecipe.Recipe;
+                RecipeManager.Add(recipe);
+                MessageBox.Show(recipe.Ingredients.Count.ToString());
+            }
+            else
+            {
+                MessageBox.Show("NONONO");
+            }
         }
     }
 }

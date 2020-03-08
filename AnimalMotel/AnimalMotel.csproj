@@ -72,12 +72,6 @@
     <Compile Include="Factories\BirdFactory.cs" />
     <Compile Include="Factories\MammalFactory.cs" />
     <Compile Include="FoodSchedule.cs" />
-    <Compile Include="FormFood.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFood.Designer.cs">
-      <DependentUpon>FormFood.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.Init.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +83,15 @@
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRecipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRecipe.Designer.cs">
+      <DependentUpon>FormRecipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRecipe.Validator.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStaffPlanning.cs">
       <SubType>Form</SubType>
@@ -109,6 +112,9 @@
     <Compile Include="Staff.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRecipe.resx">
+      <DependentUpon>FormRecipe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStaffPlanning.resx">
       <DependentUpon>FormStaffPlanning.cs</DependentUpon>
