@@ -8,21 +8,23 @@ namespace AnimalMotel
 {
     public class Recipe
     {
-        private readonly ListManager<string> _ingredients = new ListManager<string>();
         private string _name;
+        private readonly ListManager<string> _ingredients = new ListManager<string>();
+
 
 
 
         // ======================== Properties ======================== //
-        public ListManager<string> Ingredients
-        {
-            get { return _ingredients; }
-        }
 
         public string Name
         {
             get { return _name; }
             set { _name = value; }
+        }
+
+        public ListManager<string> Ingredients
+        {
+            get { return _ingredients; }
         }
 
 
@@ -38,9 +40,13 @@ namespace AnimalMotel
         {
             StringBuilder recipeString = new StringBuilder();
 
+            recipeString.Append($"{ Name }. ");
+            recipeString.Replace(recipeString[0],
+                char.Parse(recipeString[0].ToString().ToUpper()));
+
             for (int i = 0; i < Ingredients.Count; i++)
             {
-                recipeString.Append($"{ Ingredients[i] }. ");
+                recipeString.Append($"{ Ingredients[i] }, ");
             }
 
             return recipeString.ToString();

@@ -37,6 +37,8 @@
             this.listBoxQualifications = new System.Windows.Forms.ListBox();
             this.textBoxQualification = new System.Windows.Forms.TextBox();
             this.lblQualification = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,17 +129,40 @@
             this.lblQualification.TabIndex = 0;
             this.lblQualification.Text = "Qualification";
             // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(58, 416);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(200, 40);
+            this.btnOk.TabIndex = 3;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(309, 416);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(200, 40);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FormStaffPlanning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 423);
+            this.ClientSize = new System.Drawing.Size(576, 468);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.lblName);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FormStaffPlanning";
             this.Text = "Staff Planning";
+            this.Load += new System.EventHandler(this.FormStaffPlanning_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -156,5 +181,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

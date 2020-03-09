@@ -90,6 +90,9 @@
     <Compile Include="FormRecipe.Designer.cs">
       <DependentUpon>FormRecipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRecipe.init.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRecipe.Validator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +101,9 @@
     </Compile>
     <Compile Include="FormStaffPlanning.Designer.cs">
       <DependentUpon>FormStaffPlanning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStaffPlanning.init.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStaffPlanning.Validator.cs">
       <SubType>Form</SubType>
@@ -110,6 +116,7 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipeManager.cs" />
     <Compile Include="Staff.cs" />
+    <Compile Include="StaffManager.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

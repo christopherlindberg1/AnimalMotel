@@ -12,6 +12,17 @@ namespace AnimalMotel
 {
     public partial class FormStaffPlanning : Form
     {
+        private Staff _staff;
+
+
+
+
+        // ========================= Properties ========================= //
+        public Staff Staff
+        {
+            get { return _staff; }
+            set { _staff = value; }
+        }
 
 
 
@@ -20,34 +31,37 @@ namespace AnimalMotel
         public FormStaffPlanning()
         {
             InitializeComponent();
-            InitializeGUI();
+            InitializeForm();
         }
 
-        private void InitializeGUI()
-        {
-            SetFormToDefaultState();
-        }
-
-        private void ClearInputFields()
+        private void ClearQualificationInputFields()
         {
             textBoxQualification.Text = "";
+        }
+
+        private void ClearAllInputFields()
+        {
             textBoxName.Text = "";
+            listBoxQualifications.Items.Clear();
+            ClearQualificationInputFields();
         }
 
         private void SetFormToDefaultState()
         {
-            ClearInputFields();
-
-            btnAdd.Enabled = true;
+            lblQualification.Text = "Add qualification";
+            listBoxQualifications.SelectedIndex = -1;
             btnChange.Enabled = false;
             btnDelete.Enabled = false;
+
+            ClearQualificationInputFields();
         }
 
         private void SetFormToEditState()
         {
-            btnAdd.Enabled = false;
+            lblQualification.Text = "Change qualification";
             btnChange.Enabled = true;
             btnDelete.Enabled = true;
+            textBoxQualification.Text = listBoxQualifications.SelectedItem.ToString();
         }
 
         /// <summary>
@@ -64,16 +78,50 @@ namespace AnimalMotel
         private void AddQualificationToGUIList()
         {
             listBoxQualifications.Items.Add(textBoxQualification.Text);
+            ClearQualificationInputFields();
         }
 
         private void ChangeQualification()
         {
+            if (listBoxQualifications.SelectedIndex == -1)
+            {
+                return;
+            }
 
+            if (ValidateQualification())
+            {
+                listBoxQualifications.Items[listBoxQualifications.SelectedIndex]
+                    = textBoxQualification.Text;
+            }
+            else
+            {
+                MessageBox.Show(MessageHandler.GetMessages());
+            }
         }
 
         private void DeleteQualification()
         {
+            if (listBoxQualifications.SelectedIndex == -1)
+            {
+                return;
+            }
 
+            listBoxQualifications.Items.RemoveAt(listBoxQualifications.SelectedIndex);
+            textBoxQualification.Text = "";
+        }
+
+        private Staff CreateStaffObject()
+        {
+            Staff staff = new Staff();
+
+            staff.Name = textBoxName.Text;
+
+            foreach (string item in listBoxQualifications.Items)
+            {
+                staff.Qualifications.Add(item);
+            }
+
+            return staff;
         }
 
 
@@ -81,6 +129,11 @@ namespace AnimalMotel
 
 
         // ========================= Events ========================= //
+
+        private void FormStaffPlanning_Load(object sender, EventArgs e)
+        {
+            ClearAllInputFields();
+        }
 
         private void listBoxQualifications_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -94,7 +147,7 @@ namespace AnimalMotel
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (ValidateInput())
+            if (ValidateQualification())
             {
                 AddQualification();
                 SetFormToDefaultState();
@@ -113,8 +166,12 @@ namespace AnimalMotel
         {
             if (listBoxQualifications.SelectedIndex == -1)
             {
+                MessageBox.Show(MessageHandler.GetMessages());
                 return;
             }
+
+            ChangeQualification();
+            SetFormToDefaultState();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -123,6 +180,34 @@ namespace AnimalMotel
             {
                 return;
             }
+
+            DeleteQualification();
+            SetFormToDefaultState();
+
         }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (ValidateInput())
+            {
+                // Creates staff object that can be accessed and stored in FormMain.
+                Staff = CreateStaffObject();
+                // Sets dialogresult so FormMain knows if to fetch staff or not.
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(MessageHandler.GetMessages());
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        
     }
 }

@@ -51,6 +51,11 @@ namespace AnimalMotel
             return ValidateTextBoxString(textBoxName, "Name cannot be empty.");
         }
 
+        private bool ValidateIngredient()
+        {
+            return ValidateTextBoxString(textBoxIngredient, "Ingredient cannot be empty.");
+        }
+
         private bool ValidateAllIngredients()
         {
             if (listBoxIngredients.Items.Count == 0)
@@ -60,11 +65,6 @@ namespace AnimalMotel
             }
 
             return true;
-        }
-
-        private bool ValidateIngredient()
-        {
-            return ValidateTextBoxString(textBoxIngredient, "Ingredient cannot be empty.");
         }
 
     }

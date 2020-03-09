@@ -17,6 +17,15 @@ namespace AnimalMotel
     public partial class FormMain : Form
     {
         /// <summary>
+        ///   Initializes the entire app to the
+        ///   starting state
+        /// </summary>
+        private void InitializeApp()
+        {
+            InitializeGUI();
+        }
+
+        /// <summary>
         ///   Initializes the GUI of the app
         /// </summary>
         private void InitializeGUI()
@@ -30,19 +39,13 @@ namespace AnimalMotel
             InitializeCategorySpecificFields();
             InitializeSpecieSpecificFields();
             InitializeFoodScheduleSection();
+            InitializeFoodSection();
+            InitializeStaffSection();
             InitializeListViewAnimals();
+
             SetFormToDefaultState();
 
             SetSampleData();
-        }
-
-        /// <summary>
-        ///   Initializes the entire app to the
-        ///   starting state
-        /// </summary>
-        private void InitializeApp()
-        {
-            InitializeGUI();
         }
 
         private void InitializeCategorySpecificFields()
@@ -90,13 +93,21 @@ namespace AnimalMotel
 
         private void InitializeFoodScheduleSection()
         {
-            //lblEaterType.Location = new Point(8, 25);
             lblShowEaterType.Text = "";
-            //lblShowEaterType.Location = new Point(90, 24);
-            //lblShowEaterType.Size = new Size(275, 22);
             listBoxFoodSchedule.Enabled = false;
-            //listBoxFoodSchedule.Location = new Point(10, 60);
-            //listBoxFoodSchedule.Size = new Size(355, 230);
+        }
+
+        private void InitializeFoodSection()
+        {
+            listBoxRecipes.Location = new Point(122, 45);
+            listBoxRecipes.Size = new Size(300, 270);
+        }
+
+        private void InitializeStaffSection()
+        {
+            listBoxStaff.Location = new Point(122, 45);
+            listBoxStaff.Size = new Size(300, 270);
+            ToggleStaffList(false);
         }
 
         private void InitializeListViewAnimals()

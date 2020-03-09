@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalMotel
 {
-    public class RecipeManager : ListManager<Recipe>
+    public class StaffManager : ListManager<Staff>
     {
         // No code needed atm. Only makes use of inherited members.
     }

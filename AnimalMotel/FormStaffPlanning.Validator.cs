@@ -16,28 +16,41 @@ namespace AnimalMotel
 
 
 
+
+        // ========================= Properties ========================= //
+
         private MessageHandler MessageHandler
         {
             get { return _messageHandler; }
         }
 
+
+
+
+        // ========================= Methods ========================= //
+
         private bool ValidateInput()
         {
             bool nameOk = ValidateName();
-            bool qualificationOk = ValidateQualification();
+            bool qualificationOk = ValidateAllQualifications();
 
             return nameOk && qualificationOk;
         }
 
-        private bool ValidateName()
+        private bool ValidateTextBoxString(TextBox element, string errNullOrEmpty)
         {
-            if (String.IsNullOrWhiteSpace(textBoxName.Text))
+            if (String.IsNullOrWhiteSpace(element.Text))
             {
-                MessageHandler.AddMessage("Name cannot be empty.");
+                MessageHandler.AddMessage(errNullOrEmpty);
                 return false;
             }
 
             return true;
+        }
+
+        private bool ValidateName()
+        {
+            return ValidateTextBoxString(textBoxName, "Name cannot be empty");
         }
 
         private bool ValidateQualification()
@@ -45,6 +58,17 @@ namespace AnimalMotel
             if (String.IsNullOrWhiteSpace(textBoxQualification.Text))
             {
                 MessageHandler.AddMessage("Qualification cannot be empty.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateAllQualifications()
+        {
+            if (listBoxQualifications.Items.Count == 0)
+            {
+                MessageHandler.AddMessage("You must add at least one qualification.");
                 return false;
             }
 

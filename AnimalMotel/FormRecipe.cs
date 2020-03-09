@@ -33,6 +33,8 @@ namespace AnimalMotel
         public FormRecipe()
         {
             InitializeComponent();
+            SetFormToDefaultState();
+            Recipe = new Recipe();
         }
 
         private void ClearIngredientInputField()
@@ -40,9 +42,64 @@ namespace AnimalMotel
             textBoxIngredient.Text = "";
         }
 
+        private void ClearAllInputFields()
+        {
+            textBoxName.Text = "";
+            listBoxIngredients.Items.Clear();
+            ClearIngredientInputField();
+        }
+
+        private void SetFormToDefaultState()
+        {
+            listBoxIngredients.SelectedIndex = -1;
+            lblIngredient.Text = "Add ingredient";
+            btnChange.Enabled = false;
+            btnDelete.Enabled = false;
+            ClearIngredientInputField();
+        }
+
+        private void SetFormToEditState()
+        {
+            lblIngredient.Text = "Change ingredient";
+            btnChange.Enabled = true;
+            btnDelete.Enabled = true;
+            textBoxIngredient.Text = listBoxIngredients.SelectedItem.ToString();
+        }
+
         private void AddIngredientToGUIList()
         {
             listBoxIngredients.Items.Add(textBoxIngredient.Text);
+            textBoxIngredient.Text = "";
+            listBoxIngredients.SelectedIndex = -1;
+        }
+
+        private void ChangeIngredient()
+        {
+            if (listBoxIngredients.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            if (ValidateIngredient())
+            {
+                listBoxIngredients.Items[listBoxIngredients.SelectedIndex]
+                    = textBoxIngredient.Text;
+                listBoxIngredients.SelectedIndex = -1;
+            }
+            else
+            {
+                MessageBox.Show(MessageHandler.GetMessages());
+            }
+        }
+
+        private void DeleteIngredient()
+        {
+            if (listBoxIngredients.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            listBoxIngredients.Items.RemoveAt(listBoxIngredients.SelectedIndex);
             textBoxIngredient.Text = "";
         }
 
@@ -60,24 +117,16 @@ namespace AnimalMotel
             return recipe;
         }
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
         // ========================== Events ========================== //
+
+        private void FormRecipe_Load(object sender, EventArgs e)
+        {
+            ClearAllInputFields();
+        }
 
         /// <summary>
         ///   Validates that an ingredient is not empty befor adding it.
@@ -96,6 +145,39 @@ namespace AnimalMotel
             }
         }
 
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            if (listBoxIngredients.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            ChangeIngredient();
+            SetFormToDefaultState();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (listBoxIngredients.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must select an ingredient to delete.");
+                return;
+            }
+
+            DeleteIngredient();
+            SetFormToDefaultState();
+        }
+
+        private void listBoxIngredients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxIngredients.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            SetFormToEditState();
+        }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (ValidateInput())
@@ -111,5 +193,12 @@ namespace AnimalMotel
                 MessageBox.Show(MessageHandler.GetMessages());
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        
     }
 }

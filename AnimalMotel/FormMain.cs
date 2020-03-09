@@ -28,6 +28,7 @@ namespace AnimalMotel
         // Managers
         private readonly AnimalManager _animalManager = new AnimalManager();
         private readonly RecipeManager _recipeManager = new RecipeManager();
+        private readonly StaffManager _staffManager = new StaffManager();
 
         // Forms
         private FormRecipe _formRecipe = new FormRecipe();
@@ -45,6 +46,11 @@ namespace AnimalMotel
         private RecipeManager RecipeManager
         {
             get { return _recipeManager; }
+        }
+
+        private StaffManager StaffManager
+        {
+            get { return _staffManager; }
         }
 
         private FormRecipe FormRecipe
@@ -650,6 +656,58 @@ namespace AnimalMotel
             }
         }
 
+        private void AddRecipe(Recipe recipe)
+        {
+            RecipeManager.Add(recipe);
+            AddRecipeToGUI(recipe);
+        }
+
+        private void AddRecipeToGUI(Recipe recipe)
+        {
+            listBoxRecipes.Items.Add(recipe.ToString());
+        }
+
+        private void AddStaff(Staff staff)
+        {
+            StaffManager.Add(staff);
+            AddStaffToGUI(staff);
+        }
+
+        private void AddStaffToGUI(Staff staff)
+        {
+            listBoxStaff.Items.Add(staff.ToString());
+        }
+
+        private void ToggleRecipeList(bool show)
+        {
+            listBoxRecipes.Visible = show;
+        }
+
+        private void ToggleStaffList(bool show)
+        {
+            listBoxStaff.Visible = show;
+        }
+
+        private void ShowRecipeList()
+        {
+            ToggleRecipeList(true);
+            ToggleStaffList(false);
+            listBoxRecipes.SelectedIndex = -1;
+            listBoxStaff.SelectedIndex = -1;
+            lblShowStaff.BackColor = Color.Green;
+            lblShowFoods.BackColor = Color.FromArgb(0, 192, 0);
+        }
+
+        private void ShowStaffList()
+        {
+            ToggleRecipeList(false);
+            ToggleStaffList(true);
+            listBoxRecipes.SelectedIndex = -1;
+            listBoxStaff.SelectedIndex = -1;
+            lblShowStaff.BackColor = Color.FromArgb(0, 192, 0);
+            lblShowFoods.BackColor = Color.Green;
+        }
+
 
 
 
@@ -843,14 +901,30 @@ namespace AnimalMotel
             
             if (result == DialogResult.OK)
             {
-                Recipe recipe = FormRecipe.Recipe;
-                RecipeManager.Add(recipe);
-                MessageBox.Show(recipe.Ingredients.Count.ToString());
+                ShowRecipeList();
+                AddRecipe(FormRecipe.Recipe);
             }
-            else
+        }
+
+        private void btnAddStaff_Click(object sender, EventArgs e)
+        {
+            DialogResult result = FormStaffPlanning.ShowDialog();
+
+            if (result == DialogResult.OK)
             {
-                MessageBox.Show("NONONO");
+                ShowStaffList();
+                AddStaff(FormStaffPlanning.Staff);
             }
+        }
+
+        private void lblShowFoods_Click(object sender, EventArgs e)
+        {
+            ShowRecipeList();
+        }
+
+        private void lblShowStaff_Click(object sender, EventArgs e)
+        {
+            ShowStaffList();
         }
     }
 }

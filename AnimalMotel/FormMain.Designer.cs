@@ -42,6 +42,7 @@
             this.groupBoxAnimalList = new System.Windows.Forms.GroupBox();
             this.btnDeleteAnimal = new System.Windows.Forms.Button();
             this.lblShowEaterType = new System.Windows.Forms.Label();
+            this.listBoxFoodSchedule = new System.Windows.Forms.ListBox();
             this.lblEaterType = new System.Windows.Forms.Label();
             this.btnChangeAnimal = new System.Windows.Forms.Button();
             this.listViewAnimals = new System.Windows.Forms.ListView();
@@ -56,9 +57,11 @@
             this.lblTailLength = new System.Windows.Forms.Label();
             this.groupBoxAnimalSpecs = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblShowStaff = new System.Windows.Forms.Label();
+            this.lblShowFoods = new System.Windows.Forms.Label();
+            this.listBoxRecipes = new System.Windows.Forms.ListBox();
             this.btnAddStaff = new System.Windows.Forms.Button();
             this.btnAddFood = new System.Windows.Forms.Button();
-            this.listBoxFoodSchedule = new System.Windows.Forms.ListBox();
             this.groupBoxSpecieSpecificData = new System.Windows.Forms.GroupBox();
             this.textBoxNrOfLives = new System.Windows.Forms.TextBox();
             this.textBoxBreed = new System.Windows.Forms.TextBox();
@@ -73,6 +76,7 @@
             this.groupBoxAnimalCategorySpecs = new System.Windows.Forms.GroupBox();
             this.lblNrOfTeeth = new System.Windows.Forms.Label();
             this.listBoxSpecies = new System.Windows.Forms.ListBox();
+            this.listBoxStaff = new System.Windows.Forms.ListBox();
             this.groupBoxGender.SuspendLayout();
             this.groupBoxAnimalList.SuspendLayout();
             this.groupBoxAnimalSpecs.SuspendLayout();
@@ -178,6 +182,7 @@
             // 
             this.groupBoxAnimalList.Controls.Add(this.btnDeleteAnimal);
             this.groupBoxAnimalList.Controls.Add(this.lblShowEaterType);
+            this.groupBoxAnimalList.Controls.Add(this.listBoxFoodSchedule);
             this.groupBoxAnimalList.Controls.Add(this.lblEaterType);
             this.groupBoxAnimalList.Controls.Add(this.btnChangeAnimal);
             this.groupBoxAnimalList.Controls.Add(this.listViewAnimals);
@@ -207,6 +212,17 @@
             this.lblShowEaterType.TabIndex = 1;
             this.lblShowEaterType.Text = "Carnivore";
             this.lblShowEaterType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // listBoxFoodSchedule
+            // 
+            this.listBoxFoodSchedule.BackColor = System.Drawing.SystemColors.Control;
+            this.listBoxFoodSchedule.Enabled = false;
+            this.listBoxFoodSchedule.FormattingEnabled = true;
+            this.listBoxFoodSchedule.ItemHeight = 18;
+            this.listBoxFoodSchedule.Location = new System.Drawing.Point(810, 70);
+            this.listBoxFoodSchedule.Name = "listBoxFoodSchedule";
+            this.listBoxFoodSchedule.Size = new System.Drawing.Size(363, 184);
+            this.listBoxFoodSchedule.TabIndex = 2;
             // 
             // lblEaterType
             // 
@@ -319,15 +335,55 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listBoxStaff);
+            this.groupBox1.Controls.Add(this.lblShowStaff);
+            this.groupBox1.Controls.Add(this.lblShowFoods);
+            this.groupBox1.Controls.Add(this.listBoxRecipes);
             this.groupBox1.Controls.Add(this.btnAddStaff);
             this.groupBox1.Controls.Add(this.btnAddFood);
-            this.groupBox1.Controls.Add(this.listBoxFoodSchedule);
-            this.groupBox1.Location = new System.Drawing.Point(772, 26);
+            this.groupBox1.Location = new System.Drawing.Point(772, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(428, 299);
+            this.groupBox1.Size = new System.Drawing.Size(428, 324);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Food details";
+            // 
+            // lblShowStaff
+            // 
+            this.lblShowStaff.BackColor = System.Drawing.Color.Green;
+            this.lblShowStaff.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblShowStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowStaff.ForeColor = System.Drawing.Color.White;
+            this.lblShowStaff.Location = new System.Drawing.Point(274, 18);
+            this.lblShowStaff.Name = "lblShowStaff";
+            this.lblShowStaff.Size = new System.Drawing.Size(148, 25);
+            this.lblShowStaff.TabIndex = 9;
+            this.lblShowStaff.Text = "Show staff";
+            this.lblShowStaff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblShowStaff.Click += new System.EventHandler(this.lblShowStaff_Click);
+            // 
+            // lblShowFoods
+            // 
+            this.lblShowFoods.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblShowFoods.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblShowFoods.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowFoods.ForeColor = System.Drawing.Color.White;
+            this.lblShowFoods.Location = new System.Drawing.Point(122, 18);
+            this.lblShowFoods.Name = "lblShowFoods";
+            this.lblShowFoods.Size = new System.Drawing.Size(148, 25);
+            this.lblShowFoods.TabIndex = 8;
+            this.lblShowFoods.Text = "Show foods";
+            this.lblShowFoods.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblShowFoods.Click += new System.EventHandler(this.lblShowFoods_Click);
+            // 
+            // listBoxRecipes
+            // 
+            this.listBoxRecipes.FormattingEnabled = true;
+            this.listBoxRecipes.ItemHeight = 18;
+            this.listBoxRecipes.Location = new System.Drawing.Point(122, 46);
+            this.listBoxRecipes.Name = "listBoxRecipes";
+            this.listBoxRecipes.Size = new System.Drawing.Size(255, 184);
+            this.listBoxRecipes.TabIndex = 5;
             // 
             // btnAddStaff
             // 
@@ -337,6 +393,7 @@
             this.btnAddStaff.TabIndex = 4;
             this.btnAddStaff.Text = "Add staff";
             this.btnAddStaff.UseVisualStyleBackColor = true;
+            this.btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
             // 
             // btnAddFood
             // 
@@ -347,17 +404,6 @@
             this.btnAddFood.Text = "Add food";
             this.btnAddFood.UseVisualStyleBackColor = true;
             this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
-            // 
-            // listBoxFoodSchedule
-            // 
-            this.listBoxFoodSchedule.BackColor = System.Drawing.SystemColors.Control;
-            this.listBoxFoodSchedule.Enabled = false;
-            this.listBoxFoodSchedule.FormattingEnabled = true;
-            this.listBoxFoodSchedule.ItemHeight = 18;
-            this.listBoxFoodSchedule.Location = new System.Drawing.Point(122, 29);
-            this.listBoxFoodSchedule.Name = "listBoxFoodSchedule";
-            this.listBoxFoodSchedule.Size = new System.Drawing.Size(300, 256);
-            this.listBoxFoodSchedule.TabIndex = 2;
             // 
             // groupBoxSpecieSpecificData
             // 
@@ -495,6 +541,15 @@
             this.listBoxSpecies.TabIndex = 5;
             this.listBoxSpecies.SelectedIndexChanged += new System.EventHandler(this.listBoxSpecies_SelectedIndexChanged);
             // 
+            // listBoxStaff
+            // 
+            this.listBoxStaff.FormattingEnabled = true;
+            this.listBoxStaff.ItemHeight = 18;
+            this.listBoxStaff.Location = new System.Drawing.Point(126, 191);
+            this.listBoxStaff.Name = "listBoxStaff";
+            this.listBoxStaff.Size = new System.Drawing.Size(296, 94);
+            this.listBoxStaff.TabIndex = 10;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -565,6 +620,10 @@
         private System.Windows.Forms.Button btnChangeAnimal;
         private System.Windows.Forms.Button btnAddStaff;
         private System.Windows.Forms.Button btnAddFood;
+        private System.Windows.Forms.ListBox listBoxRecipes;
+        private System.Windows.Forms.Label lblShowFoods;
+        private System.Windows.Forms.Label lblShowStaff;
+        private System.Windows.Forms.ListBox listBoxStaff;
     }
 }
 
