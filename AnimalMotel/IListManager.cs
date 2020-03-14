@@ -18,6 +18,11 @@ namespace AnimalMotel
         int Count { get; }
 
         /// <summary>
+        ///   Property for getting the list with all the stored objects.
+        /// </summary>
+        List<T> List { get; }
+
+        /// <summary>
         ///   Indexer for getting the object at a given index.
         ///   Should throw error if index is out of range.
         /// </summary>

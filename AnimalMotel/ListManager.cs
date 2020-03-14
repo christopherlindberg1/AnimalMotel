@@ -20,7 +20,7 @@ namespace AnimalMotel
             get { return _list.Count; }
         }
 
-        protected List<T> List
+        public List<T> List
         {
             get { return _list; }
         }
