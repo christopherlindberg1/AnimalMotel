@@ -25,7 +25,7 @@ namespace AnimalMotel.Animals.Species
             get { return this._lives; }
             set
             {
-                if (value < 0)
+                if (value < 1)
                     throw new ArgumentOutOfRangeException(
                         "Lives", "Cats must have at least one life");
 

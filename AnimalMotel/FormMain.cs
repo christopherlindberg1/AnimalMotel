@@ -36,6 +36,7 @@ namespace AnimalMotel
 
 
 
+
         // ======================= Properties ======================= //
 
         private AnimalManager AnimalManager
@@ -69,7 +70,6 @@ namespace AnimalMotel
 
 
         // ======================= Methods ======================= //
-
 
         public FormMain()
         {
@@ -298,7 +298,6 @@ namespace AnimalMotel
 
                 default:
                     throw new ArgumentException("specie did not match any case", "specie");
-
             }
         }
 
