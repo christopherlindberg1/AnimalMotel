@@ -74,12 +74,32 @@ namespace AnimalMotel
             Gender = gender;
         }
 
+        /// <summary>
+        ///   Abstract method for returning the EaterType for the animal.
+        ///   Is implemented by the final subclasses.
+        /// </summary>
+        /// <returns>EaterType value.</returns>
         public abstract EaterType GetEaterType();
 
+        /// <summary>
+        ///   Abstract method for returning a FoodSchedule object from an animal.
+        ///   Is implemented by the final subclasses.
+        /// </summary>
+        /// <returns>FoodSchedule object.</returns>
         public abstract FoodSchedule GetFoodSchedule();
 
+        /// <summary>
+        ///   Abstract method for returning the name of the specie for an animal.
+        ///   Is implemented by the final subclasses.
+        /// </summary>
+        /// <returns>Name of the specie.</returns>
         public abstract string GetSpecie();
 
+        /// <summary>
+        ///   Abstract method for returning the special characteristics of a specie.
+        ///   Is implemented by the final subclasses.
+        /// </summary>
+        /// <returns>String with special characteristics.</returns>
         public abstract string GetSpecialCharacteristics();
 
         /// <summary>

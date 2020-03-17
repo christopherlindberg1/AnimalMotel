@@ -35,8 +35,8 @@ namespace AnimalMotel
         ///   Indexer for getting the object at a given index.
         ///   Throws error if index is out of range.
         /// </summary>
-        /// <param name="index">Index of the object.</param>
-        /// <returns>Object of the specified type.</returns>
+        /// <param name="index">Index of the item.</param>
+        /// <returns>Item of the specified type.</returns>
         public T this[int index]
         {
             get
@@ -66,6 +66,13 @@ namespace AnimalMotel
             return true;
         }
 
+        /// <summary>
+        ///   Changes the value for a given key.
+        ///   Validates that the key exists.
+        /// </summary>
+        /// <param name="obj">item to update.</param>
+        /// <param name="index">Index of the item.</param>
+        /// <returns>true if item got updated, false otherwise.</returns>
         public bool ChangeAt(T obj, int index)
         {
             if (!CheckIndex(index))
@@ -77,6 +84,11 @@ namespace AnimalMotel
             return true;
         }
 
+        /// <summary>
+        ///   Checks whether a given index is within the range for the list.
+        /// </summary>
+        /// <param name="index">Index.</param>
+        /// <returns>true if index is within range, false otherwise.</returns>
         public bool CheckIndex(int index)
         {
             if (index < 0 || index > Count)
@@ -87,11 +99,19 @@ namespace AnimalMotel
             return true;
         }
 
+        /// <summary>
+        ///   Removes all items in the list.
+        /// </summary>
         public void DeleteAll()
         {
             _list.RemoveRange(0, Count);
         }
 
+        /// <summary>
+        ///   Deletes an item at a given index.
+        /// </summary>
+        /// <param name="index">Index of the object.</param>
+        /// <returns>true if item got deleted, false otherwise.</returns>
         public bool DeleteAt(int index)
         {
             if (!CheckIndex(index))
@@ -103,8 +123,11 @@ namespace AnimalMotel
             return true;
         }
 
-        
-
+        /// <summary>
+        ///   Gets the item at a given index.
+        /// </summary>
+        /// <param name="index">Index of the item.</param>
+        /// <returns>item.</returns>
         public T GetAt(int index)
         {
             if (!CheckIndex(index))
@@ -113,11 +136,6 @@ namespace AnimalMotel
             }
 
             return _list[index];
-        }
-
-        public void Reset()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

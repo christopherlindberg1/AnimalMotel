@@ -14,6 +14,7 @@ using AnimalMotel.Enums;
 using AnimalMotel.Enums.Sorting;
 using AnimalMotel.Factories;
 using AnimalMotel.Animals.Species;
+using AnimalMotel.Animals.Categories;
 
 
 namespace AnimalMotel
@@ -153,13 +154,15 @@ namespace AnimalMotel
         /// </summary>
         private void SetFormToDefaultState()
         {
-            listBoxSpecies.Items.Clear();
             checkBoxListAllAnimals.Checked = false;
+
             btnAddAnimal.Enabled = true;
             btnChangeAnimal.Enabled = true;
             btnDeleteAnimal.Enabled = true;
+
             listBoxCategory.Enabled = true;
             listBoxSpecies.Enabled = true;
+            listBoxSpecies.Items.Clear();
 
             ClearInput();
             HideSpecieFieldsAndLabel();
@@ -172,7 +175,7 @@ namespace AnimalMotel
         /// </summary>
         private void SetFormToEditState()
         {
-            btnAddAnimal.Enabled = true;
+            btnAddAnimal.Enabled = false;
             btnChangeAnimal.Enabled = true;
             btnDeleteAnimal.Enabled = true;
             listBoxCategory.Enabled = false;
@@ -386,6 +389,9 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Shows the food schedule for cats.
+        /// </summary>
         private void ShowFoodScheduleDog()
         {
             lblShowEaterType.Text = EaterType.Carnivore.ToString();
@@ -579,6 +585,21 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Updates the GUI to match a specific specie.
+        /// </summary>
+        /// <param name="animalCategory">Category of the animal.</param>
+        /// <param name="specie">Specie of the animal.</param>
+        private void UpdateGUIToSpecie(Category animalCategory, string specie)
+        {
+            UpdateAnimalCategoryInputFields(animalCategory);
+            UpdateSpecieInputFields(specie);
+            UpdateFoodScheduleFields(specie);
+        }
+
+        /// <summary>
+        ///   Updates an animal to the new data submitted in the form.
+        /// </summary>
         private void ChangeAnimal()
         {
             if (listViewAnimals.SelectedIndices.Count == 0)
@@ -590,16 +611,126 @@ namespace AnimalMotel
             int index = listViewAnimals.SelectedIndices[0];
 
             Animal animal = AnimalManager.GetAnimalAt(index);
-            MessageBox.Show(animalId.ToString());
         }
 
+        /// <summary>
+        ///   Fills the input fields with data from an animal.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
         private void FillGUIWithAnimalData(Animal animal)
+        {
+            ClearInput();
+
+            Category category = GetAnimalCategory(animal);
+            UpdateGUIToSpecie(category, animal.GetSpecie());
+
+            FillGUIWithGeneralAnimalData(animal);
+            FillGUIWithAnimalCategoryData(category, animal);
+            FillGUIWithSpecieSpecificData(animal);
+            
+        }
+
+        private void FillGUIWithGeneralAnimalData(Animal animal)
         {
             textBoxName.Text = animal.Name;
             textBoxAge.Text = animal.Age.ToString();
-
+            SetListBoxGender(animal);
         }
 
+        private void FillGUIWithAnimalCategoryData(Category category, Animal animal)
+        {
+            // Type casting to the animals category so category specific data can be read.
+            switch (category)
+            {
+                case Category.Bird:
+                    Bird bird = animal as Bird;
+                    textBoxFlyingSpeed.Text = bird.FlyingSpeed.ToString();
+                    break;
+                case Category.Mammal:
+                    Mammal mammal = animal as Mammal;
+                    textBoxNrOfTeeth.Text = mammal.NrOfTeeth.ToString();
+                    textBoxTailLength.Text = mammal.TailLegth.ToString();
+                    break;
+            }
+        }
+
+        private void FillGUIWithSpecieSpecificData(Animal animal)
+        {
+            // Check what specie the animal is and to a type cast
+            // to access specie specific data.
+            if (animal is Eagle)
+            {
+                Eagle eagle = animal as Eagle;
+                textBoxClawLength.Text = eagle.ClawLength.ToString();
+            }
+            else if (animal is Pigeon)
+            {
+                Pigeon pigeon = animal as Pigeon;
+                textBoxBeakLength.Text = pigeon.BeakLength.ToString();
+            }
+            else if (animal is Cat)
+            {
+                Cat cat = animal as Cat;
+                textBoxNrOfLives.Text = cat.Lives.ToString();
+            }
+            else if (animal is Dog)
+            {
+                Dog dog = animal as Dog;
+                textBoxBreed.Text = dog.Breed;
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    "Animal did not match any specie. Missing if-statement?");
+            }
+        }
+
+        /// <summary>
+        ///   Returns the animal category for a given animal.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
+        /// <returns>Category value.</returns>
+        private Category GetAnimalCategory(Animal animal)
+        {
+            if (Enum.IsDefined(typeof(BirdSpecies), animal.GetSpecie()))
+            {
+                return Category.Bird;
+            }
+            else if (Enum.IsDefined(typeof(MammalSpecies), animal.GetSpecie()))
+            {
+                return Category.Mammal;
+            }
+            else
+            {
+                throw new InvalidOperationException("" +
+                    "Animal did not match any specie. Missing if-statement?");
+            }
+        }
+
+        /// <summary>
+        ///   Sets the gender in listBoxGender to match an animal.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
+        private void SetListBoxGender(Animal animal)
+        {
+            switch (animal.Gender)
+            {
+                case Gender.Female:
+                    listBoxGender.SelectedIndex = 0;
+                    break;
+                case Gender.Male:
+                    listBoxGender.SelectedIndex = 1;
+                    break;
+                case Gender.Unknown:
+                    listBoxGender.SelectedIndex = 2;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///   Returns the id of the selected animal.
+        /// </summary>
+        /// <returns>Id.</returns>
         private int GetSelectedAnimalId()
         {
             // Return -1 if no animal or multiple animals are selected.
@@ -617,7 +748,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Deletes
+        ///   Deletes marked animals.
         /// </summary>
         private void DeleteMarkedAnimals()
         {
@@ -628,6 +759,7 @@ namespace AnimalMotel
                 return;
             }
 
+            // Builds string with appropriate confirm message.
             StringBuilder deleteConfirmMessage = new StringBuilder();
             deleteConfirmMessage.Append(
                 $"Are you sure you want to delete the marked {nrOfAnimalsToDelete} animal");
@@ -637,6 +769,7 @@ namespace AnimalMotel
             else
                 deleteConfirmMessage.Append("?");
 
+            // Presents confirm message.
             DialogResult result = MessageBox.Show(
                 deleteConfirmMessage.ToString(),
                 "Warning",
@@ -645,14 +778,27 @@ namespace AnimalMotel
 
             if (result == DialogResult.OK)
             {
-                while (nrOfAnimalsToDelete > 0)
-                {
-                    AnimalManager.DeleteAt(listViewAnimals.SelectedItems[0].Index);
-                    nrOfAnimalsToDelete--;
-                }
+                List<int> selectedAnimalIds = GetMarkedAnimalsId();
 
+                AnimalManager.DeleteAnimals(selectedAnimalIds);
                 AddAnimalsToGUIList();
             }
+        }
+
+        /// <summary>
+        ///   Gets the ids for all the selected animals.
+        /// </summary>
+        /// <returns>List with ids.</returns>
+        private List<int> GetMarkedAnimalsId()
+        {
+            List<int> ids = new List<int>();
+
+            foreach (ListViewItem item in listViewAnimals.SelectedItems)
+            {
+                ids.Add( int.Parse(item.Text) );
+            }
+
+            return ids;
         }
 
         private void AddRecipe(Recipe recipe)
@@ -843,8 +989,6 @@ namespace AnimalMotel
             {
                 return;
             }
-
-            // SetFormToEditState();
         }
 
         private void btnChangeAnimal_Click(object sender, EventArgs e)
@@ -874,7 +1018,11 @@ namespace AnimalMotel
             }
 
             SetFormToEditState();
-            ChangeAnimal();
+
+            int id = int.Parse(listViewAnimals.SelectedItems[0].Text);
+            Animal animal = AnimalManager.GetAnimalById(id);
+
+            FillGUIWithAnimalData(animal);
         }
 
         private void btnDeleteAnimal_Click(object sender, EventArgs e)

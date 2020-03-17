@@ -33,17 +33,17 @@ namespace AnimalMotel
         /// <summary>
         ///   Method for adding an object to the list.
         /// </summary>
-        /// <param name="aType">Object to add to list.</param>
+        /// <param name="obj">Object to add to list.</param>
         /// <returns>bool showing if object got added.</returns>
-        bool Add(T aType);
+        bool Add(T obj);
 
         /// <summary>
         ///   Method for changing an object in the list.
         /// </summary>
-        /// <param name="aType">Object to change.</param>
+        /// <param name="obj">Object to change.</param>
         /// <param name="index">Index of the object.</param>
         /// <returns>bool showing if object got changed.</returns>
-        bool ChangeAt(T aType, int index);
+        bool ChangeAt(T obj, int index);
 
         /// <summary>
         ///   Method for checking if a given index is within the range for the list.

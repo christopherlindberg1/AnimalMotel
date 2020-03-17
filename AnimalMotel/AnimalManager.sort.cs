@@ -21,6 +21,8 @@ namespace AnimalMotel
         private IComparer<Animal> _lastUsedSortingClass = new SortAnimalById();
 
 
+
+
         /// <summary>
         ///   Sorts animals by any parameter. Takes a sorting class that implements
         ///   the IComparer interface as an argument, which performs the sort.

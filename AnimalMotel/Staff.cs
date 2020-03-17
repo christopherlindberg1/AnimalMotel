@@ -32,12 +32,6 @@ namespace AnimalMotel
 
         // ========================= Methods ========================= //
 
-
-
-
-
-
-
         public override string ToString()
         {
             StringBuilder staffString = new StringBuilder();

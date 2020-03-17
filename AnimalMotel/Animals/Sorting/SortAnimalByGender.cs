@@ -9,6 +9,9 @@ using AnimalMotel.Animals;
 
 namespace AnimalMotel.Animals.Sorting
 {
+    /// <summary>
+    ///   Class used for sorting animal objects by gender.
+    /// </summary>
     public class SortAnimalByGender : IComparer<Animal>
     {
         public int Compare(Animal a1, Animal a2)

@@ -58,7 +58,7 @@ namespace AnimalMotel.Animals.Species
         ///   with default argument for nrOfTeeth and tailLength.
         /// </summary>
         public Cat(string name, int age, Gender gender)
-            : this(name, age, gender, 0, 0, 0)
+            : this(name, age, gender, 0, 0, 7)
         {
         }
 
@@ -84,21 +84,37 @@ namespace AnimalMotel.Animals.Species
             );
         }
 
+        /// <summary>
+        ///   Returns the eater type of cats.
+        /// </summary>
+        /// <returns>EaterType.Carnivore.</returns>
         public override EaterType GetEaterType()
         {
             return EaterType.Carnivore;
         }
 
+        /// <summary>
+        ///   Returns the FoodSchedule object.
+        /// </summary>
+        /// <returns>FoodSchedule object.</returns>
         public override FoodSchedule GetFoodSchedule()
         {
             return _foodSchedule;
         }
 
+        /// <summary>
+        ///   Returns the name of the specie by referring to the name of the class.
+        /// </summary>
+        /// <returns>"cat".</returns>
         public override string GetSpecie()
         {
             return this.GetType().Name;
         }
 
+        /// <summary>
+        ///   Returns a string with the characteristics that are unique to cats.
+        /// </summary>
+        /// <returns>String with special characteristics.</returns>
         public override string GetSpecialCharacteristics()
         {
             return String.Format("Nr of teeth: {0, -7} Tail length: {1, -7}" +
