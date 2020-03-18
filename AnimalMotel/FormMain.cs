@@ -11,10 +11,8 @@ using System.Windows.Forms;
 
 // Own namespaces
 using AnimalMotel.Enums;
-using AnimalMotel.Enums.Sorting;
 using AnimalMotel.Factories;
 using AnimalMotel.Animals.Species;
-using AnimalMotel.Animals.Categories;
 
 
 namespace AnimalMotel
@@ -155,14 +153,19 @@ namespace AnimalMotel
         private void SetFormToDefaultState()
         {
             checkBoxListAllAnimals.Checked = false;
+            checkBoxListAllAnimals.Enabled = true;
 
             btnAddAnimal.Enabled = true;
-            btnChangeAnimal.Enabled = true;
-            btnDeleteAnimal.Enabled = true;
+            btnChangeAnimal.Visible = true;
+            btnDeleteAnimal.Visible = true;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
 
             listBoxCategory.Enabled = true;
             listBoxSpecies.Enabled = true;
             listBoxSpecies.Items.Clear();
+            listViewAnimals.SelectedItems.Clear();
+            listViewAnimals.Enabled = true;
 
             ClearInput();
             HideSpecieFieldsAndLabel();
@@ -176,10 +179,14 @@ namespace AnimalMotel
         private void SetFormToEditState()
         {
             btnAddAnimal.Enabled = false;
-            btnChangeAnimal.Enabled = true;
-            btnDeleteAnimal.Enabled = true;
+            btnChangeAnimal.Visible = false;
+            btnDeleteAnimal.Visible = false;
+            btnSave.Visible = true;
+            btnCancel.Visible = true;
             listBoxCategory.Enabled = false;
             listBoxSpecies.Enabled = false;
+            checkBoxListAllAnimals.Enabled = false;
+            listViewAnimals.Enabled = false;
         }
 
         /// <summary>
@@ -585,221 +592,7 @@ namespace AnimalMotel
             }
         }
 
-        /// <summary>
-        ///   Updates the GUI to match a specific specie.
-        /// </summary>
-        /// <param name="animalCategory">Category of the animal.</param>
-        /// <param name="specie">Specie of the animal.</param>
-        private void UpdateGUIToSpecie(Category animalCategory, string specie)
-        {
-            UpdateAnimalCategoryInputFields(animalCategory);
-            UpdateSpecieInputFields(specie);
-            UpdateFoodScheduleFields(specie);
-        }
-
-        /// <summary>
-        ///   Updates an animal to the new data submitted in the form.
-        /// </summary>
-        private void ChangeAnimal()
-        {
-            if (listViewAnimals.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            int animalId = GetSelectedAnimalId();
-            int index = listViewAnimals.SelectedIndices[0];
-
-            Animal animal = AnimalManager.GetAnimalAt(index);
-        }
-
-        /// <summary>
-        ///   Fills the input fields with data from an animal.
-        /// </summary>
-        /// <param name="animal">Animal object.</param>
-        private void FillGUIWithAnimalData(Animal animal)
-        {
-            ClearInput();
-
-            Category category = GetAnimalCategory(animal);
-            UpdateGUIToSpecie(category, animal.GetSpecie());
-
-            FillGUIWithGeneralAnimalData(animal);
-            FillGUIWithAnimalCategoryData(category, animal);
-            FillGUIWithSpecieSpecificData(animal);
-            
-        }
-
-        private void FillGUIWithGeneralAnimalData(Animal animal)
-        {
-            textBoxName.Text = animal.Name;
-            textBoxAge.Text = animal.Age.ToString();
-            SetListBoxGender(animal);
-        }
-
-        private void FillGUIWithAnimalCategoryData(Category category, Animal animal)
-        {
-            // Type casting to the animals category so category specific data can be read.
-            switch (category)
-            {
-                case Category.Bird:
-                    Bird bird = animal as Bird;
-                    textBoxFlyingSpeed.Text = bird.FlyingSpeed.ToString();
-                    break;
-                case Category.Mammal:
-                    Mammal mammal = animal as Mammal;
-                    textBoxNrOfTeeth.Text = mammal.NrOfTeeth.ToString();
-                    textBoxTailLength.Text = mammal.TailLegth.ToString();
-                    break;
-            }
-        }
-
-        private void FillGUIWithSpecieSpecificData(Animal animal)
-        {
-            // Check what specie the animal is and to a type cast
-            // to access specie specific data.
-            if (animal is Eagle)
-            {
-                Eagle eagle = animal as Eagle;
-                textBoxClawLength.Text = eagle.ClawLength.ToString();
-            }
-            else if (animal is Pigeon)
-            {
-                Pigeon pigeon = animal as Pigeon;
-                textBoxBeakLength.Text = pigeon.BeakLength.ToString();
-            }
-            else if (animal is Cat)
-            {
-                Cat cat = animal as Cat;
-                textBoxNrOfLives.Text = cat.Lives.ToString();
-            }
-            else if (animal is Dog)
-            {
-                Dog dog = animal as Dog;
-                textBoxBreed.Text = dog.Breed;
-            }
-            else
-            {
-                throw new InvalidOperationException(
-                    "Animal did not match any specie. Missing if-statement?");
-            }
-        }
-
-        /// <summary>
-        ///   Returns the animal category for a given animal.
-        /// </summary>
-        /// <param name="animal">Animal object.</param>
-        /// <returns>Category value.</returns>
-        private Category GetAnimalCategory(Animal animal)
-        {
-            if (Enum.IsDefined(typeof(BirdSpecies), animal.GetSpecie()))
-            {
-                return Category.Bird;
-            }
-            else if (Enum.IsDefined(typeof(MammalSpecies), animal.GetSpecie()))
-            {
-                return Category.Mammal;
-            }
-            else
-            {
-                throw new InvalidOperationException("" +
-                    "Animal did not match any specie. Missing if-statement?");
-            }
-        }
-
-        /// <summary>
-        ///   Sets the gender in listBoxGender to match an animal.
-        /// </summary>
-        /// <param name="animal">Animal object.</param>
-        private void SetListBoxGender(Animal animal)
-        {
-            switch (animal.Gender)
-            {
-                case Gender.Female:
-                    listBoxGender.SelectedIndex = 0;
-                    break;
-                case Gender.Male:
-                    listBoxGender.SelectedIndex = 1;
-                    break;
-                case Gender.Unknown:
-                    listBoxGender.SelectedIndex = 2;
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///   Returns the id of the selected animal.
-        /// </summary>
-        /// <returns>Id.</returns>
-        private int GetSelectedAnimalId()
-        {
-            // Return -1 if no animal or multiple animals are selected.
-            if (listViewAnimals.SelectedItems.Count == 0
-                || listViewAnimals.SelectedItems.Count > 1)
-            {
-                return -1;
-            }
-
-            int id = -1;
-
-            int.TryParse(listViewAnimals.SelectedItems[0].SubItems[0].Text, out id);
-
-            return id;
-        }
-
-        /// <summary>
-        ///   Deletes marked animals.
-        /// </summary>
-        private void DeleteMarkedAnimals()
-        {
-            int nrOfAnimalsToDelete = listViewAnimals.SelectedIndices.Count;
-
-            if (nrOfAnimalsToDelete == 0)
-            {
-                return;
-            }
-
-            // Builds string with appropriate confirm message.
-            StringBuilder deleteConfirmMessage = new StringBuilder();
-            deleteConfirmMessage.Append(
-                $"Are you sure you want to delete the marked {nrOfAnimalsToDelete} animal");
-
-            if (nrOfAnimalsToDelete > 1)
-                deleteConfirmMessage.Append("s?");
-            else
-                deleteConfirmMessage.Append("?");
-
-            // Presents confirm message.
-            DialogResult result = MessageBox.Show(
-                deleteConfirmMessage.ToString(),
-                "Warning",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Warning);
-
-            if (result == DialogResult.OK)
-            {
-                List<int> selectedAnimalIds = GetMarkedAnimalsId();
-
-                AnimalManager.DeleteAnimals(selectedAnimalIds);
-                AddAnimalsToGUIList();
-            }
-        }
-
-        /// <summary>
-        ///   Gets the ids for all the selected animals.
-        /// </summary>
-        /// <returns>List with ids.</returns>
-        private List<int> GetMarkedAnimalsId()
-        {
-            List<int> ids = new List<int>();
-
-            foreach (ListViewItem item in listViewAnimals.SelectedItems)
-            {
-                ids.Add( int.Parse(item.Text) );
-            }
-
-            return ids;
-        }
+        
 
         private void AddRecipe(Recipe recipe)
         {
@@ -851,227 +644,6 @@ namespace AnimalMotel
             listBoxStaff.SelectedIndex = -1;
             lblShowStaff.BackColor = Color.FromArgb(0, 192, 0);
             lblShowFoods.BackColor = Color.Green;
-        }
-
-
-
-
-
-
-
-        // ========================== Events ========================== //
-
-        /// <summary>
-        ///   Event triggered when the selected index on listBoxCategory is changed.
-        ///   Updates the GUI accordingly.
-        /// </summary>
-        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = listBoxCategory.SelectedIndex;
-
-            if (selectedIndex != -1)
-            {
-                Category selectedCategory = (Category)Enum.Parse(
-                    typeof(Category), listBoxCategory.SelectedItem.ToString());
-
-                UpdateAnimalCategoryInputFields(selectedCategory);
-
-                FillAnimalObjectList(selectedCategory);
-
-                HideSpecieFieldsAndLabel();
-            }
-        }
-
-        /// <summary>
-        ///   Event triggered when the user clicks the checkbox for showing all animals.
-        ///   Updates the GUI accordingliy.
-        /// </summary>
-        private void checkBoxListAllAnimals_CheckedChanged(object sender, EventArgs e)
-        {
-            listBoxCategory.SelectedIndex = -1;
-
-            HideAnimalCategoryFieldsAndLabel();
-            HideSpecieFieldsAndLabel();
-            ShowFoodScheduleFields(false);
-
-            if (checkBoxListAllAnimals.Checked)
-            {
-                ShowAllAminalsInObjectList();
-                listBoxCategory.Enabled = false;
-            }
-            else
-            {
-                listBoxSpecies.Items.Clear();
-                listBoxCategory.Enabled = true;
-            }
-        }
-
-        /// <summary>
-        ///   Event triggered when the selected index for listBoxSpecies is changes.
-        ///   Updates the state of the GUI to match the selected item.
-        /// </summary>
-        private void listBoxSpecies_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxSpecies.SelectedIndex != -1)
-            {
-                Category category = GetAnimalCategoryByAnimal();
-                UpdateAnimalCategoryInputFields(category);
-                UpdateSpecieInputFields(listBoxSpecies.SelectedItem.ToString());
-                UpdateFoodScheduleFields(listBoxSpecies.SelectedItem.ToString());
-            }
-        }
-
-        /// <summary>
-        ///   Click event for adding an animal.
-        /// </summary>
-        private void btnAddAnimal_Click(object sender, EventArgs e)
-        {
-            if (ValidateInput())
-            {
-                AddAnimal();
-                SetFormToDefaultState();
-            }
-            else
-            {
-                MessageBox.Show(
-                    MessageHandler.GetMessages(),
-                    "Info",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-        }
-
-        /// <summary>
-        ///   Event for sorting the animals by their attricutes when the 
-        ///   user clicks in a column heading.
-        /// </summary>
-        private void listViewAnimals_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            int columnIndex = e.Column;
-
-            switch (columnIndex)
-            {
-                case 0:
-                    AnimalManager.SortById();
-                    break;
-
-                case 1:
-                    AnimalManager.SortBySpecie();
-                    break;
-
-                case 2:
-                    AnimalManager.SortByName();
-                    break;
-
-                case 3:
-                    AnimalManager.SortByAge();
-                    break;
-
-                case 4:
-                    AnimalManager.SortByGender();
-                    break;
-
-                case 5:
-                    AnimalManager.SortBySpecialCharacteristics();
-                    break;
-
-                default:
-                    throw new InvalidOperationException(
-                        "Column index was not in within the range");
-            }
-
-            AddAnimalsToGUIList();
-        }
-
-        private void listViewAnimals_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listViewAnimals.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-        }
-
-        private void btnChangeAnimal_Click(object sender, EventArgs e)
-        {
-            // Check that an animal is selected.
-            if (listViewAnimals.SelectedIndices.Count == 0)
-            {
-                MessageBox.Show(
-                    "You have to select an animal to change.",
-                    "Info",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-            // Check that no more than one animal is selected.
-            if (listViewAnimals.SelectedIndices.Count > 1)
-            {
-                MessageBox.Show(
-                    "Make sure you only mark one animal to change at the time!",
-                    "Info",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-            SetFormToEditState();
-
-            int id = int.Parse(listViewAnimals.SelectedItems[0].Text);
-            Animal animal = AnimalManager.GetAnimalById(id);
-
-            FillGUIWithAnimalData(animal);
-        }
-
-        private void btnDeleteAnimal_Click(object sender, EventArgs e)
-        {
-            // Check that an animal is selected.
-            if (listViewAnimals.SelectedIndices.Count == 0)
-            {
-                MessageBox.Show(
-                    "You have to select an animal to delete.",
-                    "Info",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                
-                return;
-            }
-
-            DeleteMarkedAnimals();
-        }
-
-        private void btnAddFood_Click(object sender, EventArgs e)
-        {
-            DialogResult result = FormRecipe.ShowDialog();
-            
-            if (result == DialogResult.OK)
-            {
-                ShowRecipeList();
-                AddRecipe(FormRecipe.Recipe);
-            }
-        }
-
-        private void btnAddStaff_Click(object sender, EventArgs e)
-        {
-            DialogResult result = FormStaffPlanning.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                ShowStaffList();
-                AddStaff(FormStaffPlanning.Staff);
-            }
-        }
-
-        private void lblShowFoods_Click(object sender, EventArgs e)
-        {
-            ShowRecipeList();
-        }
-
-        private void lblShowStaff_Click(object sender, EventArgs e)
-        {
-            ShowStaffList();
         }
     }
 }

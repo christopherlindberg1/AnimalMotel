@@ -36,6 +36,7 @@ namespace AnimalMotel
             groupBoxAnimalCategorySpecs.Text = "";
             groupBoxSpecieSpecificData.Text = "";
 
+            InitializeGeneralElements();
             InitializeCategorySpecificFields();
             InitializeSpecieSpecificFields();
             InitializeFoodScheduleSection();
@@ -46,6 +47,19 @@ namespace AnimalMotel
             SetFormToDefaultState();
 
             SetSampleData();
+        }
+
+        /// <summary>
+        ///   Initializes general elements like buttons on the main form.
+        /// </summary>
+        private void InitializeGeneralElements()
+        {
+            btnChangeAnimal.Location = new Point(200, 270);
+            btnDeleteAnimal.Location = new Point(430, 270);
+            btnSave.Location = new Point(200, 270);
+            btnCancel.Location = new Point(430, 270);
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
         }
 
         private void InitializeCategorySpecificFields()

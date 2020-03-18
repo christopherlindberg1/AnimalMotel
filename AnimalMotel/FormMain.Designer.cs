@@ -57,6 +57,7 @@
             this.lblTailLength = new System.Windows.Forms.Label();
             this.groupBoxAnimalSpecs = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBoxStaff = new System.Windows.Forms.ListBox();
             this.lblShowStaff = new System.Windows.Forms.Label();
             this.lblShowFoods = new System.Windows.Forms.Label();
             this.listBoxRecipes = new System.Windows.Forms.ListBox();
@@ -76,7 +77,8 @@
             this.groupBoxAnimalCategorySpecs = new System.Windows.Forms.GroupBox();
             this.lblNrOfTeeth = new System.Windows.Forms.Label();
             this.listBoxSpecies = new System.Windows.Forms.ListBox();
-            this.listBoxStaff = new System.Windows.Forms.ListBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBoxGender.SuspendLayout();
             this.groupBoxAnimalList.SuspendLayout();
             this.groupBoxAnimalSpecs.SuspendLayout();
@@ -180,6 +182,8 @@
             // 
             // groupBoxAnimalList
             // 
+            this.groupBoxAnimalList.Controls.Add(this.btnCancel);
+            this.groupBoxAnimalList.Controls.Add(this.btnSave);
             this.groupBoxAnimalList.Controls.Add(this.btnDeleteAnimal);
             this.groupBoxAnimalList.Controls.Add(this.lblShowEaterType);
             this.groupBoxAnimalList.Controls.Add(this.listBoxFoodSchedule);
@@ -188,7 +192,7 @@
             this.groupBoxAnimalList.Controls.Add(this.listViewAnimals);
             this.groupBoxAnimalList.Location = new System.Drawing.Point(14, 397);
             this.groupBoxAnimalList.Name = "groupBoxAnimalList";
-            this.groupBoxAnimalList.Size = new System.Drawing.Size(1206, 329);
+            this.groupBoxAnimalList.Size = new System.Drawing.Size(1206, 321);
             this.groupBoxAnimalList.TabIndex = 1;
             this.groupBoxAnimalList.TabStop = false;
             this.groupBoxAnimalList.Text = "List of registered animals";
@@ -347,6 +351,15 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Food details";
+            // 
+            // listBoxStaff
+            // 
+            this.listBoxStaff.FormattingEnabled = true;
+            this.listBoxStaff.ItemHeight = 18;
+            this.listBoxStaff.Location = new System.Drawing.Point(126, 191);
+            this.listBoxStaff.Name = "listBoxStaff";
+            this.listBoxStaff.Size = new System.Drawing.Size(296, 94);
+            this.listBoxStaff.TabIndex = 10;
             // 
             // lblShowStaff
             // 
@@ -541,14 +554,25 @@
             this.listBoxSpecies.TabIndex = 5;
             this.listBoxSpecies.SelectedIndexChanged += new System.EventHandler(this.listBoxSpecies_SelectedIndexChanged);
             // 
-            // listBoxStaff
+            // btnSave
             // 
-            this.listBoxStaff.FormattingEnabled = true;
-            this.listBoxStaff.ItemHeight = 18;
-            this.listBoxStaff.Location = new System.Drawing.Point(126, 191);
-            this.listBoxStaff.Name = "listBoxStaff";
-            this.listBoxStaff.Size = new System.Drawing.Size(296, 94);
-            this.listBoxStaff.TabIndex = 10;
+            this.btnSave.Location = new System.Drawing.Point(45, 266);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(150, 40);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(595, 270);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(150, 40);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FormMain
             // 
@@ -624,6 +648,8 @@
         private System.Windows.Forms.Label lblShowFoods;
         private System.Windows.Forms.Label lblShowStaff;
         private System.Windows.Forms.ListBox listBoxStaff;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
