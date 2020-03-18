@@ -32,91 +32,95 @@ namespace AnimalMotel
         // ======================= Methods ======================= //
 
         /// <summary>
-        ///   Validates user input.
+        ///   Validates user input when adding a new animal.
         ///   Validates different data points depending on what category
         ///   the user has chosen.
         /// </summary>
-        /// <returns>bool showing if input validated correctly</returns>
+        /// <returns>true if data validated, false otherwise.</returns>
         private bool ValidateInput()
         {
-            bool inputOk;
-
-            // Validating animal specific data
-            bool nameOk = this.ValidateName();
-            bool ageOk = this.ValidateAge();
-            bool genderOk = this.ValidateGender();
-            bool specieOk = this.ValidateSpecie();
-
-            inputOk = nameOk && ageOk && genderOk && specieOk;
+            bool inputOk = ValidateGeneralAnimalData();
 
             if (listBoxSpecies.SelectedIndex == -1)
             {
                 return false;
             }
 
-            Category animalCategory = GetAnimalCategory();
+            Category category = GetAnimalCategory();
 
-            // Validating animal category specific data
-            switch (animalCategory)
+            inputOk = inputOk && ValidateCategoryAnimalData(category);
+
+            string specie = GetSelectedSpecie();
+
+            inputOk = inputOk && ValidateSpecieAnimalData(specie);
+
+            return inputOk;
+        }
+
+        /// <summary>
+        ///   Validates general animal input data.
+        /// </summary>
+        /// <returns>true if data validated, false otherwise.</returns>
+        private bool ValidateGeneralAnimalData()
+        {
+            // Validating general animal data
+            bool nameOk = this.ValidateName();
+            bool ageOk = this.ValidateAge();
+            bool genderOk = this.ValidateGender();
+            bool specieOk = this.ValidateSpecie();
+
+            return nameOk && ageOk && genderOk && specieOk;
+        }
+
+        private bool ValidateCategoryAnimalData(Category category)
+        {
+            switch (category)
             {
                 // Validating bird specific data
                 case Category.Bird:
-                    {
-                        bool flyingSpeedOk = ValidateFlyingSpeed();
-
-                        inputOk = inputOk && flyingSpeedOk;
-                        break;
-                    }
+                    return ValidateFlyingSpeed();
 
                 // Validating mammal specific data
                 case Category.Mammal:
-                    {
-                        bool nrOfTeethOk = ValidateNrOfTeeth();
-                        bool tailLengthOk = ValidateTailLength();
+                    bool nrOfTeethOk = ValidateNrOfTeeth();
+                    bool tailLengthOk = ValidateTailLength();
 
-                        inputOk = inputOk && nrOfTeethOk && tailLengthOk;
-                        break;
-                    }
+                    return nrOfTeethOk && tailLengthOk;
+
+                default:
+                    throw new ArgumentException(
+                        "Category did not match any case.", "category");
             }
+        }
 
-            string selectedSpecie = GetSelectedSpecie();
-
-            // Validating specie specific data
-            switch (selectedSpecie)
+        /// <summary>
+        ///   Validates data that is specific to a specie.
+        /// </summary>
+        /// <param name="specie">Name of specie.</param>
+        /// <returns>true if validated, false otherwise.</returns>
+        private bool ValidateSpecieAnimalData(string specie)
+        {
+            switch (specie)
             {
                 // Validating eagle specific data
                 case "Eagle":
-                    bool clawLengthOk = ValidateClawLength();
-
-                    inputOk = inputOk && clawLengthOk;
-                    break;
+                    return ValidateClawLength();
 
                 // Validating pigeon specific data
                 case "Pigeon":
-                    bool beakLengthOk = ValidateBeakLength();
-
-                    inputOk = inputOk && beakLengthOk;
-                    break;
+                    return ValidateBeakLength();
 
                 // Validating cat specific data
                 case "Cat":
-                    bool nrOfLivesOk = ValidateNrOFLives();
-
-                    inputOk = inputOk && nrOfLivesOk;
-                    break;
+                    return ValidateNrOFLives();
 
                 // Validating dog specific data
                 case "Dog":
-                    bool breedOk = ValidateBreed();
-
-                    inputOk = inputOk && breedOk;
-                    break;
+                    return ValidateBreed();
 
                 default:
                     throw new ArgumentException("Specie did not match any case", "specie");
             }
-
-            return inputOk;
         }
 
         private bool ValidateTextBoxString(TextBox element, string errNullOrEmpty)
@@ -157,6 +161,36 @@ namespace AnimalMotel
             if (!numberOk)
             {
                 MessageHandler.AddMessage(errNotWholeNumer);
+                return false;
+            }
+
+            if (number < 0)
+            {
+                MessageHandler.AddMessage(errLessThanZero);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateTextBoxFloat(
+            TextBox element,
+            string errNullOrEmpty,
+            string errWrongFormat,
+            string errLessThanZero)
+        {
+            if (String.IsNullOrWhiteSpace(element.Text))
+            {
+                MessageHandler.AddMessage(errNullOrEmpty);
+                return false;
+            }
+
+            float number;
+            bool numberOk = float.TryParse(element.Text, out number);
+
+            if (!numberOk)
+            {
+                MessageHandler.AddMessage(errWrongFormat);
                 return false;
             }
 
@@ -240,11 +274,11 @@ namespace AnimalMotel
         /// <returns>bool showing if tail length validated correctly.</returns>
         private bool ValidateTailLength()
         {
-            return ValidateTextBoxInt(
+            return ValidateTextBoxFloat(
                 textBoxTailLength,
-                "Tail length cannot be empty.",
-                "Tail length must be a whole number.",
-                "Tail length cannot be less than 0.");
+                "Tail length cannot be empty",
+                "Decimal numbers for tail length must be specified with a comma",
+                "Tail length cannot be less than 0");
         }
 
         /// <summary>
@@ -253,29 +287,29 @@ namespace AnimalMotel
         /// <returns>bool showing if flying speed validated correctly.</returns>
         private bool ValidateFlyingSpeed()
         {
-            return ValidateTextBoxInt(
+            return ValidateTextBoxFloat(
                 textBoxFlyingSpeed,
-                "Flying speed cannot be empty.",
-                "Flying speed must be a whole number.",
-                "Flying speed cannot be less than 0.");
+                "Flying speed cannot be empty",
+                "Decimal numbers for flying speed must be specified with a comma",
+                "Flying speed cannot be less than 0");
         }
 
         private bool ValidateClawLength()
         {
-            return ValidateTextBoxInt(
+            return ValidateTextBoxFloat(
                 textBoxClawLength,
-                "Claw length cannot be empty.",
-                "Claw length must be a whole number.",
-                "Claw length cannot be less than 0.");
+                "Claw length cannot be empty",
+                "Decimal numbers for claw length must be specified with a comma",
+                "Claw length cannot be less than 0");
         }
 
         private bool ValidateBeakLength()
         {
-            return ValidateTextBoxInt(
+            return ValidateTextBoxFloat(
                 textBoxBeakLength,
-                "Beak length cannot be empty.",
-                "Beak length must be a whole number.",
-                "Beak length cannot be less than 0.");
+                "Beak length cannot be empty",
+                "Decimal numbers for beak length must be specified with a comma",
+                "Beak length cannot be less than 0");
         }
 
         private bool ValidateNrOFLives()
@@ -290,6 +324,43 @@ namespace AnimalMotel
         private bool ValidateBreed()
         {
             return ValidateTextBoxString(textBoxBreed, "Breed cannot be empty.");
+        }
+
+        /// <summary>
+        ///   Validates user input when changing the data for an existing animal.
+        ///   Validates different data points depending on specie the animal is.
+        /// </summary>
+        /// <returns>true if data validates, false otherwise.</returns>
+        private bool ValidateUpdatedInput()
+        {
+            // Checks that only one animal is selected.
+            if (listViewAnimals.SelectedItems.Count == 0
+                || listViewAnimals.SelectedItems.Count > 1)
+            {
+                throw new InvalidProgramException(
+                    "This method should only be called when exactly one animal is marked.");
+            }
+
+            bool inputOk;
+
+            // Validating general animal data
+            bool nameOk = this.ValidateName();
+            bool ageOk = this.ValidateAge();
+            bool genderOk = this.ValidateGender();
+
+            inputOk = nameOk && ageOk && genderOk;
+
+            string specie = listViewAnimals.SelectedItems[0].SubItems[1].Text;
+
+            Category category = GetAnimalCategory(specie);
+
+            inputOk = inputOk && ValidateCategoryAnimalData(category);
+
+            inputOk = inputOk && ValidateSpecieAnimalData(specie);
+
+            MessageBox.Show("All: " + inputOk.ToString());
+
+            return inputOk;
         }
     }
 }

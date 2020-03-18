@@ -115,6 +115,19 @@ namespace AnimalMotel
         }
 
         /// <summary>
+        ///   Updates the data for an existing animal.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
+        /// <param name="animalData">User input data.</param>
+        /// <returns>True if animal got updated, false otherwise.</returns>
+        public bool UpdateAnimal(Animal animal, Dictionary<string, string> animalData)
+        {
+
+
+            return false;
+        }
+
+        /// <summary>
         ///   Removes an animal with a given id.
         /// </summary>
         /// <param name="id">id for the animal.</param>

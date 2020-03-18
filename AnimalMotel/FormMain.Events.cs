@@ -234,7 +234,26 @@ namespace AnimalMotel
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (listViewAnimals.SelectedItems.Count == 0
+                || listViewAnimals.SelectedItems.Count > 1)
+            {
+                MessageHandler.AddMessage("You must select only one animal.");
+                return;
+            }
 
+            if (ValidateUpdatedInput())
+            {
+                ChangeAnimal();
+                SetFormToDefaultState();
+            }
+            else
+            {
+                MessageBox.Show(
+                    MessageHandler.GetMessages(),
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

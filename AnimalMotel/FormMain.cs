@@ -592,8 +592,6 @@ namespace AnimalMotel
             }
         }
 
-        
-
         private void AddRecipe(Recipe recipe)
         {
             RecipeManager.Add(recipe);

@@ -39,16 +39,20 @@ namespace AnimalMotel
         /// </summary>
         private void ChangeAnimal()
         {
-            if (listViewAnimals.SelectedIndices.Count == 0)
+            if (listViewAnimals.SelectedIndices.Count == 0
+                || listViewAnimals.SelectedIndices.Count > 1)
             {
                 return;
             }
 
-            int animalId = GetSelectedAnimalId();
-            int index = listViewAnimals.SelectedIndices[0];
+            int id = GetSelectedAnimalId();
 
-            Animal animal = AnimalManager.GetAnimalAt(index);
+            Animal animal = AnimalManager.GetAnimalById(id);
+
+            //AnimalManager.UpdateAnimal(animal);
         }
+
+        
 
         /// <summary>
         ///   Fills the input fields with data from an animal.
@@ -133,25 +137,35 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the animal category for a given animal.
+        ///   Returns the animal category for a given animal specie.
         /// </summary>
-        /// <param name="animal">Animal object.</param>
+        /// <param name="specie">Name of the specie.</param>
         /// <returns>Category value.</returns>
-        private Category GetAnimalCategory(Animal animal)
+        private Category GetAnimalCategory(string specie)
         {
-            if (Enum.IsDefined(typeof(BirdSpecies), animal.GetSpecie()))
+            if (Enum.IsDefined(typeof(BirdSpecies), specie))
             {
                 return Category.Bird;
             }
-            else if (Enum.IsDefined(typeof(MammalSpecies), animal.GetSpecie()))
+            else if (Enum.IsDefined(typeof(MammalSpecies), specie))
             {
                 return Category.Mammal;
             }
             else
             {
                 throw new InvalidOperationException("" +
-                    "Animal did not match any specie. Missing if-statement?");
+                    "The specified specie did not match any category. Missing if-statement?");
             }
+        }
+
+        /// <summary>
+        ///   Returns the animal category for a given animal object.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
+        /// <returns>Category value.</returns>
+        private Category GetAnimalCategory(Animal animal)
+        {
+            return GetAnimalCategory(animal.GetSpecie());
         }
 
         /// <summary>
@@ -229,6 +243,10 @@ namespace AnimalMotel
 
                 AnimalManager.DeleteAnimals(selectedAnimalIds);
                 AddAnimalsToGUIList();
+            }
+            else
+            {
+                listViewAnimals.SelectedItems.Clear();
             }
         }
 
