@@ -53,7 +53,7 @@ namespace AnimalMotel.Factories
             cat.Age = int.Parse(animalData["age"]);
             cat.Gender = (Gender)Enum.Parse(typeof(Gender), animalData["gender"]);
             cat.NrOfTeeth = int.Parse(animalData["nrOfTeeth"]);
-            cat.TailLegth = int.Parse(animalData["tailLength"]);
+            cat.TailLegth = float.Parse(animalData["tailLength"]);
             cat.Lives = int.Parse(animalData["lives"]);
 
             return cat;
@@ -72,7 +72,7 @@ namespace AnimalMotel.Factories
             dog.Age = int.Parse(animalData["age"]);
             dog.Gender = (Gender)Enum.Parse(typeof(Gender), animalData["gender"]);
             dog.NrOfTeeth = int.Parse(animalData["nrOfTeeth"]);
-            dog.TailLegth = int.Parse(animalData["tailLength"]);
+            dog.TailLegth = float.Parse(animalData["tailLength"]);
             dog.Breed = animalData["breed"];
 
             return dog;

@@ -149,7 +149,7 @@ namespace AnimalMotel
             }
         }
 
-        private void btnChangeAnimal_Click(object sender, EventArgs e)
+        private void btnUpdateAnimal_Click(object sender, EventArgs e)
         {
             // Check that an animal is selected.
             if (listViewAnimals.SelectedIndices.Count == 0)
@@ -243,7 +243,7 @@ namespace AnimalMotel
 
             if (ValidateUpdatedInput())
             {
-                ChangeAnimal();
+                UpdateAnimal();
                 SetFormToDefaultState();
             }
             else

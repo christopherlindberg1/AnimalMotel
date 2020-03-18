@@ -72,6 +72,11 @@ namespace AnimalMotel
             return nameOk && ageOk && genderOk && specieOk;
         }
 
+        /// <summary>
+        ///   Validates input data that is related to a specific category.
+        /// </summary>
+        /// <param name="category">Category of the animal.</param>
+        /// <returns></returns>
         private bool ValidateCategoryAnimalData(Category category)
         {
             switch (category)
@@ -123,6 +128,13 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   General method for vaildating the string values
+        ///   in text box elements.
+        /// </summary>
+        /// <param name="element">Element that data is read from.</param>
+        /// <param name="errNullOrEmpty">Error message for when element is empty.</param>
+        /// <returns>true if data validated correctly, false otherwise.</returns>
         private bool ValidateTextBoxString(TextBox element, string errNullOrEmpty)
         {
             if (String.IsNullOrWhiteSpace(element.Text))
@@ -136,7 +148,7 @@ namespace AnimalMotel
 
         /// <summary>
         ///   General method for vaildating the integer values
-        ///   in text box elements
+        ///   in text box elements.
         /// </summary>
         /// <param name="element">TextBox element.</param>
         /// <param name="errNullOrEmpty">Error message for when the value is empty.</param>
@@ -173,6 +185,15 @@ namespace AnimalMotel
             return true;
         }
 
+        /// <summary>
+        ///   General method for vaildating the float values
+        ///   in text box elements.
+        /// </summary>
+        /// <param name="element">TextBox element.</param>
+        /// <param name="errNullOrEmpty">Error message for when the value is empty.</param>
+        /// <param name="errWrongFormat">Error message for when the data is formatted incorrectly.</param>
+        /// <param name="errLessThanZero">Error message for when the value is less than 0.</param>
+        /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateTextBoxFloat(
             TextBox element,
             string errNullOrEmpty,
@@ -284,7 +305,7 @@ namespace AnimalMotel
         /// <summary>
         ///   Validates the provided flying speed.
         /// </summary>
-        /// <returns>bool showing if flying speed validated correctly.</returns>
+        /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateFlyingSpeed()
         {
             return ValidateTextBoxFloat(
@@ -294,6 +315,10 @@ namespace AnimalMotel
                 "Flying speed cannot be less than 0");
         }
 
+        /// <summary>
+        ///   Validates the provided claw length.
+        /// </summary>
+        /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateClawLength()
         {
             return ValidateTextBoxFloat(
@@ -303,6 +328,10 @@ namespace AnimalMotel
                 "Claw length cannot be less than 0");
         }
 
+        /// <summary>
+        ///   Validates the provided beak length.
+        /// </summary>
+        /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateBeakLength()
         {
             return ValidateTextBoxFloat(
@@ -312,6 +341,10 @@ namespace AnimalMotel
                 "Beak length cannot be less than 0");
         }
 
+        /// <summary>
+        ///   Validates the provided nr of lives value.
+        /// </summary>
+        /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateNrOFLives()
         {
             return ValidateTextBoxInt(
@@ -357,8 +390,6 @@ namespace AnimalMotel
             inputOk = inputOk && ValidateCategoryAnimalData(category);
 
             inputOk = inputOk && ValidateSpecieAnimalData(specie);
-
-            MessageBox.Show("All: " + inputOk.ToString());
 
             return inputOk;
         }

@@ -137,12 +137,11 @@ namespace AnimalMotel.Animals.Species
         public override string ToString()
         {
             StringBuilder strRepr = new StringBuilder(
-                base.ToString() + String.Format("Beak length: {0}. ", BeakLength));
+                base.ToString() + String.Format("Beak length: {0} ", BeakLength));
 
             strRepr.Insert(15, GetSpecie());
 
             return strRepr.ToString();
         }
-
     }
 }

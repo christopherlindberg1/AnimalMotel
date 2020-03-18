@@ -156,7 +156,7 @@ namespace AnimalMotel
             checkBoxListAllAnimals.Enabled = true;
 
             btnAddAnimal.Enabled = true;
-            btnChangeAnimal.Visible = true;
+            btnUpdateAnimal.Visible = true;
             btnDeleteAnimal.Visible = true;
             btnSave.Visible = false;
             btnCancel.Visible = false;
@@ -179,7 +179,7 @@ namespace AnimalMotel
         private void SetFormToEditState()
         {
             btnAddAnimal.Enabled = false;
-            btnChangeAnimal.Visible = false;
+            btnUpdateAnimal.Visible = false;
             btnDeleteAnimal.Visible = false;
             btnSave.Visible = true;
             btnCancel.Visible = true;

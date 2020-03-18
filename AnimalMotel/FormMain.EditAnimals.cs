@@ -37,7 +37,7 @@ namespace AnimalMotel
         /// <summary>
         ///   Updates an animal to the new data submitted in the form.
         /// </summary>
-        private void ChangeAnimal()
+        private void UpdateAnimal()
         {
             if (listViewAnimals.SelectedIndices.Count == 0
                 || listViewAnimals.SelectedIndices.Count > 1)
@@ -48,11 +48,11 @@ namespace AnimalMotel
             int id = GetSelectedAnimalId();
 
             Animal animal = AnimalManager.GetAnimalById(id);
+            Category category = GetAnimalCategory(animal);
 
-            //AnimalManager.UpdateAnimal(animal);
+            AnimalManager.UpdateAnimal(animal, category, GetUserInput());
+            AddAnimalsToGUIList();
         }
-
-        
 
         /// <summary>
         ///   Fills the input fields with data from an animal.
@@ -68,9 +68,12 @@ namespace AnimalMotel
             FillGUIWithGeneralAnimalData(animal);
             FillGUIWithAnimalCategoryData(category, animal);
             FillGUIWithSpecieSpecificData(animal);
-
         }
 
+        /// <summary>
+        ///   Fills the GUI with general animal data from an animal object.
+        /// </summary>
+        /// <param name="animal"></param>
         private void FillGUIWithGeneralAnimalData(Animal animal)
         {
             textBoxName.Text = animal.Name;

@@ -52,8 +52,8 @@ namespace AnimalMotel.Factories
             eagle.Name = animalData["name"];
             eagle.Age = int.Parse(animalData["age"]);
             eagle.Gender = (Gender)Enum.Parse(typeof(Gender), animalData["gender"]);
-            eagle.FlyingSpeed = int.Parse(animalData["flyingSpeed"]);
-            eagle.ClawLength = int.Parse(animalData["clawLength"]);
+            eagle.FlyingSpeed = float.Parse(animalData["flyingSpeed"]);
+            eagle.ClawLength = float.Parse(animalData["clawLength"]);
 
             return eagle;
         }
@@ -70,8 +70,8 @@ namespace AnimalMotel.Factories
             pigeon.Name = animalData["name"];
             pigeon.Age = int.Parse(animalData["age"]);
             pigeon.Gender = (Gender)Enum.Parse(typeof(Gender), animalData["gender"]);
-            pigeon.FlyingSpeed = int.Parse(animalData["flyingSpeed"]);
-            pigeon.BeakLength = int.Parse(animalData["beakLength"]);
+            pigeon.FlyingSpeed = float.Parse(animalData["flyingSpeed"]);
+            pigeon.BeakLength = float.Parse(animalData["beakLength"]);
 
             return pigeon;
         }

@@ -44,7 +44,7 @@
             this.lblShowEaterType = new System.Windows.Forms.Label();
             this.listBoxFoodSchedule = new System.Windows.Forms.ListBox();
             this.lblEaterType = new System.Windows.Forms.Label();
-            this.btnChangeAnimal = new System.Windows.Forms.Button();
+            this.btnUpdateAnimal = new System.Windows.Forms.Button();
             this.listViewAnimals = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.specie = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -188,7 +188,7 @@
             this.groupBoxAnimalList.Controls.Add(this.lblShowEaterType);
             this.groupBoxAnimalList.Controls.Add(this.listBoxFoodSchedule);
             this.groupBoxAnimalList.Controls.Add(this.lblEaterType);
-            this.groupBoxAnimalList.Controls.Add(this.btnChangeAnimal);
+            this.groupBoxAnimalList.Controls.Add(this.btnUpdateAnimal);
             this.groupBoxAnimalList.Controls.Add(this.listViewAnimals);
             this.groupBoxAnimalList.Location = new System.Drawing.Point(14, 397);
             this.groupBoxAnimalList.Name = "groupBoxAnimalList";
@@ -236,15 +236,15 @@
             this.lblEaterType.TabIndex = 0;
             this.lblEaterType.Text = "Eater type";
             // 
-            // btnChangeAnimal
+            // btnUpdateAnimal
             // 
-            this.btnChangeAnimal.Location = new System.Drawing.Point(200, 270);
-            this.btnChangeAnimal.Name = "btnChangeAnimal";
-            this.btnChangeAnimal.Size = new System.Drawing.Size(150, 40);
-            this.btnChangeAnimal.TabIndex = 3;
-            this.btnChangeAnimal.Text = "Change";
-            this.btnChangeAnimal.UseVisualStyleBackColor = true;
-            this.btnChangeAnimal.Click += new System.EventHandler(this.btnChangeAnimal_Click);
+            this.btnUpdateAnimal.Location = new System.Drawing.Point(200, 270);
+            this.btnUpdateAnimal.Name = "btnUpdateAnimal";
+            this.btnUpdateAnimal.Size = new System.Drawing.Size(150, 40);
+            this.btnUpdateAnimal.TabIndex = 3;
+            this.btnUpdateAnimal.Text = "Change";
+            this.btnUpdateAnimal.UseVisualStyleBackColor = true;
+            this.btnUpdateAnimal.Click += new System.EventHandler(this.btnUpdateAnimal_Click);
             // 
             // listViewAnimals
             // 
@@ -641,7 +641,7 @@
         private System.Windows.Forms.ColumnHeader gender;
         private System.Windows.Forms.ColumnHeader specialCharacteristics;
         private System.Windows.Forms.Button btnDeleteAnimal;
-        private System.Windows.Forms.Button btnChangeAnimal;
+        private System.Windows.Forms.Button btnUpdateAnimal;
         private System.Windows.Forms.Button btnAddStaff;
         private System.Windows.Forms.Button btnAddFood;
         private System.Windows.Forms.ListBox listBoxRecipes;

@@ -54,7 +54,7 @@ namespace AnimalMotel
         /// </summary>
         private void InitializeGeneralElements()
         {
-            btnChangeAnimal.Location = new Point(200, 270);
+            btnUpdateAnimal.Location = new Point(200, 270);
             btnDeleteAnimal.Location = new Point(430, 270);
             btnSave.Location = new Point(200, 270);
             btnCancel.Location = new Point(430, 270);
