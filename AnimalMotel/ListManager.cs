@@ -4,25 +4,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Own namespaces
+using AnimalMotel.Enums.Sorting;
+using AnimalMotel.Animals.Sorting;
+
 namespace AnimalMotel
 {
     public class ListManager<T> : IListManager<T>
     {
         private readonly List<T> _list = new List<T>();
 
+        private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
+        private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
+        private IComparer<T> _lastUsedSortingClass;
+
 
 
 
         // ========================= Properties ========================= //
-        
+
         public int Count
         {
             get { return _list.Count; }
         }
 
-        public List<T> List
+        /*public List<T> List
         {
             get { return _list; }
+        }*/
+
+        protected IComparer<T> LastUsedSortingClass
+        {
+            get
+            {
+                return _lastUsedSortingClass;
+            }
+            set
+            {
+                _lastUsedSortingClass = value;
+            }
         }
 
 
@@ -46,7 +66,7 @@ namespace AnimalMotel
                     throw new IndexOutOfRangeException("Index is out of range.");
                 }
 
-                return List[index]; 
+                return _list[index]; 
             }
         }
 
@@ -136,6 +156,99 @@ namespace AnimalMotel
             }
 
             return _list[index];
+        }
+
+        /// <summary>
+        ///   Sorts animals by any parameter. Takes a sorting class that implements
+        ///   the IComparer interface as an argument, which performs the sort.
+        ///   This method keeps track of the state in order to determine if to sort
+        ///   in ascending or descending order.
+        /// </summary>
+        /// <param name="sorter">Sorting class that implements the IComparer interface.</param>
+        protected void Sort(IComparer<T> sorter)
+        {
+            if (LastUsedSortingClass == null)
+            {
+                LastUsedSortingClass = sorter;
+            }
+            
+            SortingParameters wantToSortBy;
+
+            // Stores sorting option to be able to keep track of state.
+            if (sorter is SortAnimalByAge)
+            {
+                wantToSortBy = SortingParameters.Age;
+            }
+            else if (sorter is SortAnimalByGender)
+            {
+                wantToSortBy = SortingParameters.Gender;
+            }
+            else if (sorter is SortAnimalById)
+            {
+                wantToSortBy = SortingParameters.Id;
+            }
+            else if (sorter is SortAnimalByName)
+            {
+                wantToSortBy = SortingParameters.Name;
+            }
+            else if (sorter is SortAnimalBySpecialCharacteristics)
+            {
+                wantToSortBy = SortingParameters.SpecialCharacteristics;
+            }
+            else if (sorter is SortAnimalBySpecie)
+            {
+                wantToSortBy = SortingParameters.Specie;
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    "Sorter class did not match any sorting option.");
+            }
+
+            // Performs sort
+            if ((_lastUsedSortingParameter != wantToSortBy)
+                || (_lastUsedSortingParameter == wantToSortBy
+                && _lastUsedSortingDirection == SortingDirections.Desc))
+            {
+                _list.Sort(sorter);
+                _lastUsedSortingDirection = SortingDirections.Asc;
+            }
+            else
+            {
+                _list.Sort(sorter);
+                _list.Reverse();
+                _lastUsedSortingDirection = SortingDirections.Desc;
+            }
+
+            // Updates state
+            _lastUsedSortingParameter = wantToSortBy;
+            LastUsedSortingClass = sorter;
+        }
+
+        protected void Reverse()
+        {
+            _list.Reverse();
+        }
+
+        /// <summary>
+        ///   Performs the last sort that was made. This method is used
+        ///   whenever animal objects are added, changed or deleted to preserve
+        ///   the correct order.
+        /// </summary>
+        protected void RepeatLatestSort()
+        {
+            /*if (_lastUsedSortingClass == null)
+            {
+                _lastUsedSortingClass = new SortAnimalById();
+
+            }*/
+
+            Sort(LastUsedSortingClass);
+
+            if (_lastUsedSortingDirection == SortingDirections.Desc)
+            {
+                Reverse();
+            }
         }
 
         /// <summary>

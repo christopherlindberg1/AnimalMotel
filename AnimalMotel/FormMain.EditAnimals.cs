@@ -39,7 +39,7 @@ namespace AnimalMotel
         /// </summary>
         private void UpdateAnimal()
         {
-            if (listViewAnimals.SelectedIndices.Count == 0
+            /*if (listViewAnimals.SelectedIndices.Count == 0
                 || listViewAnimals.SelectedIndices.Count > 1)
             {
                 return;
@@ -51,7 +51,7 @@ namespace AnimalMotel
             Category category = GetAnimalCategory(animal);
 
             AnimalManager.UpdateAnimal(animal, category, GetUserInput());
-            AddAnimalsToGUIList();
+            AddAnimalsToGUIList();*/
         }
 
         /// <summary>

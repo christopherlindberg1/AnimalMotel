@@ -20,7 +20,7 @@ namespace AnimalMotel
         /// <summary>
         ///   Property for getting the list with all the stored objects.
         /// </summary>
-        List<T> List { get; }
+        // List<T> List { get; }
 
         /// <summary>
         ///   Indexer for getting the object at a given index.

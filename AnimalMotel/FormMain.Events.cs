@@ -151,7 +151,7 @@ namespace AnimalMotel
 
         private void btnUpdateAnimal_Click(object sender, EventArgs e)
         {
-            // Check that an animal is selected.
+            /*// Check that an animal is selected.
             if (listViewAnimals.SelectedIndices.Count == 0)
             {
                 MessageBox.Show(
@@ -180,7 +180,7 @@ namespace AnimalMotel
             int id = int.Parse(listViewAnimals.SelectedItems[0].Text);
             Animal animal = AnimalManager.GetAnimalById(id);
 
-            FillGUIWithAnimalData(animal);
+            FillGUIWithAnimalData(animal);*/
         }
 
         private void btnDeleteAnimal_Click(object sender, EventArgs e)

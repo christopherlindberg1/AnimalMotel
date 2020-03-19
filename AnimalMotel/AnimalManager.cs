@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AnimalMotel.Enums;
 using AnimalMotel.Animals.Categories;
 using AnimalMotel.Animals.Species;
+using AnimalMotel.Animals.Sorting;
 
 
 namespace AnimalMotel
@@ -39,6 +40,13 @@ namespace AnimalMotel
 
         // ======================= Methods ======================= //
 
+        /// <summary>
+        ///   Default constructor that sets the default sorting class.
+        /// </summary>
+        public AnimalManager()
+        {
+            LastUsedSortingClass = new SortAnimalById();
+        }
         /// <summary>
         ///   Fills the application with sample data.
         /// </summary>
@@ -82,7 +90,7 @@ namespace AnimalMotel
         public void AddAnimal(Animal animal)
         {
             animal.Id = AnimalManager.GenerateUniqueId();
-            base.Add(animal);
+            Add(animal);
             RepeatLatestSort();
         }
 
@@ -91,17 +99,17 @@ namespace AnimalMotel
         /// </summary>
         /// <param name="index">index for the Animal object.</param>
         /// <returns>Animal object.</returns>
-        public Animal GetAnimalAt(int index)
+        /*public Animal GetAnimalAt(int index)
         {
             return base.GetAt(index);
-        }
+        }*/
 
         /// <summary>
         ///   Returns a reference to an Animal object with a given id.
         /// </summary>
         /// <param name="id">Id of the animal.</param>
         /// <returns>Animal object.</returns>
-        public Animal GetAnimalById(int id)
+        /*public Animal GetAnimalById(int id)
         {
             foreach (Animal animal in List)
             {
@@ -112,7 +120,7 @@ namespace AnimalMotel
             }
 
             return null;
-        }
+        }*/
 
         /// <summary>
         ///   Updates the data for an existing animal.
@@ -222,9 +230,9 @@ namespace AnimalMotel
         {
             for (int i = 0; i < Count; i++)
             {
-                if (GetAnimalAt(i).Id.Equals(id))
+                if (GetAt(i).Id.Equals(id))
                 {
-                    List.RemoveAt(i);
+                    DeleteAt(i);
                     return true;
                 }
             }

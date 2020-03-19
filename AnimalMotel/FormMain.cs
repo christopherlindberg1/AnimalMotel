@@ -577,7 +577,7 @@ namespace AnimalMotel
 
             for (int i = 0; i < AnimalManager.ListCount; i++)
             {
-                animal = AnimalManager.GetAnimalAt(i);
+                animal = AnimalManager.GetAt(i);
 
                 ListViewItem item = new ListViewItem(
                     animal.Id.ToString());

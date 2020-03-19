@@ -16,81 +16,13 @@ namespace AnimalMotel
     /// </summary>
     public partial class AnimalManager
     {
-        private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
-        private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
-        private IComparer<Animal> _lastUsedSortingClass = new SortAnimalById();
-
-
-
-
-        /// <summary>
-        ///   Sorts animals by any parameter. Takes a sorting class that implements
-        ///   the IComparer interface as an argument, which performs the sort.
-        ///   This method keeps track of the state in order to determine if to sort
-        ///   in ascending or descending order.
-        /// </summary>
-        /// <param name="sorter">Sorting class that implements the IComparer interface.</param>
-        private void SortAnimals(IComparer<Animal> sorter)
-        {
-            SortingParameters wantToSortBy;
-
-            // Stores sorting option to be able to keep track of state.
-            if (sorter is SortAnimalByAge)
-            {
-                wantToSortBy = SortingParameters.Age;
-            }
-            else if (sorter is SortAnimalByGender)
-            {
-                wantToSortBy = SortingParameters.Gender;
-            }
-            else if (sorter is SortAnimalById)
-            {
-                wantToSortBy = SortingParameters.Id;
-            }
-            else if (sorter is SortAnimalByName)
-            {
-                wantToSortBy = SortingParameters.Name;
-            }
-            else if (sorter is SortAnimalBySpecialCharacteristics)
-            {
-                wantToSortBy = SortingParameters.SpecialCharacteristics;
-            }
-            else if (sorter is SortAnimalBySpecie)
-            {
-                wantToSortBy = SortingParameters.Specie;
-            }
-            else
-            {
-                throw new InvalidOperationException(
-                    "Sorter class did not match any sorting option.");
-            }
-
-            // Performs sort
-            if ((_lastUsedSortingParameter != wantToSortBy)
-                || (_lastUsedSortingParameter == wantToSortBy
-                && _lastUsedSortingDirection == SortingDirections.Desc))
-            {
-                base.List.Sort(sorter);
-                _lastUsedSortingDirection = SortingDirections.Asc;
-            }
-            else
-            {
-                base.List.Sort(sorter);
-                base.List.Reverse();
-                _lastUsedSortingDirection = SortingDirections.Desc;
-            }
-
-            // Updates state
-            _lastUsedSortingParameter = wantToSortBy;
-            _lastUsedSortingClass = sorter;
-        }
 
         /// <summary>
         ///   Sorts animals by their ID.
         /// </summary>
         public void SortById()
         {
-            SortAnimals(new SortAnimalById());
+            Sort(new SortAnimalById());
         }
 
         /// <summary>
@@ -98,7 +30,7 @@ namespace AnimalMotel
         /// </summary>
         public void SortBySpecie()
         {
-            SortAnimals(new SortAnimalBySpecie());
+            Sort(new SortAnimalBySpecie());
         }
 
         /// <summary>
@@ -106,7 +38,7 @@ namespace AnimalMotel
         /// </summary>
         public void SortByName()
         {
-            SortAnimals(new SortAnimalByName());
+            Sort(new SortAnimalByName());
         }
 
         /// <summary>
@@ -114,7 +46,7 @@ namespace AnimalMotel
         /// </summary>
         public void SortByAge()
         {
-            SortAnimals(new SortAnimalByAge());
+            Sort(new SortAnimalByAge());
         }
 
         /// <summary>
@@ -122,7 +54,7 @@ namespace AnimalMotel
         /// </summary>
         public void SortByGender()
         {
-            SortAnimals(new SortAnimalByGender());
+            Sort(new SortAnimalByGender());
         }
 
         /// <summary>
@@ -131,22 +63,7 @@ namespace AnimalMotel
         /// </summary>
         public void SortBySpecialCharacteristics()
         {
-            SortAnimals(new SortAnimalBySpecialCharacteristics());
-        }
-
-        /// <summary>
-        ///   Performs the last sort that was made. This method is used
-        ///   whenever animal objects are added, changed or deleted to preserve
-        ///   the correct order.
-        /// </summary>
-        private void RepeatLatestSort()
-        {
-            base.List.Sort(_lastUsedSortingClass);
-
-            if (_lastUsedSortingDirection == SortingDirections.Desc)
-            {
-                base.List.Reverse();
-            }
+            Sort(new SortAnimalBySpecialCharacteristics());
         }
     }
 }
