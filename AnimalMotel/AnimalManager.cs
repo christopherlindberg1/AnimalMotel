@@ -23,6 +23,7 @@ namespace AnimalMotel
 
 
 
+
         // ======================= Properties ======================= //
 
         private static int LastGeneratedId
@@ -35,6 +36,7 @@ namespace AnimalMotel
         {
             get { return base.Count; }
         }
+
 
 
 

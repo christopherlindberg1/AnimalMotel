@@ -165,7 +165,7 @@ namespace AnimalMotel
         ///   in ascending or descending order.
         /// </summary>
         /// <param name="sorter">Sorting class that implements the IComparer interface.</param>
-        protected void Sort(IComparer<T> sorter)
+        public void Sort(IComparer<T> sorter)
         {
             if (LastUsedSortingClass == null)
             {

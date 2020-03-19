@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 // Own namespaces
 using AnimalMotel.Enums;
+using AnimalMotel.Animals.Sorting;
 
 
 namespace AnimalMotel
@@ -110,27 +111,27 @@ namespace AnimalMotel
             switch (columnIndex)
             {
                 case 0:
-                    AnimalManager.SortById();
+                    AnimalManager.Sort(new SortAnimalById());
                     break;
 
                 case 1:
-                    AnimalManager.SortBySpecie();
+                    AnimalManager.Sort(new SortAnimalBySpecie());
                     break;
 
                 case 2:
-                    AnimalManager.SortByName();
+                    AnimalManager.Sort(new SortAnimalByName());
                     break;
 
                 case 3:
-                    AnimalManager.SortByAge();
+                    AnimalManager.Sort(new SortAnimalByAge());
                     break;
 
                 case 4:
-                    AnimalManager.SortByGender();
+                    AnimalManager.Sort(new SortAnimalByGender());
                     break;
 
                 case 5:
-                    AnimalManager.SortBySpecialCharacteristics();
+                    AnimalManager.Sort(new SortAnimalBySpecialCharacteristics());
                     break;
 
                 default:
