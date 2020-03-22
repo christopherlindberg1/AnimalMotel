@@ -39,19 +39,20 @@ namespace AnimalMotel
         /// </summary>
         private void UpdateAnimal()
         {
-            /*if (listViewAnimals.SelectedIndices.Count == 0
+            if (listViewAnimals.SelectedIndices.Count == 0
                 || listViewAnimals.SelectedIndices.Count > 1)
             {
                 return;
             }
 
-            int id = GetSelectedAnimalId();
+            int index = GetSelectedAnimalIndex();
+            //int id = GetSelectedAnimalId();
 
-            Animal animal = AnimalManager.GetAnimalById(id);
+            Animal animal = AnimalManager.GetAt(index);
             Category category = GetAnimalCategory(animal);
 
             AnimalManager.UpdateAnimal(animal, category, GetUserInput());
-            AddAnimalsToGUIList();*/
+            AddAnimalsToGUIList();
         }
 
         /// <summary>
@@ -192,26 +193,6 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the id of the selected animal.
-        /// </summary>
-        /// <returns>Id.</returns>
-        private int GetSelectedAnimalId()
-        {
-            // Return -1 if no animal or multiple animals are selected.
-            if (listViewAnimals.SelectedItems.Count == 0
-                || listViewAnimals.SelectedItems.Count > 1)
-            {
-                return -1;
-            }
-
-            int id = -1;
-
-            int.TryParse(listViewAnimals.SelectedItems[0].SubItems[0].Text, out id);
-
-            return id;
-        }
-
-        /// <summary>
         ///   Deletes marked animals.
         /// </summary>
         private void DeleteMarkedAnimals()
@@ -242,31 +223,22 @@ namespace AnimalMotel
 
             if (result == DialogResult.OK)
             {
-                List<int> selectedAnimalIds = GetMarkedAnimalsId();
+                List<int> animalIndexes = GetSelectedAnimalsIndexes();
 
-                AnimalManager.DeleteAnimals(selectedAnimalIds);
+                int leftShift = 0;
+
+                foreach (int i in animalIndexes)
+                {
+                    AnimalManager.DeleteAt(i - leftShift);
+                    leftShift++;
+                }
+
                 AddAnimalsToGUIList();
             }
             else
             {
                 listViewAnimals.SelectedItems.Clear();
             }
-        }
-
-        /// <summary>
-        ///   Gets the ids for all the selected animals.
-        /// </summary>
-        /// <returns>List with ids.</returns>
-        private List<int> GetMarkedAnimalsId()
-        {
-            List<int> ids = new List<int>();
-
-            foreach (ListViewItem item in listViewAnimals.SelectedItems)
-            {
-                ids.Add(int.Parse(item.Text));
-            }
-
-            return ids;
         }
     }
 }

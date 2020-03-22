@@ -28,12 +28,7 @@ namespace AnimalMotel
             get { return _list.Count; }
         }
 
-        /*public List<T> List
-        {
-            get { return _list; }
-        }*/
-
-        protected IComparer<T> LastUsedSortingClass
+        public IComparer<T> LastUsedSortingClass
         {
             get
             {
@@ -225,7 +220,10 @@ namespace AnimalMotel
             LastUsedSortingClass = sorter;
         }
 
-        protected void Reverse()
+        /// <summary>
+        ///   Reverses the order of the items in the list.
+        /// </summary>
+        public void Reverse()
         {
             _list.Reverse();
         }
@@ -235,14 +233,8 @@ namespace AnimalMotel
         ///   whenever animal objects are added, changed or deleted to preserve
         ///   the correct order.
         /// </summary>
-        protected void RepeatLatestSort()
+        public void RepeatLatestSort()
         {
-            /*if (_lastUsedSortingClass == null)
-            {
-                _lastUsedSortingClass = new SortAnimalById();
-
-            }*/
-
             Sort(LastUsedSortingClass);
 
             if (_lastUsedSortingDirection == SortingDirections.Desc)

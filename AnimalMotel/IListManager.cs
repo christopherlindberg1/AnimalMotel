@@ -17,10 +17,7 @@ namespace AnimalMotel
         /// </summary>
         int Count { get; }
 
-        /// <summary>
-        ///   Property for getting the list with all the stored objects.
-        /// </summary>
-        // List<T> List { get; }
+        IComparer<T> LastUsedSortingClass { get; set; }
 
         /// <summary>
         ///   Indexer for getting the object at a given index.
@@ -70,6 +67,22 @@ namespace AnimalMotel
         /// <param name="index">Index of the object.</param>
         /// <returns>object of the type that is stored in the list.</returns>
         T GetAt(int index);
+
+        /// <summary>
+        ///   Method for sorting the items in the list.
+        /// </summary>
+        /// <param name="sorter">Sorter class that implements the IComparer interface.</param>
+        void Sort(IComparer<T> sorter);
+
+        /// <summary>
+        ///   Method for reversing the order of the items in the list.
+        /// </summary>
+        void Reverse();
+
+        /// <summary>
+        ///   Method for repeating the last used sort.
+        /// </summary>
+        void RepeatLatestSort();
 
         /// <summary>
         ///   Method for getting an array with string representations

@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimalManager.cs" />
-    <Compile Include="AnimalManager.sort.cs" />
     <Compile Include="Animals\Animal.cs" />
     <Compile Include="Animals\Categories\Bird.cs" />
     <Compile Include="Animals\Categories\Mammal.cs" />

@@ -49,6 +49,7 @@ namespace AnimalMotel
         {
             LastUsedSortingClass = new SortAnimalById();
         }
+
         /// <summary>
         ///   Fills the application with sample data.
         /// </summary>
@@ -97,34 +98,6 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a reference to an Animal object at a given index.
-        /// </summary>
-        /// <param name="index">index for the Animal object.</param>
-        /// <returns>Animal object.</returns>
-        /*public Animal GetAnimalAt(int index)
-        {
-            return base.GetAt(index);
-        }*/
-
-        /// <summary>
-        ///   Returns a reference to an Animal object with a given id.
-        /// </summary>
-        /// <param name="id">Id of the animal.</param>
-        /// <returns>Animal object.</returns>
-        /*public Animal GetAnimalById(int id)
-        {
-            foreach (Animal animal in List)
-            {
-                if (animal.Id.Equals(id))
-                {
-                    return animal;
-                }
-            }
-
-            return null;
-        }*/
-
-        /// <summary>
         ///   Updates the data for an existing animal.
         /// </summary>
         /// <param name="animal">Animal object.</param>
@@ -138,6 +111,8 @@ namespace AnimalMotel
             UpdateGeneralData(animal, category, animalData);
             UpdateCategoryData(animal, category, animalData);
             UpdateSpecieData(animal, animalData);
+
+            RepeatLatestSort();
         }
 
         /// <summary>
@@ -221,42 +196,6 @@ namespace AnimalMotel
                 default:
                     throw new ArgumentException("Specie did not match any case.", "specie");
             }
-        }
-
-        /// <summary>
-        ///   Removes an animal with a given id.
-        /// </summary>
-        /// <param name="id">id for the animal.</param>
-        /// <returns>true if removed, false otherwise.</returns>
-        public bool RemoveById(int id)
-        {
-            for (int i = 0; i < Count; i++)
-            {
-                if (GetAt(i).Id.Equals(id))
-                {
-                    DeleteAt(i);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        ///   Deletes an collection of animals with given ids.
-        /// </summary>
-        /// <param name="ids">List with ids.</param>
-        /// <returns>true if all got deleted, false otherwise.</returns>
-        public bool DeleteAnimals(List<int> ids)
-        {
-            bool allOk = true;
-
-            foreach (int id in ids)
-            {
-                allOk = allOk && RemoveById(id);
-            }
-
-            return allOk;
         }
 
         /// <summary>

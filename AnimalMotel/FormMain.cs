@@ -592,6 +592,42 @@ namespace AnimalMotel
             }
         }
 
+        /// <summary>
+        ///   Returns the index for the selected animal in the ListView.
+        /// </summary>
+        /// <returns>index starting from zero if an item is selected, otherwise returns -1.</returns>
+        private int GetSelectedAnimalIndex()
+        {
+            for (int i = 0; i < listViewAnimals.Items.Count; i++)
+            {
+                if (listViewAnimals.Items[i].Selected == true)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        /// <summary>
+        ///   Returns a list with the indexes for all selected animals in the ListView.
+        /// </summary>
+        /// <returns>List with indexes</returns>
+        private List<int> GetSelectedAnimalsIndexes()
+        {
+            List<int> indexes = new List<int>();
+
+            for (int i = 0; i < listViewAnimals.Items.Count; i++)
+            {
+                if (listViewAnimals.Items[i].Selected == true)
+                {
+                    indexes.Add(i);
+                }
+            }
+
+            return indexes;
+        }
+
         private void AddRecipe(Recipe recipe)
         {
             RecipeManager.Add(recipe);
