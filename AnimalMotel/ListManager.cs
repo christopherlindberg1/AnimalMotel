@@ -16,9 +16,7 @@ namespace AnimalMotel
         private readonly List<T> _list = new List<T>();
 
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
-        //private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
         private IComparer<T> _lastUsedSortingClass;
-        private IComparer<T> _nextSortingClass;
 
 
 
@@ -39,18 +37,6 @@ namespace AnimalMotel
             set
             {
                 _lastUsedSortingClass = value;
-            }
-        }
-
-        private IComparer<T> NextSortingClass
-        {
-            get
-            {
-                return _nextSortingClass;
-            }
-            set
-            {
-                _nextSortingClass = value;
             }
         }
 
