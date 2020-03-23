@@ -18,4 +18,4 @@ The application is a school assignment and the purpose is to develope a solid un
 
 ## Built with
 * C#
-* Winforms - Creating the GUI and events.
+* Winforms - Creating the GUI
