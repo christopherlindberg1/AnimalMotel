@@ -16,8 +16,9 @@ namespace AnimalMotel
         private readonly List<T> _list = new List<T>();
 
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
-        private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
+        //private SortingParameters _lastUsedSortingParameter = SortingParameters.Id;
         private IComparer<T> _lastUsedSortingClass;
+        private IComparer<T> _nextSortingClass;
 
 
 
@@ -38,6 +39,18 @@ namespace AnimalMotel
             set
             {
                 _lastUsedSortingClass = value;
+            }
+        }
+
+        private IComparer<T> NextSortingClass
+        {
+            get
+            {
+                return _nextSortingClass;
+            }
+            set
+            {
+                _nextSortingClass = value;
             }
         }
 
@@ -163,47 +176,12 @@ namespace AnimalMotel
         /// <param name="sorter">Sorting class that implements the IComparer interface.</param>
         public void Sort(IComparer<T> sorter)
         {
-            if (LastUsedSortingClass == null)
-            {
-                LastUsedSortingClass = sorter;
-            }
-            
-            SortingParameters wantToSortBy;
-
-            // Stores sorting option to be able to keep track of state.
-            if (sorter is SortAnimalByAge)
-            {
-                wantToSortBy = SortingParameters.Age;
-            }
-            else if (sorter is SortAnimalByGender)
-            {
-                wantToSortBy = SortingParameters.Gender;
-            }
-            else if (sorter is SortAnimalById)
-            {
-                wantToSortBy = SortingParameters.Id;
-            }
-            else if (sorter is SortAnimalByName)
-            {
-                wantToSortBy = SortingParameters.Name;
-            }
-            else if (sorter is SortAnimalBySpecialCharacteristics)
-            {
-                wantToSortBy = SortingParameters.SpecialCharacteristics;
-            }
-            else if (sorter is SortAnimalBySpecie)
-            {
-                wantToSortBy = SortingParameters.Specie;
-            }
-            else
-            {
-                throw new InvalidOperationException(
-                    "Sorter class did not match any sorting option.");
-            }
+            string lastUsedSortingClassName = LastUsedSortingClass.GetType().Name;
+            string newSortingClassName = sorter.GetType().Name;
 
             // Performs sort
-            if ((_lastUsedSortingParameter != wantToSortBy)
-                || (_lastUsedSortingParameter == wantToSortBy
+            if ((lastUsedSortingClassName != newSortingClassName)
+                || (lastUsedSortingClassName == newSortingClassName
                 && _lastUsedSortingDirection == SortingDirections.Desc))
             {
                 _list.Sort(sorter);
@@ -216,8 +194,6 @@ namespace AnimalMotel
                 _lastUsedSortingDirection = SortingDirections.Desc;
             }
 
-            // Updates state
-            _lastUsedSortingParameter = wantToSortBy;
             LastUsedSortingClass = sorter;
         }
 
