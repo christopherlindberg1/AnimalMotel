@@ -35,27 +35,6 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates an animal to the new data submitted in the form.
-        /// </summary>
-        private void UpdateAnimal()
-        {
-            if (listViewAnimals.SelectedIndices.Count == 0
-                || listViewAnimals.SelectedIndices.Count > 1)
-            {
-                return;
-            }
-
-            int index = GetSelectedAnimalIndex();
-            //int id = GetSelectedAnimalId();
-
-            Animal animal = AnimalManager.GetAt(index);
-            Category category = GetAnimalCategory(animal);
-
-            AnimalManager.UpdateAnimal(animal, category, GetUserInput());
-            AddAnimalsToGUIList();
-        }
-
-        /// <summary>
         ///   Fills the input fields with data from an animal.
         /// </summary>
         /// <param name="animal">Animal object.</param>
@@ -189,6 +168,113 @@ namespace AnimalMotel
                 case Gender.Unknown:
                     listBoxGender.SelectedIndex = 2;
                     break;
+            }
+        }
+
+        /// <summary>
+        ///   Updates an animal to the new data submitted in the form.
+        /// </summary>
+        private void UpdateAnimal()
+        {
+            if (listViewAnimals.SelectedIndices.Count == 0
+                || listViewAnimals.SelectedIndices.Count > 1)
+            {
+                return;
+            }
+
+            int index = GetSelectedAnimalIndex();
+
+            Animal animal = AnimalManager.GetAt(index);
+            Category category = GetAnimalCategory(animal);
+            Dictionary<string, string> animalData = GetUserInput();
+
+            UpdateGeneralData(animal, category, animalData);
+            UpdateCategoryData(animal, category, animalData);
+            UpdateSpecieData(animal, animalData);
+
+            AddAnimalsToGUIList();
+        }
+
+        /// <summary>
+        ///   Updates general animal data for an animal object.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
+        /// <param name="category">category of the animal.</param>
+        /// <param name="animalData">User input data.</param>
+        private void UpdateGeneralData(
+            Animal animal,
+            Category category,
+            Dictionary<string, string> animalData)
+        {
+            animal.Name = animalData["name"];
+            animal.Age = int.Parse(animalData["age"]);
+            animal.Gender = (Gender)Enum.Parse(typeof(Gender), animalData["gender"]);
+        }
+
+        /// <summary>
+        ///   Updates category specific data for an animal object.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
+        /// <param name="animalData">User input data.</param>
+        private void UpdateCategoryData(
+            Animal animal,
+            Category category,
+            Dictionary<string, string> animalData)
+        {
+            switch (category)
+            {
+                case Category.Bird:
+                    Bird bird = animal as Bird;
+                    bird.FlyingSpeed = float.Parse(animalData["flyingSpeed"]);
+                    break;
+
+                case Category.Mammal:
+                    Mammal mammal = animal as Mammal;
+                    mammal.NrOfTeeth = int.Parse(animalData["nrOfTeeth"]);
+                    mammal.TailLegth = float.Parse(animalData["tailLength"]);
+                    break;
+
+                default:
+                    throw new ArgumentException(
+                        "Category did not match any case.", "category");
+            }
+        }
+
+        /// <summary>
+        ///   Updates specie specific data for an animal object.
+        /// </summary>
+        /// <param name="animal">Animal object.</param>
+        /// <param name="animalData">User input data.</param>
+        private void UpdateSpecieData(
+            Animal animal,
+            Dictionary<string, string> animalData)
+        {
+            string specie = animal.GetSpecie();
+
+            switch (specie)
+            {
+                case "Eagle":
+                    Eagle eagle = animal as Eagle;
+                    eagle.ClawLength = float.Parse(animalData["clawLength"]);
+                    break;
+
+                case "Pigeon":
+                    Pigeon pigeon = animal as Pigeon;
+                    pigeon.BeakLength = float.Parse(animalData["beakLength"]);
+                    break;
+
+                case "Cat":
+                    Cat cat = animal as Cat;
+                    cat.Lives = int.Parse(animalData["lives"]);
+                    break;
+
+                case "Dog":
+                    Dog dog = animal as Dog;
+                    dog.Breed = animalData["breed"];
+                    break;
+
+                default:
+                    throw new ArgumentException("Specie did not match any case.", "specie");
             }
         }
 

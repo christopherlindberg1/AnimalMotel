@@ -184,23 +184,6 @@ namespace AnimalMotel
             FillGUIWithAnimalData(animal);
         }
 
-        private void btnDeleteAnimal_Click(object sender, EventArgs e)
-        {
-            // Check that an animal is selected.
-            if (listViewAnimals.SelectedIndices.Count == 0)
-            {
-                MessageBox.Show(
-                    "You have to select an animal to delete.",
-                    "Info",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-            DeleteMarkedAnimals();
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (listViewAnimals.SelectedItems.Count == 0
@@ -223,6 +206,23 @@ namespace AnimalMotel
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+        }
+
+        private void btnDeleteAnimal_Click(object sender, EventArgs e)
+        {
+            // Check that an animal is selected.
+            if (listViewAnimals.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show(
+                    "You have to select an animal to delete.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            DeleteMarkedAnimals();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

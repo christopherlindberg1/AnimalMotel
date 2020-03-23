@@ -78,6 +78,7 @@ namespace AnimalMotel
             }
 
             _list.Add(obj);
+            RepeatLatestSort();
             return true;
         }
 
@@ -96,6 +97,7 @@ namespace AnimalMotel
             }
 
             _list[index] = obj;
+            RepeatLatestSort();
             return true;
         }
 
@@ -232,9 +234,9 @@ namespace AnimalMotel
         {
             List<string> list = new List<string>();
 
-            for (int i = 0; i < Count; i++)
+            foreach (T obj in _list)
             {
-                list[i] = _list[i].ToString();
+                list.Append(obj.ToString());
             }
 
             return list;
