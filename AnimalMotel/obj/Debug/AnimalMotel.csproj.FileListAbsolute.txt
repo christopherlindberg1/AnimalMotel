@@ -18,3 +18,14 @@ C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul3\assignment\Ani
 C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul3\assignment\AnimalMotel\obj\Debug\AnimalMotel.pdb
 C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul3\assignment\AnimalMotel\obj\Debug\AnimalMotel.FormStaffPlanning.resources
 C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul3\assignment\AnimalMotel\obj\Debug\AnimalMotel.FormRecipe.resources
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\bin\Debug\AnimalMotel.exe.config
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\bin\Debug\AnimalMotel.exe
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\bin\Debug\AnimalMotel.pdb
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.csprojAssemblyReference.cache
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.FormMain.resources
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.FormRecipe.resources
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.FormStaffPlanning.resources
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.Properties.Resources.resources
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.csproj.GenerateResource.cache
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.exe
+C:\Users\Christopher\OneDrive\Skola\årskurs-3\termin-6\C#\modul4\assignment\AnimalMotel\obj\Debug\AnimalMotel.pdb

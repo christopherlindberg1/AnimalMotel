@@ -261,5 +261,19 @@ namespace AnimalMotel
         {
             ShowStaffList();
         }
+
+        private void menuFileExit_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show(
+                "Confirm that you want to exit.",
+                "Confirm",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Information);
+
+            if (confirm == DialogResult.OK)
+            {
+                Close();
+            }
+        }
     }
 }

@@ -40,6 +40,8 @@
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.groupBoxAnimalList = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnDeleteAnimal = new System.Windows.Forms.Button();
             this.lblShowEaterType = new System.Windows.Forms.Label();
             this.listBoxFoodSchedule = new System.Windows.Forms.ListBox();
@@ -77,14 +79,27 @@
             this.groupBoxAnimalCategorySpecs = new System.Windows.Forms.GroupBox();
             this.lblNrOfTeeth = new System.Windows.Forms.Label();
             this.listBoxSpecies = new System.Windows.Forms.ListBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileOpenTextFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileOpenBinaryFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSaveAsTextFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSaveAsBinaryFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileXMLImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileXMLExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxGender.SuspendLayout();
             this.groupBoxAnimalList.SuspendLayout();
             this.groupBoxAnimalSpecs.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxSpecieSpecificData.SuspendLayout();
             this.groupBoxAnimalCategorySpecs.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxCategory
@@ -196,6 +211,26 @@
             this.groupBoxAnimalList.TabIndex = 1;
             this.groupBoxAnimalList.TabStop = false;
             this.groupBoxAnimalList.Text = "List of registered animals";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(595, 270);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(150, 40);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(45, 266);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(150, 40);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDeleteAnimal
             // 
@@ -330,9 +365,9 @@
             this.groupBoxAnimalSpecs.Controls.Add(this.lblCategory);
             this.groupBoxAnimalSpecs.Controls.Add(this.lblAge);
             this.groupBoxAnimalSpecs.Controls.Add(this.lblName);
-            this.groupBoxAnimalSpecs.Location = new System.Drawing.Point(14, 14);
+            this.groupBoxAnimalSpecs.Location = new System.Drawing.Point(14, 31);
             this.groupBoxAnimalSpecs.Name = "groupBoxAnimalSpecs";
-            this.groupBoxAnimalSpecs.Size = new System.Drawing.Size(1206, 362);
+            this.groupBoxAnimalSpecs.Size = new System.Drawing.Size(1206, 345);
             this.groupBoxAnimalSpecs.TabIndex = 2;
             this.groupBoxAnimalSpecs.TabStop = false;
             this.groupBoxAnimalSpecs.Text = "Animal Specifications";
@@ -512,7 +547,7 @@
             // 
             // btnAddAnimal
             // 
-            this.btnAddAnimal.Location = new System.Drawing.Point(569, 300);
+            this.btnAddAnimal.Location = new System.Drawing.Point(569, 281);
             this.btnAddAnimal.Name = "btnAddAnimal";
             this.btnAddAnimal.Size = new System.Drawing.Size(183, 47);
             this.btnAddAnimal.TabIndex = 9;
@@ -528,7 +563,7 @@
             this.groupBoxAnimalCategorySpecs.Controls.Add(this.textBoxNrOfTeeth);
             this.groupBoxAnimalCategorySpecs.Controls.Add(this.lblNrOfTeeth);
             this.groupBoxAnimalCategorySpecs.Controls.Add(this.lblTailLength);
-            this.groupBoxAnimalCategorySpecs.Location = new System.Drawing.Point(15, 250);
+            this.groupBoxAnimalCategorySpecs.Location = new System.Drawing.Point(15, 241);
             this.groupBoxAnimalCategorySpecs.Name = "groupBoxAnimalCategorySpecs";
             this.groupBoxAnimalCategorySpecs.Size = new System.Drawing.Size(352, 98);
             this.groupBoxAnimalCategorySpecs.TabIndex = 0;
@@ -554,25 +589,112 @@
             this.listBoxSpecies.TabIndex = 5;
             this.listBoxSpecies.SelectedIndexChanged += new System.EventHandler(this.listBoxSpecies_SelectedIndexChanged);
             // 
-            // btnSave
+            // menu
             // 
-            this.btnSave.Location = new System.Drawing.Point(45, 266);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(150, 40);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(1232, 28);
+            this.menu.TabIndex = 3;
+            this.menu.Text = "mainMenu";
             // 
-            // btnCancel
+            // menuFile
             // 
-            this.btnCancel.Location = new System.Drawing.Point(595, 270);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(150, 40);
-            this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFileNew,
+            this.menuFileOpen,
+            this.menuFileSave,
+            this.menuFileSaveAs,
+            this.menuFileXML,
+            this.menuFileExit});
+            this.menuFile.Name = "menuFile";
+            this.menuFile.Size = new System.Drawing.Size(46, 24);
+            this.menuFile.Text = "File";
+            // 
+            // menuFileNew
+            // 
+            this.menuFileNew.Name = "menuFileNew";
+            this.menuFileNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.menuFileNew.Size = new System.Drawing.Size(224, 26);
+            this.menuFileNew.Text = "New";
+            // 
+            // menuFileOpen
+            // 
+            this.menuFileOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFileOpenTextFile,
+            this.menuFileOpenBinaryFile});
+            this.menuFileOpen.Name = "menuFileOpen";
+            this.menuFileOpen.Size = new System.Drawing.Size(224, 26);
+            this.menuFileOpen.Text = "Open";
+            // 
+            // menuFileOpenTextFile
+            // 
+            this.menuFileOpenTextFile.Name = "menuFileOpenTextFile";
+            this.menuFileOpenTextFile.Size = new System.Drawing.Size(160, 26);
+            this.menuFileOpenTextFile.Text = "Text File";
+            // 
+            // menuFileOpenBinaryFile
+            // 
+            this.menuFileOpenBinaryFile.Name = "menuFileOpenBinaryFile";
+            this.menuFileOpenBinaryFile.Size = new System.Drawing.Size(160, 26);
+            this.menuFileOpenBinaryFile.Text = "Binary File";
+            // 
+            // menuFileSave
+            // 
+            this.menuFileSave.Name = "menuFileSave";
+            this.menuFileSave.Size = new System.Drawing.Size(224, 26);
+            this.menuFileSave.Text = "Save";
+            // 
+            // menuFileSaveAs
+            // 
+            this.menuFileSaveAs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFileSaveAsTextFile,
+            this.menuFileSaveAsBinaryFile});
+            this.menuFileSaveAs.Name = "menuFileSaveAs";
+            this.menuFileSaveAs.Size = new System.Drawing.Size(224, 26);
+            this.menuFileSaveAs.Text = "Save as";
+            // 
+            // menuFileSaveAsTextFile
+            // 
+            this.menuFileSaveAsTextFile.Name = "menuFileSaveAsTextFile";
+            this.menuFileSaveAsTextFile.Size = new System.Drawing.Size(160, 26);
+            this.menuFileSaveAsTextFile.Text = "Text File";
+            // 
+            // menuFileSaveAsBinaryFile
+            // 
+            this.menuFileSaveAsBinaryFile.Name = "menuFileSaveAsBinaryFile";
+            this.menuFileSaveAsBinaryFile.Size = new System.Drawing.Size(160, 26);
+            this.menuFileSaveAsBinaryFile.Text = "Binary File";
+            // 
+            // menuFileXML
+            // 
+            this.menuFileXML.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFileXMLImport,
+            this.menuFileXMLExport});
+            this.menuFileXML.Name = "menuFileXML";
+            this.menuFileXML.Size = new System.Drawing.Size(224, 26);
+            this.menuFileXML.Text = "XML";
+            // 
+            // menuFileXMLImport
+            // 
+            this.menuFileXMLImport.Name = "menuFileXMLImport";
+            this.menuFileXMLImport.Size = new System.Drawing.Size(226, 26);
+            this.menuFileXMLImport.Text = "Inport from XML file";
+            // 
+            // menuFileXMLExport
+            // 
+            this.menuFileXMLExport.Name = "menuFileXMLExport";
+            this.menuFileXMLExport.Size = new System.Drawing.Size(226, 26);
+            this.menuFileXMLExport.Text = "Export to XML file";
+            // 
+            // menuFileExit
+            // 
+            this.menuFileExit.Name = "menuFileExit";
+            this.menuFileExit.Size = new System.Drawing.Size(224, 26);
+            this.menuFileExit.Text = "Exit";
+            this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
             // 
             // FormMain
             // 
@@ -581,7 +703,9 @@
             this.ClientSize = new System.Drawing.Size(1232, 719);
             this.Controls.Add(this.groupBoxAnimalList);
             this.Controls.Add(this.groupBoxAnimalSpecs);
+            this.Controls.Add(this.menu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuStrip = this.menu;
             this.Name = "FormMain";
             this.Text = "Animal Motel";
             this.groupBoxGender.ResumeLayout(false);
@@ -593,7 +717,10 @@
             this.groupBoxSpecieSpecificData.PerformLayout();
             this.groupBoxAnimalCategorySpecs.ResumeLayout(false);
             this.groupBoxAnimalCategorySpecs.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -650,6 +777,20 @@
         private System.Windows.Forms.ListBox listBoxStaff;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem menuFile;
+        private System.Windows.Forms.ToolStripMenuItem menuFileNew;
+        private System.Windows.Forms.ToolStripMenuItem menuFileOpen;
+        private System.Windows.Forms.ToolStripMenuItem menuFileOpenTextFile;
+        private System.Windows.Forms.ToolStripMenuItem menuFileOpenBinaryFile;
+        private System.Windows.Forms.ToolStripMenuItem menuFileSave;
+        private System.Windows.Forms.ToolStripMenuItem menuFileSaveAs;
+        private System.Windows.Forms.ToolStripMenuItem menuFileSaveAsTextFile;
+        private System.Windows.Forms.ToolStripMenuItem menuFileSaveAsBinaryFile;
+        private System.Windows.Forms.ToolStripMenuItem menuFileXML;
+        private System.Windows.Forms.ToolStripMenuItem menuFileXMLImport;
+        private System.Windows.Forms.ToolStripMenuItem menuFileXMLExport;
+        private System.Windows.Forms.ToolStripMenuItem menuFileExit;
     }
 }
 

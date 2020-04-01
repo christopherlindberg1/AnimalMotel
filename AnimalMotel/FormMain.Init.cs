@@ -36,6 +36,7 @@ namespace AnimalMotel
             groupBoxAnimalCategorySpecs.Text = "";
             groupBoxSpecieSpecificData.Text = "";
 
+            InitializeMenuStrip();
             InitializeGeneralElements();
             InitializeCategorySpecificFields();
             InitializeSpecieSpecificFields();
@@ -47,6 +48,13 @@ namespace AnimalMotel
             SetFormToDefaultState();
 
             SetSampleData();
+        }
+
+        private void InitializeMenuStrip()
+        {
+            menu.BackColor = Color.FromArgb(220, 220, 220);
+            menuFileNew.ShortcutKeys = Keys.Control | Keys.N;
+            menuFileExit.ShortcutKeys = Keys.Alt | Keys.X;
         }
 
         /// <summary>
