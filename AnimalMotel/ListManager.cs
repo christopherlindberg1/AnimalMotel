@@ -160,13 +160,22 @@ namespace AnimalMotel
         ///   the IComparer interface as an argument, which performs the sort.
         ///   This method keeps track of the state in order to determine if to sort
         ///   in ascending or descending order.
+        ///   Does not perform any sorting if the concrete class has not been initiated
+        ///   with a sorting class.
         /// </summary>
         /// <param name="sorter">Sorting class that implements the IComparer interface.</param>
         public void Sort(IComparer<T> sorter)
         {
+            // Null of the concrete list class has not been initiated with a sorting class.
+            // This happens when the list does not need to be sorted.
+            if (LastUsedSortingClass == null)
+            {
+                return;
+            }
+
             string lastUsedSortingClassName = LastUsedSortingClass.GetType().Name;
             string newSortingClassName = sorter.GetType().Name;
-
+            
             // Performs sort
             if ((lastUsedSortingClassName != newSortingClassName)
                 || (lastUsedSortingClassName == newSortingClassName
@@ -200,6 +209,11 @@ namespace AnimalMotel
         /// </summary>
         public void RepeatLatestSort()
         {
+            if (LastUsedSortingClass == null)
+            {
+                return;
+            }
+
             Sort(LastUsedSortingClass);
 
             if (_lastUsedSortingDirection == SortingDirections.Desc)
