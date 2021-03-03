@@ -97,5 +97,13 @@ namespace AnimalMotel
         /// </summary>
         /// <returns>list with string representations of all objects.</returns>
         List<string> ToStringList();
+
+        void BinarySerialize(string FileName);
+
+        void BinaryDeSerialize(string FileName);
+
+        void XMLSerialize(string FileName);
+
+        void XmlFileDeserialize(string FileName);
     }
 }

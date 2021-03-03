@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 // Own namespaces
 using AnimalMotel.Enums;
 
 namespace AnimalMotel.Animals.Categories
 {
+    [Serializable]
     public abstract class Bird : Animal
     {
         private float _flyingSpeed;

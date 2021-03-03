@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace AnimalMotel
 {
-    public class Recipe
+    [Serializable()]
+    public class Recipe : ISerializable
     {
         private string _name;
-        private readonly ListManager<string> _ingredients = new ListManager<string>();
+        private ListManager<string> _ingredients = new ListManager<string>();
 
 
 
@@ -25,6 +27,7 @@ namespace AnimalMotel
         public ListManager<string> Ingredients
         {
             get { return _ingredients; }
+            set { _ingredients = value; }
         }
 
 
@@ -51,5 +54,16 @@ namespace AnimalMotel
 
             return recipeString.ToString();
         }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            Name = (string)info.GetValue("Name", typeof(string));
+            Ingredients = (ListManager<string>)info.GetValue("Ingredients", typeof(ListManager<string>));
+        }
+
+        /*public Recipe(SerializationInfo info, StreamingContext context)
+        {
+
+        }*/
     }
 }

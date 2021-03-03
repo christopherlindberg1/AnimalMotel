@@ -33,6 +33,8 @@ namespace AnimalMotel
         private FormRecipe _formRecipe = new FormRecipe();
         private FormStaffPlanning _formStaffPlanning = new FormStaffPlanning();
 
+        
+
 
 
 
@@ -431,6 +433,17 @@ namespace AnimalMotel
             listBoxGender.SelectedIndex = -1;
             listBoxCategory.SelectedIndex = -1;
             listBoxSpecies.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        ///   Clears everything in the form so the user can start on a blank slate.
+        /// </summary>
+        private void ResetForm()
+        {
+            ClearInput();
+            listViewAnimals.Items.Clear();
+            listBoxRecipes.Items.Clear();
+            listBoxStaff.Items.Clear();
         }
 
         /// <summary>

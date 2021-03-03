@@ -619,6 +619,7 @@
             this.menuFileNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.menuFileNew.Size = new System.Drawing.Size(224, 26);
             this.menuFileNew.Text = "New";
+            this.menuFileNew.Click += new System.EventHandler(this.menuFileNew_Click);
             // 
             // menuFileOpen
             // 
@@ -632,20 +633,22 @@
             // menuFileOpenTextFile
             // 
             this.menuFileOpenTextFile.Name = "menuFileOpenTextFile";
-            this.menuFileOpenTextFile.Size = new System.Drawing.Size(160, 26);
+            this.menuFileOpenTextFile.Size = new System.Drawing.Size(224, 26);
             this.menuFileOpenTextFile.Text = "Text File";
             // 
             // menuFileOpenBinaryFile
             // 
             this.menuFileOpenBinaryFile.Name = "menuFileOpenBinaryFile";
-            this.menuFileOpenBinaryFile.Size = new System.Drawing.Size(160, 26);
+            this.menuFileOpenBinaryFile.Size = new System.Drawing.Size(224, 26);
             this.menuFileOpenBinaryFile.Text = "Binary File";
+            this.menuFileOpenBinaryFile.Click += new System.EventHandler(this.menuFileOpenBinaryFile_Click);
             // 
             // menuFileSave
             // 
             this.menuFileSave.Name = "menuFileSave";
             this.menuFileSave.Size = new System.Drawing.Size(224, 26);
             this.menuFileSave.Text = "Save";
+            this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
             // 
             // menuFileSaveAs
             // 
@@ -665,8 +668,9 @@
             // menuFileSaveAsBinaryFile
             // 
             this.menuFileSaveAsBinaryFile.Name = "menuFileSaveAsBinaryFile";
-            this.menuFileSaveAsBinaryFile.Size = new System.Drawing.Size(160, 26);
+            this.menuFileSaveAsBinaryFile.Size = new System.Drawing.Size(224, 26);
             this.menuFileSaveAsBinaryFile.Text = "Binary File";
+            this.menuFileSaveAsBinaryFile.Click += new System.EventHandler(this.menuFileSaveAsBinaryFile_Click);
             // 
             // menuFileXML
             // 
@@ -682,12 +686,14 @@
             this.menuFileXMLImport.Name = "menuFileXMLImport";
             this.menuFileXMLImport.Size = new System.Drawing.Size(226, 26);
             this.menuFileXMLImport.Text = "Inport from XML file";
+            this.menuFileXMLImport.Click += new System.EventHandler(this.menuFileXMLImport_Click);
             // 
             // menuFileXMLExport
             // 
             this.menuFileXMLExport.Name = "menuFileXMLExport";
             this.menuFileXMLExport.Size = new System.Drawing.Size(226, 26);
             this.menuFileXMLExport.Text = "Export to XML file";
+            this.menuFileXMLExport.Click += new System.EventHandler(this.menuFileXMLExport_Click);
             // 
             // menuFileExit
             // 

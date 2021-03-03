@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 // Own namespaces
 using AnimalMotel.Enums;
 using AnimalMotel.Animals.Sorting;
+using AnimalMotel.Serialization;
 
 
 namespace AnimalMotel
@@ -262,6 +264,133 @@ namespace AnimalMotel
             ShowStaffList();
         }
 
+        /// <summary>
+        ///   Clears everything in the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuFileNew_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Sure you want to start over? Unsaved changes will be lost.",
+                "Warning",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Information);
+
+            if (result == DialogResult.OK)
+            {
+                ResetForm();
+            }
+        }
+
+        /// <summary>
+        ///   Reads animal data from binary file.
+        ///   Clears existing animal data in GUI and replaces it with data from file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuFileOpenBinaryFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\AppData\\Data"));
+            fileDialog.Title = "Chose file to open";
+            fileDialog.Filter = "Binary File | *.bin";
+            fileDialog.ShowDialog();
+
+            try
+            {
+                List<Animal> animals = LoadAnimalsFromFile(fileDialog.FileName);
+
+                MessageBox.Show("Hello MF");
+
+                this.AnimalManager.AddAll(animals);
+
+                AddAnimalsToGUIList();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        /// <summary>
+        ///   Saves the current list if animals in a new binary file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuFileSaveAsBinaryFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog fileDialog = new SaveFileDialog();
+            fileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Storage\\Data"));
+            fileDialog.Title = "Name the file for storing animal data";
+            fileDialog.Filter = "Binary File | *.bin";
+            
+            DialogResult result = fileDialog.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+
+            SaveAnimalsToFile(fileDialog.FileName);
+        }
+
+        /// <summary>
+        ///   Reads recipe data from an XML file.
+        ///   Clears existing recipe data in GUI and replaces it with data from file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuFileXMLImport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        ///   Saves current list of recipes in a new XML file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuFileXMLExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        /// <summary>
+        ///   Event for saving animals and recipes when clicking the save option.
+        ///   Asks user to name files for animals and recipes if nothing has been saved before.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuFileSave_Click(object sender, EventArgs e)
+        {
+            // Get file paths for animals and recipes.
+            while (String.IsNullOrWhiteSpace(this._pathToAnimalsFile))
+            {
+                this._pathToAnimalsFile = this.GetPathToAnimalsFile();
+            }
+            while (String.IsNullOrWhiteSpace(this._pathToRecipesFile))
+            {
+                this._pathToRecipesFile = this.GetPathToRecipesFile();
+            }
+
+
+
+            
+
+
+
+            
+        }
+
+
+
+
         private void menuFileExit_Click(object sender, EventArgs e)
         {
             DialogResult confirm = MessageBox.Show(
@@ -275,5 +404,7 @@ namespace AnimalMotel
                 Close();
             }
         }
+
+        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 
 // Own namespaces
@@ -13,7 +14,7 @@ namespace AnimalMotel
 {
     public class ListManager<T> : IListManager<T>
     {
-        private readonly List<T> _list = new List<T>();
+        public List<T> _list = new List<T>();
 
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
         private IComparer<T> _lastUsedSortingClass;
@@ -140,6 +141,18 @@ namespace AnimalMotel
             return true;
         }
 
+        public void AddAll(List<T> items)
+        {
+            DeleteAll();
+           
+            foreach (T item in items)
+            {
+                this.Add(item);
+            }
+
+            RepeatLatestSort();
+        }
+
         /// <summary>
         ///   Gets the item at a given index.
         /// </summary>
@@ -254,6 +267,57 @@ namespace AnimalMotel
             }
 
             return list;
+        }
+
+        /// <summary>
+        ///   Returns a copy of the list.
+        /// </summary>
+        /// <returns></returns>
+        public List<T> GetCopy()
+        {
+            List<T> copy = new List<T>();
+
+            foreach (T obj in _list)
+            {
+                copy.Add(obj);
+            }
+
+            return copy;
+        }
+
+        public void BinarySerialize(string filePath)
+        {
+            FileStream fileStream = null;
+
+            try
+            {
+                
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
+        public void BinaryDeSerialize(string filePath)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void XMLSerialize(string fileName)
+        {
+            // USE XMLSERIALIZERUTILITY CLASS TO SERIALIZE
+
+            throw new NotImplementedException();
+        }
+
+        public void XmlFileDeserialize(string filename)
+        {
+
         }
     }
 }

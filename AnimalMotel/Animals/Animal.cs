@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 // Own namespaces
 using AnimalMotel.Enums;
@@ -10,6 +11,7 @@ using AnimalMotel.Animals;
 
 namespace AnimalMotel
 {
+    [Serializable]
     public abstract class Animal
     {
         private int _id;
@@ -33,8 +35,10 @@ namespace AnimalMotel
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentNullException("name", "Name cannot be null or empty");
-                
+                }
+
                 _name = value;
             }
         }

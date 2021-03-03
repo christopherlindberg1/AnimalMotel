@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 // Own namespaces
 using AnimalMotel.Enums;
@@ -23,6 +24,7 @@ namespace AnimalMotel
         private void InitializeApp()
         {
             InitializeGUI();
+            // InitializeData();
         }
 
         /// <summary>
@@ -47,7 +49,12 @@ namespace AnimalMotel
 
             SetFormToDefaultState();
 
-            SetSampleData();
+            //SetSampleData();
+        }
+
+        private void InitializeData()
+        {
+            InitializeStoragePaths();
         }
 
         private void InitializeMenuStrip()
@@ -156,16 +163,23 @@ namespace AnimalMotel
             AddAnimalsToGUIList();
         }
 
-        private void SetSampleData()
+        //private void SetSampleData()
+        //{
+        //    textBoxName.Text = "Bosse";
+        //    textBoxAge.Text = "5";
+        //    listBoxGender.SelectedIndex = 1;
+        //    listBoxCategory.SelectedIndex = 0;
+        //    listBoxSpecies.SelectedIndex = 0;
+        //    textBoxNrOfTeeth.Text = "20";
+        //    textBoxClawLength.Text = "4";
+        //    textBoxFlyingSpeed.Text = "200";
+        //}
+
+        private void InitializeStoragePaths()
         {
-            textBoxName.Text = "Bosse";
-            textBoxAge.Text = "5";
-            listBoxGender.SelectedIndex = 1;
-            listBoxCategory.SelectedIndex = 0;
-            listBoxSpecies.SelectedIndex = 0;
-            textBoxNrOfTeeth.Text = "20";
-            textBoxClawLength.Text = "4";
-            textBoxFlyingSpeed.Text = "200";
+            // Streamreader for animal path file.
+            /*StreamReader sr = new StreamReader($"{ this._pathToPathsFolder }\\PathsToAnimalsFile.txt");
+            sr.Close();*/
         }
     }
 }

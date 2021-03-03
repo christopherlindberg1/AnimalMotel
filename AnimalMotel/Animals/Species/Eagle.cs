@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 // Own namespaces
 using AnimalMotel.Animals.Categories;
@@ -11,7 +15,8 @@ using AnimalMotel.Enums;
 
 namespace AnimalMotel.Animals.Species
 {
-    public class Eagle : Bird
+    [Serializable]
+    public class Eagle : Bird, ISerializable
     {
         private float _clawLength;
         private FoodSchedule _foodSchedule;
@@ -91,6 +96,16 @@ namespace AnimalMotel.Animals.Species
                     "(3) Evening: rabbit and water."
                 }
             );
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Id", this.Id);
+            info.AddValue("Name", this.Name);
+            info.AddValue("Age", this.Age);
+            info.AddValue("Gender", this.Gender);
+            info.AddValue("FlyingSpeed", this.FlyingSpeed);
+            info.AddValue("ClawLength", this.ClawLength);
         }
 
         /// <summary>

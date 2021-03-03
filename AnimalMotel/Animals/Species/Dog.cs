@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 // Own namespaces
 using AnimalMotel.Animals.Categories;
@@ -11,7 +15,8 @@ using AnimalMotel.Enums;
 
 namespace AnimalMotel.Animals.Species
 {
-    public class Dog : Mammal
+    [Serializable]
+    public class Dog : Mammal, ISerializable
     {
         private string _breed;
         private FoodSchedule _foodSchedule;
@@ -24,8 +29,10 @@ namespace AnimalMotel.Animals.Species
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentNullException(
                         "Breed", "Breed cannot be null or empty");
+                }
 
                 this._breed = value;
             }
@@ -92,6 +99,17 @@ namespace AnimalMotel.Animals.Species
                     "(4) Evening: Rests from a chicken and water."
                 }
             );
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Id", this.Id);
+            info.AddValue("Name", this.Name);
+            info.AddValue("Age", this.Age);
+            info.AddValue("Gender", this.Gender);
+            info.AddValue("NrOfTeeth", this.NrOfTeeth);
+            info.AddValue("TailLength", this.TailLegth);
+            info.AddValue("Breed", this.Breed);
         }
 
         /// <summary>
