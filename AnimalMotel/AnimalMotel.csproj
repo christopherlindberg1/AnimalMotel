@@ -72,49 +72,49 @@
     <Compile Include="Factories\BirdFactory.cs" />
     <Compile Include="Factories\MammalFactory.cs" />
     <Compile Include="FoodSchedule.cs" />
-    <Compile Include="FormMain.EditAnimals.cs">
+    <Compile Include="Forms\FormMain.EditAnimals.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Events.cs">
+    <Compile Include="Forms\FormMain.Events.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Init.cs">
+    <Compile Include="Forms\FormMain.Init.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Storage.cs">
+    <Compile Include="Forms\FormMain.Storage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Valitator.cs">
+    <Compile Include="Forms\FormMain.Valitator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRecipe.cs">
+    <Compile Include="Forms\FormRecipe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRecipe.Designer.cs">
+    <Compile Include="Forms\FormRecipe.Designer.cs">
       <DependentUpon>FormRecipe.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRecipe.init.cs">
+    <Compile Include="Forms\FormRecipe.init.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRecipe.Validator.cs">
+    <Compile Include="Forms\FormRecipe.Validator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStaffPlanning.cs">
+    <Compile Include="Forms\FormStaffPlanning.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStaffPlanning.Designer.cs">
+    <Compile Include="Forms\FormStaffPlanning.Designer.cs">
       <DependentUpon>FormStaffPlanning.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStaffPlanning.init.cs">
+    <Compile Include="Forms\FormStaffPlanning.init.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStaffPlanning.Validator.cs">
+    <Compile Include="Forms\FormStaffPlanning.Validator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IListManager.cs" />
@@ -129,13 +129,13 @@
     <Compile Include="Staff.cs" />
     <Compile Include="StaffManager.cs" />
     <Compile Include="Storage\FilePaths.cs" />
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRecipe.resx">
+    <EmbeddedResource Include="Forms\FormRecipe.resx">
       <DependentUpon>FormRecipe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStaffPlanning.resx">
+    <EmbeddedResource Include="Forms\FormStaffPlanning.resx">
       <DependentUpon>FormStaffPlanning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
