@@ -39,6 +39,13 @@ namespace AnimalMotel.Storage
             }
         }
 
-        
+        public static string RecipesDataFolderPath
+        {
+            get
+            {
+                return Path.GetFullPath(
+                    Path.Combine(DataStorageRootFolderPath, @".\AppData\Recipes\"));
+            }
+        }
     }
 }
