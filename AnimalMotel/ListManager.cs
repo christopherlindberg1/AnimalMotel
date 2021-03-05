@@ -9,6 +9,9 @@ using System.IO;
 // Own namespaces
 using AnimalMotel.Enums.Sorting;
 using AnimalMotel.Animals.Sorting;
+using AnimalMotel.Serialization;
+using System.Xml.Serialization;
+
 
 namespace AnimalMotel
 {
@@ -287,6 +290,8 @@ namespace AnimalMotel
 
         public void BinarySerialize(string filePath)
         {
+            throw new NotImplementedException();
+
             FileStream fileStream = null;
 
             try
@@ -308,11 +313,13 @@ namespace AnimalMotel
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Wrapper method for XML serialization (used to serialize recipes).
+        /// </summary>
+        /// <param name="fileName">Path for where the file should be stored</param>
         public void XMLSerialize(string fileName)
         {
-            // USE XMLSERIALIZERUTILITY CLASS TO SERIALIZE
-
-            throw new NotImplementedException();
+            //XMLSerializerUtility.XmlSerialize<T>()
         }
 
         public void XmlFileDeserialize(string filename)

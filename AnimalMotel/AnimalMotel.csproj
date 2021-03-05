@@ -61,6 +61,7 @@
     <Compile Include="Animals\Species\Dog.cs" />
     <Compile Include="Animals\Species\Eagle.cs" />
     <Compile Include="Animals\Species\Pigeon.cs" />
+    <Compile Include="AppSettings.cs" />
     <Compile Include="Enums\AnimalCategories\BirdSpecies.cs" />
     <Compile Include="Enums\AnimalCategories\MammalSpecies.cs" />
     <Compile Include="Enums\Category.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Serialization\XMLSerializerUtility.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="StaffManager.cs" />
+    <Compile Include="Storage\FilePaths.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
