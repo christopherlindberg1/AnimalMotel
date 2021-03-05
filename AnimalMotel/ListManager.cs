@@ -11,7 +11,8 @@ using AnimalMotel.Enums.Sorting;
 using AnimalMotel.Animals.Sorting;
 using AnimalMotel.Serialization;
 using System.Xml.Serialization;
-
+using AnimalMotel.Animals.Species;
+using AnimalMotel.Storage;
 
 namespace AnimalMotel
 {
@@ -319,12 +320,24 @@ namespace AnimalMotel
         /// <param name="fileName">Path for where the file should be stored</param>
         public void XMLSerialize(string fileName)
         {
-            //XMLSerializerUtility.XmlSerialize<T>()
+            Eagle eagle = new Eagle
+            {
+                Name = "Chris",
+                Age = 2,
+                Gender = Enums.Gender.Male,
+                FlyingSpeed = 10,
+                ClawLength = 10,
+            };
+
+            string eagleFilePath = Path.GetFullPath(
+                Path.Combine(FilePaths.AnimalDataFolderPath, @"eagle.xml"));
+
+            XMLSerializerUtility.Serialize<Eagle>(eagleFilePath, eagle);
         }
 
         public void XmlFileDeserialize(string filename)
         {
-
+            
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using AnimalMotel.Animals.Species;
 
 namespace AnimalMotel.Serialization
 {
@@ -23,7 +24,7 @@ namespace AnimalMotel.Serialization
         /// <param name="obj">object to be serialized</param>
         /// <param name="filePath">Path to the file that stores the data</param>
         /// <returns></returns>
-        public static bool Serialize(object obj, string filePath)
+        public static bool Serialize<T>(string filePath, T obj)
         {
             bool serializationOK = false;
 
@@ -62,12 +63,14 @@ namespace AnimalMotel.Serialization
 
             try
             {
-
+                
                 filestream = new FileStream(filePath, FileMode.Open);
                 i = 1;
 
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 i = 2;
+
+                string info = binaryFormatter.ToString();
       
                 obj = binaryFormatter.Deserialize(filestream);
                 i = 3;

@@ -39,7 +39,7 @@ namespace AnimalMotel
                 }
 
                 // Binary serialization
-                BinarySerializerUtility.Serialize(this.AnimalManager.GetCopy(), filePath);
+                BinarySerializerUtility.Serialize(filePath, this.AnimalManager.GetCopy());
             }
             catch { }
         }

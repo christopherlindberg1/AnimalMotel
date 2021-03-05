@@ -11,7 +11,9 @@ using System.IO;
 
 // Own namespaces
 using AnimalMotel.Enums;
-
+using AnimalMotel.Storage;
+using AnimalMotel.Serialization;
+using AnimalMotel.Animals.Species;
 
 namespace AnimalMotel
 {
@@ -25,6 +27,55 @@ namespace AnimalMotel
         {
             InitializeGUI();
             // InitializeData();
+
+            TestMethod();
+        }
+
+        private void TestMethod()
+        {
+            string eagleFilePathXml = Path.GetFullPath(
+                    Path.Combine(FilePaths.AnimalDataFolderPath, @"eagle.xml"));
+
+            string eagleFilePathBin = Path.GetFullPath(
+                    Path.Combine(FilePaths.AnimalDataFolderPath, @"eagle.bin"));
+
+            // Serialize
+            try
+            {
+                Eagle eagle = new Eagle
+                {
+                    Name = "Chris",
+                    Age = 2,
+                    Gender = Enums.Gender.Male,
+                    FlyingSpeed = 10,
+                    ClawLength = 10,
+                };
+
+                BinarySerializerUtility.Serialize<Eagle>(eagleFilePathBin, eagle);
+                XMLSerializerUtility.Serialize<Eagle>(eagleFilePathXml, eagle);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                //throw;
+            }
+
+            // Deserialize
+            try
+            {
+                //Eagle eagleRevivedXml = XMLSerializerUtility.XmlDeserialize<Eagle>(eagleFilePathXml);
+                Eagle eagleRevivedBin = BinarySerializerUtility.Deserialize<Eagle>(eagleFilePathBin);
+
+                //MessageBox.Show(eagleRevivedXml.ToString());
+                MessageBox.Show(eagleRevivedBin.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                //throw;
+            }
+
+            Close();
         }
 
         /// <summary>

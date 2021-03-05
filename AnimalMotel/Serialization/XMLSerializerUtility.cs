@@ -11,7 +11,7 @@ namespace AnimalMotel.Serialization
 {
     public class XMLSerializerUtility
     {
-        public static void XmlSerialize<T>(string filePath, T obj)
+        public static void Serialize<T>(string filePath, T obj)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
 
@@ -29,7 +29,7 @@ namespace AnimalMotel.Serialization
             }
         }
 
-        public static T XmlDeserialize<T>(string filePath)
+        public static T Deserialize<T>(string filePath)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
 

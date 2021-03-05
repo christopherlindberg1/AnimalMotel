@@ -98,6 +98,11 @@ namespace AnimalMotel.Animals.Species
             );
         }
 
+        /// <summary>
+        /// Method used for serializing Eagle objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", this.Id);
@@ -106,6 +111,21 @@ namespace AnimalMotel.Animals.Species
             info.AddValue("Gender", this.Gender);
             info.AddValue("FlyingSpeed", this.FlyingSpeed);
             info.AddValue("ClawLength", this.ClawLength);
+        }
+
+        /// <summary>
+        /// Constructor used fpr deserializing Eagle objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        public Eagle(SerializationInfo info, StreamingContext context)
+        {
+            this.Id = (int)info.GetValue("Id", typeof(int));
+            this.Name = (string)info.GetValue("Name", typeof(string));
+            this.Age = (int)info.GetValue("Age", typeof(int));
+            this.Gender = (Gender)info.GetValue("Gender", typeof(Gender));
+            this.FlyingSpeed = (float)info.GetValue("FlyingSpeed", typeof(float));
+            this.ClawLength = (float)info.GetValue("ClawLength", typeof(float));
         }
 
         /// <summary>

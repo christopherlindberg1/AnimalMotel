@@ -101,6 +101,11 @@ namespace AnimalMotel.Animals.Species
             );
         }
 
+        /// <summary>
+        /// Method used for deserializing Dog objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", this.Id);
@@ -110,6 +115,22 @@ namespace AnimalMotel.Animals.Species
             info.AddValue("NrOfTeeth", this.NrOfTeeth);
             info.AddValue("TailLength", this.TailLegth);
             info.AddValue("Breed", this.Breed);
+        }
+
+        /// <summary>
+        /// Constructor used for deserializing Dog objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        public Dog(SerializationInfo info, StreamingContext context)
+        {
+            this.Id = (int)info.GetValue("Id", typeof(int));
+            this.Name = (string)info.GetValue("Name", typeof(string));
+            this.Age = (int)info.GetValue("Age", typeof(int));
+            this.Gender = (Gender)info.GetValue("Gender", typeof(Gender));
+            this.NrOfTeeth = (int)info.GetValue("NrOfTeeth", typeof(int));
+            this.TailLegth = (float)info.GetValue("TailLength", typeof(float));
+            this.Breed = (string)info.GetValue("Breed", typeof(string));
         }
 
         /// <summary>

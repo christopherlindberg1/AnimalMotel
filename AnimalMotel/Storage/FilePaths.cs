@@ -35,7 +35,7 @@ namespace AnimalMotel.Storage
             get
             {
                 return Path.GetFullPath(
-                    Path.Combine(DataStorageRootFolderPath, @".\AppData\Animals"));
+                    Path.Combine(DataStorageRootFolderPath, @".\AppData\Animals\"));
             }
         }
 

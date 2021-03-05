@@ -96,6 +96,11 @@ namespace AnimalMotel.Animals.Species
             );
         }
 
+        /// <summary>
+        /// Method used for serializing Pigeon objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Id", this.Id);
@@ -104,6 +109,21 @@ namespace AnimalMotel.Animals.Species
             info.AddValue("Gender", this.Gender);
             info.AddValue("FlyingSpeed", this.FlyingSpeed);
             info.AddValue("BeakLength", this.BeakLength);
+        }
+
+        /// <summary>
+        /// Constructor used for deserializing Pigeon objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        public Pigeon(SerializationInfo info, StreamingContext context)
+        {
+            this.Id = (int)info.GetValue("Id", typeof(int));
+            this.Name = (string)info.GetValue("Name", typeof(string));
+            this.Age = (int)info.GetValue("Age", typeof(int));
+            this.Gender = (Gender)info.GetValue("Gender", typeof(Gender));
+            this.FlyingSpeed = (float)info.GetValue("FlyingSpeed", typeof(float));
+            this.BeakLength = (float)info.GetValue("BeakLength", typeof(float));
         }
 
         /// <summary>
