@@ -289,55 +289,42 @@ namespace AnimalMotel
             return copy;
         }
 
+        /// <summary>
+        /// Method for binary serializing of the objects in the list (used to serialize animals)
+        /// </summary>
+        /// <param name="filePath">Path to a binary file where animals should be stored</param>
         public void BinarySerialize(string filePath)
         {
             throw new NotImplementedException();
-
-            FileStream fileStream = null;
-
-            try
-            {
-                
-            }
-            catch
-            {
-
-            }
-            finally
-            {
-
-            }
         }
 
+        /// <summary>
+        /// Method used to deserialize objects from a binary file and store them in the list
+        /// (used when deserializing animals)
+        /// </summary>
+        /// <param name="filePath">Path to the binary file with serialized animals</param>
         public void BinaryDeSerialize(string filePath)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Wrapper method for XML serialization (used to serialize recipes).
+        /// Method for XML serialization of the objects in the list (used to serialize reciped)
         /// </summary>
         /// <param name="fileName">Path for where the file should be stored</param>
         public void XMLSerialize(string fileName)
         {
-            Eagle eagle = new Eagle
-            {
-                Name = "Chris",
-                Age = 2,
-                Gender = Enums.Gender.Male,
-                FlyingSpeed = 10,
-                ClawLength = 10,
-            };
-
-            string eagleFilePath = Path.GetFullPath(
-                Path.Combine(FilePaths.AnimalDataFolderPath, @"eagle.xml"));
-
-            XMLSerializerUtility.Serialize<Eagle>(eagleFilePath, eagle);
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Method used to deserialize objects from a binary file and store them in the list
+        /// (used when deserializing animals)
+        /// </summary>
+        /// <param name="filename"></param>
         public void XmlFileDeserialize(string filename)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

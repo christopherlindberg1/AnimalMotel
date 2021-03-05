@@ -16,8 +16,9 @@ namespace AnimalMotel
     public class AppSettings : ISerializable
     {
         // Fields for all settings
-        private string _currentFilePathForAnimals;
+        //private string _currentFilePathForAnimals;
         private string _lastUsedFilePathForAnimals;
+        private string _lastUsedFilePathForRecipes;
 
 
 
@@ -28,15 +29,15 @@ namespace AnimalMotel
          * 
          */
 
-        public string CurrentFilePathForAnimals
-        {
-            get => _currentFilePathForAnimals;
+        //public string CurrentFilePathForAnimals
+        //{
+        //    get => _currentFilePathForAnimals;
 
-            set => _currentFilePathForAnimals = value ??
-                throw new ArgumentNullException(
-                    "CurrentFilePathForAnimals cannot be null",
-                    "CurrentFilePathForAnimals");
-        }
+        //    set => _currentFilePathForAnimals = value ??
+        //        throw new ArgumentNullException(
+        //            "CurrentFilePathForAnimals cannot be null",
+        //            "CurrentFilePathForAnimals");
+        //}
 
         public string LastUsedFilePathForAnimals
         {
@@ -47,7 +48,17 @@ namespace AnimalMotel
                     "LastUsedFilePathForAnimals cannot be null",
                     "LastUsedFilePathForAnimals");
         }
-        
+
+        public string LastUsedFilePathForRecipes
+        {
+            get => _lastUsedFilePathForRecipes;
+
+            set => _lastUsedFilePathForRecipes = value ??
+                throw new ArgumentNullException(
+                    "LastUsedFilePathForRecipes cannot be null",
+                    "LastUsedFilePathForRecipes");
+        }
+
 
 
 
@@ -74,14 +85,16 @@ namespace AnimalMotel
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("CurrentFilePathForAnimals", CurrentFilePathForAnimals);
+            //info.AddValue("CurrentFilePathForAnimals", CurrentFilePathForAnimals);
             info.AddValue("LastUsedFilePathForAnimals", LastUsedFilePathForAnimals);
+            info.AddValue("LastUsedFilePathForRecipes", LastUsedFilePathForRecipes);
         }
 
         public AppSettings(SerializationInfo info, StreamingContext context)
         {
-            CurrentFilePathForAnimals = (string)info.GetValue("CurrentFilePathForAnimals", typeof(string));
+            //CurrentFilePathForAnimals = (string)info.GetValue("CurrentFilePathForAnimals", typeof(string));
             LastUsedFilePathForAnimals = (string)info.GetValue("LastUsedFilePathForAnimals", typeof(string));
+            LastUsedFilePathForRecipes = (string)info.GetValue("LastUsedFilePathForRecipes", typeof(string));
         }
     }
 }
