@@ -15,10 +15,9 @@ namespace AnimalMotel
     [Serializable()]
     public class AppSettings : ISerializable
     {
-        // Fields for all settings
-        //private string _currentFilePathForAnimals;
         private string _lastUsedFilePathForAnimals;
         private string _lastUsedFilePathForRecipes;
+
 
 
 
@@ -28,16 +27,6 @@ namespace AnimalMotel
          * ===================  Properties  ===================
          * 
          */
-
-        //public string CurrentFilePathForAnimals
-        //{
-        //    get => _currentFilePathForAnimals;
-
-        //    set => _currentFilePathForAnimals = value ??
-        //        throw new ArgumentNullException(
-        //            "CurrentFilePathForAnimals cannot be null",
-        //            "CurrentFilePathForAnimals");
-        //}
 
         public string LastUsedFilePathForAnimals
         {
@@ -72,6 +61,8 @@ namespace AnimalMotel
 
         public AppSettings()
         {
+            LastUsedFilePathForAnimals = null;
+            LastUsedFilePathForRecipes = null;
         }
 
         /// <summary>
@@ -83,6 +74,11 @@ namespace AnimalMotel
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             //info.AddValue("CurrentFilePathForAnimals", CurrentFilePathForAnimals);
