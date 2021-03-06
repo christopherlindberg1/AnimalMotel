@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-// Own namespaces
 using AnimalMotel.Enums;
 
 
@@ -33,9 +31,9 @@ namespace AnimalMotel
         // ======================= Methods ======================= //
 
         /// <summary>
-        ///   Validates user input when adding a new animal.
-        ///   Validates different data points depending on what category
-        ///   the user has chosen.
+        /// Validates user input when adding a new animal.
+        /// Validates different data points depending on what category
+        /// the user has chosen.
         /// </summary>
         /// <returns>true if data validated, false otherwise.</returns>
         private bool ValidateInput()
@@ -59,7 +57,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates general animal input data.
+        /// Validates general animal input data.
         /// </summary>
         /// <returns>true if data validated, false otherwise.</returns>
         private bool ValidateGeneralAnimalData()
@@ -74,10 +72,10 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates input data that is related to a specific category.
+        /// Validates input data that is related to a specific category.
         /// </summary>
         /// <param name="category">Category of the animal.</param>
-        /// <returns></returns>
+        /// <returns>true if validated, false otherwise.</returns>
         private bool ValidateCategoryAnimalData(Category category)
         {
             switch (category)
@@ -100,7 +98,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates data that is specific to a specie.
+        /// Validates data that is specific to a specie.
         /// </summary>
         /// <param name="specie">Name of specie.</param>
         /// <returns>true if validated, false otherwise.</returns>
@@ -130,8 +128,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   General method for vaildating the string values
-        ///   in text box elements.
+        /// General method for vaildating the string values
+        /// in text box elements.
         /// </summary>
         /// <param name="element">Element that data is read from.</param>
         /// <param name="errNullOrEmpty">Error message for when element is empty.</param>
@@ -148,8 +146,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   General method for vaildating the integer values
-        ///   in text box elements.
+        /// General method for vaildating the integer values
+        /// in text box elements.
         /// </summary>
         /// <param name="element">TextBox element.</param>
         /// <param name="errNullOrEmpty">Error message for when the value is empty.</param>
@@ -187,8 +185,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   General method for vaildating the float values
-        ///   in text box elements.
+        /// General method for vaildating the float values
+        /// in text box elements.
         /// </summary>
         /// <param name="element">TextBox element.</param>
         /// <param name="errNullOrEmpty">Error message for when the value is empty.</param>
@@ -226,7 +224,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided name
+        /// Validates the provided name
         /// </summary>
         /// <returns>bool showing if name validated correctly</returns>
         private bool ValidateName()
@@ -235,7 +233,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided age
+        /// Validates the provided age
         /// </summary>
         /// <returns>bool showing if age validated correctly</returns>
         private bool ValidateAge()
@@ -248,7 +246,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Checks if the user has chosen a gender.
+        /// Checks if the user has chosen a gender.
         /// </summary>
         /// <returns>bool showing if a gender has been chosen or not</returns>
         private bool ValidateGender()
@@ -263,7 +261,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Checks if the user has chosen a category.
+        /// Checks if the user has chosen a category.
         /// </summary>
         /// <returns>bool showing if a specie has been chosen or not</returns>
         private bool ValidateSpecie()
@@ -278,7 +276,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided nr of teeth
+        /// Validates the provided nr of teeth
         /// </summary>
         /// <returns>bool showing if nr of teeth validated correctly</returns>
         private bool ValidateNrOfTeeth()
@@ -291,7 +289,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided tail length.
+        /// Validates the provided tail length.
         /// </summary>
         /// <returns>bool showing if tail length validated correctly.</returns>
         private bool ValidateTailLength()
@@ -304,7 +302,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided flying speed.
+        /// Validates the provided flying speed.
         /// </summary>
         /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateFlyingSpeed()
@@ -317,7 +315,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided claw length.
+        /// Validates the provided claw length.
         /// </summary>
         /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateClawLength()
@@ -330,7 +328,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided beak length.
+        /// Validates the provided beak length.
         /// </summary>
         /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateBeakLength()
@@ -343,7 +341,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates the provided nr of lives value.
+        /// Validates the provided nr of lives value.
         /// </summary>
         /// <returns>true if the data validated correctly, false otherwise.</returns>
         private bool ValidateNrOFLives()
@@ -361,8 +359,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates user input when changing the data for an existing animal.
-        ///   Validates different data points depending on specie the animal is.
+        /// Validates user input when changing the data for an existing animal.
+        /// Validates different data points depending on specie the animal is.
         /// </summary>
         /// <returns>true if data validates, false otherwise.</returns>
         private bool ValidateUpdatedInput()

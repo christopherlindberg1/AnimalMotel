@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Own namespaces
-using AnimalMotel.Animals;
-
 namespace AnimalMotel.Animals.Sorting
 {
     /// <summary>
-    ///   Class used for sorting animal objects by Id.
+    /// Class used for sorting animal objects by Id.
     /// </summary>
     public class SortAnimalById : IComparer<Animal>
     {

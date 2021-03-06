@@ -129,7 +129,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates that an ingredient is not empty befor adding it.
+        /// Validates that an ingredient is not empty befor adding it.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -198,7 +198,5 @@ namespace AnimalMotel
         {
             Close();
         }
-
-        
     }
 }

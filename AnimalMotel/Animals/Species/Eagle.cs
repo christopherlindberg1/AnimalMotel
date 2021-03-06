@@ -7,8 +7,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
-
-// Own namespaces
 using AnimalMotel.Animals.Categories;
 using AnimalMotel.Enums;
 
@@ -20,6 +18,8 @@ namespace AnimalMotel.Animals.Species
     {
         private float _clawLength;
         private FoodSchedule _foodSchedule;
+
+
 
 
         // ======================= Properties ======================= //
@@ -49,8 +49,8 @@ namespace AnimalMotel.Animals.Species
         // ======================= Methods ======================= //
 
         /// <summary>
-        ///   Parameterless constructor chain calling another constructor
-        ///   and passing in default values.
+        /// Parameterless constructor chain calling another constructor
+        /// and passing in default values.
         /// </summary>
         public Eagle()
             : this("No name", 0, Gender.Unknown)
@@ -58,9 +58,9 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Constructor taking arguments for Animal objects.
-        ///   Calls constructor that takes arguments for Bird objects
-        ///   with default argument for flying speed.
+        /// Constructor taking arguments for Animal objects.
+        /// Calls constructor that takes arguments for Bird objects
+        /// with default argument for flying speed.
         /// </summary>
         public Eagle(string name, int age, Gender gender)
             : this(name, age, gender, 0f)
@@ -68,9 +68,9 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Constructor taking arguments for Bird objects.
-        ///   Calls constructor that takes all arguments for Eagle objects
-        ///   with default argument for claw length.
+        /// Constructor taking arguments for Bird objects.
+        /// Calls constructor that takes all arguments for Eagle objects
+        /// with default argument for claw length.
         /// </summary>
         public Eagle(string name, int age,
             Gender gender, float flyingSpeed)
@@ -79,8 +79,8 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Constructor taking all arguments for Eagle objects.
-        ///   Calls base constructor that handle all arguments for Bird objects.
+        /// Constructor taking all arguments for Eagle objects.
+        /// Calls base constructor that handle all arguments for Bird objects.
         /// </summary>
         public Eagle(string name, int age,
             Gender gender, float flyingSpeed, float clawLength)
@@ -129,7 +129,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns the eater type of cats.
+        /// Returns the eater type of cats.
         /// </summary>
         /// <returns>EaterType.Carnivore.</returns>
         public override EaterType GetEaterType()
@@ -138,7 +138,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns the FoodSchedule object.
+        /// Returns the FoodSchedule object.
         /// </summary>
         /// <returns>FoodSchedule object.</returns>
         public override FoodSchedule GetFoodSchedule()
@@ -148,7 +148,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns the name of the specie by referring to the name of the class.
+        /// Returns the name of the specie by referring to the name of the class.
         /// </summary>
         /// <returns>"eagle".</returns>
         public override string GetSpecie()
@@ -157,7 +157,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns a string with the characteristics that are unique to eagles.
+        /// Returns a string with the characteristics that are unique to eagles.
         /// </summary>
         /// <returns>string with special characteristics.</returns>
         public override string GetSpecialCharacteristics()
@@ -167,9 +167,9 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Overrides the default ToString method.
-        ///   Formats a string by building ontop of the ToString method
-        ///   defined in the base class.
+        /// Overrides the default ToString method.
+        /// Formats a string by building ontop of the ToString method
+        /// defined in the base class.
         /// </summary>
         /// <returns>String representation of an Eagle object</returns>
         public override string ToString()

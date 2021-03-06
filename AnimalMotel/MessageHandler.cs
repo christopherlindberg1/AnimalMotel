@@ -11,6 +11,9 @@ namespace AnimalMotel
         private readonly List<string> _messages = new List<string>();
         private bool _hasSentMessage = false;
 
+
+
+
         // ====================== Properties ====================== //
         private List<string> Messages
         {
@@ -19,10 +22,11 @@ namespace AnimalMotel
 
 
 
+
         // ====================== Methods ====================== //
 
         /// <summary>
-        ///   Internal method used to keep track of whether messages has been presented.
+        /// Internal method used to keep track of whether messages has been presented.
         /// </summary>
         private bool HasSentMessage
         {
@@ -32,7 +36,7 @@ namespace AnimalMotel
 
 
         /// <summary>
-        ///   Adds message to a List with messages.
+        /// Adds message to a List with messages.
         /// </summary>
         /// <param name="message"></param>
         public void AddMessage(string message)
@@ -47,7 +51,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a string representation of all messages.
+        /// Returns a string representation of all messages.
         /// </summary>
         /// <returns>String with message.</returns>
         public string GetMessages()

@@ -7,8 +7,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
-
-// Own namespaces
 using AnimalMotel.Animals.Categories;
 using AnimalMotel.Enums;
 
@@ -20,6 +18,9 @@ namespace AnimalMotel.Animals.Species
     {
         private string _breed;
         private FoodSchedule _foodSchedule;
+
+
+
 
         // ======================= Properties ======================= //
 
@@ -49,8 +50,8 @@ namespace AnimalMotel.Animals.Species
         // ======================= Methods ======================= //
 
         /// <summary>
-        ///   Parameterless constructor chain calling another constructor
-        ///   and passing in default values.
+        /// Parameterless constructor chain calling another constructor
+        /// and passing in default values.
         /// </summary>
         public Dog()
             : this("No name", 0, Gender.Unknown)
@@ -58,9 +59,9 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Constructor taking arguments for Animal objects.
-        ///   Chain calls constructor that takes arguments for Mammal objects
-        ///   with default argument for nrOfTeeth and tailLength.
+        /// Constructor taking arguments for Animal objects.
+        /// Chain calls constructor that takes arguments for Mammal objects
+        /// with default argument for nrOfTeeth and tailLength.
         /// </summary>
         public Dog(string name, int age, Gender gender)
             : this(name, age, gender, 0, 0f)
@@ -79,9 +80,9 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Constructor taking all arguments for Dog objects.
-        ///   Calls base constructor that handle all arguments for Mammal objects.
-        ///   Hard codes a food schedule.
+        /// Constructor taking all arguments for Dog objects.
+        /// Calls base constructor that handle all arguments for Mammal objects.
+        /// Hard codes a food schedule.
         /// </summary>
         public Dog(string name, int age,
             Gender gender, int nrOfTeeth, float tailLength, string breed)
@@ -134,7 +135,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns the eater type of cats.
+        /// Returns the eater type of cats.
         /// </summary>
         /// <returns>EaterType.Carnivore.</returns>
         public override EaterType GetEaterType()
@@ -143,7 +144,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns the FoodSchedule object.
+        /// Returns the FoodSchedule object.
         /// </summary>
         /// <returns>FoodSchedule object.</returns>
         public override FoodSchedule GetFoodSchedule()
@@ -152,7 +153,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns the name of the specie by referring to the name of the class.
+        /// Returns the name of the specie by referring to the name of the class.
         /// </summary>
         /// <returns>"dog".</returns>
         public override string GetSpecie()
@@ -161,7 +162,7 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Returns a string with the characteristics that are unique to dogs.
+        /// Returns a string with the characteristics that are unique to dogs.
         /// </summary>
         /// <returns>String with special characteristics.</returns>
         public override string GetSpecialCharacteristics()
@@ -172,8 +173,8 @@ namespace AnimalMotel.Animals.Species
         }
 
         /// <summary>
-        ///   Formats a string by building ontop of the ToString method
-        ///   defined in the base class.
+        /// Formats a string by building ontop of the ToString method
+        /// defined in the base class.
         /// </summary>
         /// <returns>String representation of a Dog object</returns>
         public override string ToString()

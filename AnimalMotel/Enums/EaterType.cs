@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AnimalMotel.Enums
 {
     /// <summary>
-    ///   Enumeration containing names for all diets.
+    /// Enumeration containing names for all diets.
     /// </summary>
     public enum EaterType
     {

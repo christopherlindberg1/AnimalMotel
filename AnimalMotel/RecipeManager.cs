@@ -8,6 +8,5 @@ namespace AnimalMotel
 {
     public class RecipeManager : ListManager<Recipe>
     {
-
     }
 }

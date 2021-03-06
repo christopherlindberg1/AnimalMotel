@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-// Own namespaces
 using AnimalMotel.Animals.Categories;
 using AnimalMotel.Animals.Species;
 using AnimalMotel.Enums;
@@ -13,13 +11,13 @@ using AnimalMotel.Enums;
 namespace AnimalMotel.Factories
 {
     /// <summary>
-    ///   Class used to create Objects that defive from the Mammal class.
+    /// Class used to create Objects that defive from the Mammal class.
     /// </summary>
     public class MammalFactory
     {
         /// <summary>
-        ///   Creates an object for a specific Mammal specie and assigns its values
-        ///   to the ones passed in.
+        /// Creates an object for a specific Mammal specie and assigns its values
+        /// to the ones passed in.
         /// </summary>
         /// <param name="mammalSpecie">>Specie to create.</param>
         /// <param name="animalData">Data to assign to the object.</param>
@@ -41,7 +39,7 @@ namespace AnimalMotel.Factories
         }
 
         /// <summary>
-        ///   Creates an cat object with the data passed in.
+        /// Creates an cat object with the data passed in.
         /// </summary>
         /// <param name="animalData">Input data about the animal.</param>
         /// <returns>Eagle object.</returns>
@@ -60,7 +58,7 @@ namespace AnimalMotel.Factories
         }
 
         /// <summary>
-        ///   Creates an Dog object with the data passed in.
+        /// Creates an Dog object with the data passed in.
         /// </summary>
         /// <param name="animalData">Input data about the animal.</param>
         /// <returns>Eagle object.</returns>

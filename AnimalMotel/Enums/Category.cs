@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AnimalMotel.Enums
 {
     /// <summary>
-    ///   Enumeration containing names for all animal categories.
+    /// Enumeration containing names for all animal categories.
     /// </summary>
     public enum Category
     {

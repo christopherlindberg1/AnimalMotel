@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-
-// Own namespaces
 using AnimalMotel.Enums;
 using AnimalMotel.Animals;
 
@@ -18,6 +16,7 @@ namespace AnimalMotel
         private string _name;
         private int _age;
         private Gender _gender;
+
 
 
 
@@ -69,7 +68,7 @@ namespace AnimalMotel
         // ======================= Methods ======================= //
 
         /// <summary>
-        ///   Constructor taking arguments for name, age and gender.
+        /// Constructor taking arguments for name, age and gender.
         /// </summary>
         public Animal(string name, int age, Gender gender)
         {
@@ -79,35 +78,35 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Abstract method for returning the EaterType for the animal.
-        ///   Is implemented by the final subclasses.
+        /// Abstract method for returning the EaterType for the animal.
+        /// Is implemented by the final subclasses.
         /// </summary>
         /// <returns>EaterType value.</returns>
         public abstract EaterType GetEaterType();
 
         /// <summary>
-        ///   Abstract method for returning a FoodSchedule object from an animal.
-        ///   Is implemented by the final subclasses.
+        /// Abstract method for returning a FoodSchedule object from an animal.
+        /// Is implemented by the final subclasses.
         /// </summary>
         /// <returns>FoodSchedule object.</returns>
         public abstract FoodSchedule GetFoodSchedule();
 
         /// <summary>
-        ///   Abstract method for returning the name of the specie for an animal.
-        ///   Is implemented by the final subclasses.
+        /// Abstract method for returning the name of the specie for an animal.
+        /// Is implemented by the final subclasses.
         /// </summary>
         /// <returns>Name of the specie.</returns>
         public abstract string GetSpecie();
 
         /// <summary>
-        ///   Abstract method for returning the special characteristics of a specie.
-        ///   Is implemented by the final subclasses.
+        /// Abstract method for returning the special characteristics of a specie.
+        /// Is implemented by the final subclasses.
         /// </summary>
         /// <returns>String with special characteristics.</returns>
         public abstract string GetSpecialCharacteristics();
 
         /// <summary>
-        ///   String representation of an Animal object.
+        /// String representation of an Animal object.
         /// </summary>
         /// <returns>String representation of an Animal object.</returns>
         public override string ToString()

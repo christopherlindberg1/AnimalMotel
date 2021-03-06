@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-
-// Own namespaces
 using AnimalMotel.Enums;
 
 namespace AnimalMotel.Animals.Categories
@@ -17,6 +8,8 @@ namespace AnimalMotel.Animals.Categories
     {
         private int _nrOfTeeth;
         private float _tailLength;
+
+
 
 
         // ======================= Properties ======================= //

@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-// Own namespaces
 using AnimalMotel.Enums;
 using AnimalMotel.Factories;
 using AnimalMotel.Animals.Species;
@@ -18,13 +16,13 @@ using AnimalMotel.Animals.Species;
 namespace AnimalMotel
 {
     /// <summary>
-    ///   Main class for the main Form. This class is split into multiple files.
-    ///   This file handles the main tasks like controlling the flow of execution
-    ///   and events.
+    /// Main class for the main Form. This class is split into multiple files.
+    /// This file handles the main tasks like controlling the flow of execution
+    /// and events.
     /// </summary>
     partial class FormMain : Form
     {
-        private AppSettings _appSettings;
+        private AppSettings _appSettings = new AppSettings();
 
         private string _lastUsedPathToAnimalsFile = null;
         private string _lastUsedPathToRecipeManagerFile = null;
@@ -37,7 +35,6 @@ namespace AnimalMotel
         // Forms
         private FormRecipe _formRecipe = new FormRecipe();
         private FormStaffPlanning _formStaffPlanning = new FormStaffPlanning();
-
 
 
 
@@ -186,7 +183,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Sets the form controls to the default state.
+        /// Sets the form controls to the default state.
         /// </summary>
         private void SetFormToDefaultState()
         {
@@ -212,7 +209,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates the GUI elements so that animal objects can be changed.
+        /// Updates the GUI elements so that animal objects can be changed.
         /// </summary>
         private void SetFormToEditState()
         {
@@ -228,9 +225,9 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Fills the animal object list with all animals
-        ///   that belong to the specified category.
-        ///   Gives error is argument doesn't match an enum for animal category
+        /// Fills the animal object list with all animals
+        /// that belong to the specified category.
+        /// Gives error is argument doesn't match an enum for animal category
         /// </summary>
         /// <param name="animalCategory">String with the item clicked in in Category</param>
         private void FillAnimalObjectList(Category animalCategory)
@@ -252,7 +249,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Shows all species in the specie listbox.
+        /// Shows all species in the specie listbox.
         /// </summary>
         private void ShowAllAminalsInObjectList()
         {
@@ -261,8 +258,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Finds all file names in the folder named "Species" and stored them in an array.
-        ///   (each file name corresponds to the class name for a specie)
+        /// Finds all file names in the folder named "Species" and stored them in an array.
+        /// (each file name corresponds to the class name for a specie)
         /// </summary>
         /// <returns>Array containing names for all species.</returns>
         private string[] GetAllSpecies()
@@ -281,8 +278,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates the label of the section covering animal category
-        ///   specific input fields. Hides irrelevant fields.
+        /// Updates the label of the section covering animal category
+        /// specific input fields. Hides irrelevant fields.
         /// </summary>
         /// <param name="animalCategory">Animal category.</param>
         private void UpdateAnimalCategoryInputFields(Category animalCategory)
@@ -312,8 +309,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates the label of the section covering specie specific input
-        ///   fields. Hides irrelevant fields.
+        /// Updates the label of the section covering specie specific input
+        /// fields. Hides irrelevant fields.
         /// </summary>
         /// <param name="specie">Name of the specie.</param>
         private void UpdateSpecieInputFields(string specie)
@@ -350,8 +347,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates the section for the food schedule depending on what
-        ///   specie is selcted.
+        /// Updates the section for the food schedule depending on what
+        /// specie is selcted.
         /// </summary>
         /// <param name="specie">Name of the specie.</param>
         private void UpdateFoodScheduleFields(string specie)
@@ -384,7 +381,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Shows the food schedule for eagles.
+        /// Shows the food schedule for eagles.
         /// </summary>
         private void ShowFoodScheduleEagle()
         {
@@ -401,7 +398,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Shows the food schedule for pigeons.
+        /// Shows the food schedule for pigeons.
         /// </summary>
         private void ShowFoodSchedulePigeon()
         {
@@ -418,7 +415,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Shows the food schedule for cats.
+        /// Shows the food schedule for cats.
         /// </summary>
         private void ShowFoodScheduleCat()
         {
@@ -435,7 +432,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Shows the food schedule for cats.
+        /// Shows the food schedule for cats.
         /// </summary>
         private void ShowFoodScheduleDog()
         {
@@ -452,7 +449,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Clears and resets all input fields.
+        /// Clears and resets all input fields.
         /// </summary>
         private void ClearInput()
         {
@@ -472,7 +469,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Clears everything in the form so the user can start on a blank slate.
+        /// Clears everything in the form so the user can start on a blank slate.
         /// </summary>
         private void ResetForm()
         {
@@ -483,7 +480,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the Category enum value that match the selected category.
+        /// Returns the Category enum value that match the selected category.
         /// </summary>
         /// <returns>Category enum value.</returns>
         private Category GetAnimalCategory()
@@ -506,9 +503,9 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the category of the selected animal by checking if
-        ///   the selected animal matches any value in any of the specified enums
-        ///   for animal categories.
+        /// Returns the category of the selected animal by checking if
+        /// the selected animal matches any value in any of the specified enums
+        /// for animal categories.
         /// </summary>
         /// <returns>Category value for the selected specie</returns>
         private Category GetAnimalCategoryByAnimal()
@@ -534,7 +531,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the name of the selected specie in the listbox with species.
+        /// Returns the name of the selected specie in the listbox with species.
         /// </summary>
         /// <returns>String with the name of the selected specie.</returns>
         private string GetSelectedSpecie()
@@ -546,8 +543,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a dictionary containing the string data for ALL fields in 
-        ///   the form.
+        /// Returns a dictionary containing the string data for ALL fields in 
+        /// the form.
         /// </summary>
         /// <returns>Dictionary with user input data.</returns>
         private Dictionary<string, string> GetUserInput()
@@ -579,7 +576,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Adds animal to the storage and to the GUI.
+        /// Adds animal to the storage and to the GUI.
         /// </summary>
         private void AddAnimal()
         {
@@ -615,8 +612,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Clears the list with animals in the GUI and then
-        ///   adds all animals that are stored in the AnimalManager.
+        /// Clears the list with animals in the GUI and then
+        /// adds all animals that are stored in the AnimalManager.
         /// </summary>
         private void AddAnimalsToGUIList()
         {
@@ -642,7 +639,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the index for the selected animal in the ListView.
+        /// Returns the index for the selected animal in the ListView.
         /// </summary>
         /// <returns>index starting from zero if an item is selected, otherwise returns -1.</returns>
         private int GetSelectedAnimalIndex()
@@ -659,7 +656,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a list with the indexes for all selected animals in the ListView.
+        /// Returns a list with the indexes for all selected animals in the ListView.
         /// </summary>
         /// <returns>List with indexes</returns>
         private List<int> GetSelectedAnimalsIndexes()

@@ -36,7 +36,7 @@ namespace AnimalMotel
         // ======================== Methods ======================== //
 
         /// <summary>
-        ///   Returns a string representation of a recipe object.
+        /// Returns a string representation of a recipe object.
         /// </summary>
         /// <returns>String representation of recipe object.</returns>
         public override string ToString()
@@ -59,11 +59,5 @@ namespace AnimalMotel
         {
             
         }
-
-        /*public Recipe(SerializationInfo info, StreamingContext context)
-        {
-        Name = (string)info.GetValue("Name", typeof(string));
-            Ingredients = (ListManager<string>)info.GetValue("Ingredients", typeof(ListManager<string>));
-        }*/
     }
 }

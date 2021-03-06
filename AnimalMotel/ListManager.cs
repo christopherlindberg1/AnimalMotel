@@ -4,16 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-
-
-// Own namespaces
 using AnimalMotel.Enums.Sorting;
-using AnimalMotel.Animals.Sorting;
 using AnimalMotel.Serialization;
-using System.Xml.Serialization;
-using AnimalMotel.Animals.Species;
-using AnimalMotel.Storage;
-using System.Runtime.Serialization;
 
 namespace AnimalMotel
 {
@@ -35,7 +27,9 @@ namespace AnimalMotel
             get => _list;
 
             set => _list = value ??
-                throw new ArgumentNullException("List cannot be null.");
+                throw new ArgumentNullException(
+                    "List",
+                    "List cannot be null.");
         }
 
         public int Count
@@ -69,8 +63,8 @@ namespace AnimalMotel
         // ========================= Methods ========================= //
 
         /// <summary>
-        ///   Indexer for getting the object at a given index.
-        ///   Throws error if index is out of range.
+        /// Indexer for getting the object at a given index.
+        /// Throws error if index is out of range.
         /// </summary>
         /// <param name="index">Index of the item.</param>
         /// <returns>Item of the specified type.</returns>
@@ -88,7 +82,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Method for adding an object to the list.
+        /// Method for adding an object to the list.
         /// </summary>
         /// <param name="obj">Object to add.</param>
         /// <returns>True if obj != null, False otherwise.</returns>
@@ -105,8 +99,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Changes the value for a given key.
-        ///   Validates that the key exists.
+        /// Changes the value for a given key.
+        /// Validates that the key exists.
         /// </summary>
         /// <param name="obj">item to update.</param>
         /// <param name="index">Index of the item.</param>
@@ -124,7 +118,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Checks whether a given index is within the range for the list.
+        /// Checks whether a given index is within the range for the list.
         /// </summary>
         /// <param name="index">Index.</param>
         /// <returns>true if index is within range, false otherwise.</returns>
@@ -139,7 +133,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Removes all items in the list.
+        /// Removes all items in the list.
         /// </summary>
         public void DeleteAll()
         {
@@ -147,7 +141,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Deletes an item at a given index.
+        /// Deletes an item at a given index.
         /// </summary>
         /// <param name="index">Index of the object.</param>
         /// <returns>true if item got deleted, false otherwise.</returns>
@@ -175,7 +169,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Gets the item at a given index.
+        /// Gets the item at a given index.
         /// </summary>
         /// <param name="index">Index of the item.</param>
         /// <returns>item.</returns>
@@ -190,12 +184,12 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Sorts animals by any parameter. Takes a sorting class that implements
-        ///   the IComparer interface as an argument, which performs the sort.
-        ///   This method keeps track of the state in order to determine if to sort
-        ///   in ascending or descending order.
-        ///   Does not perform any sorting if the concrete class has not been initiated
-        ///   with a sorting class.
+        /// Sorts animals by any parameter. Takes a sorting class that implements
+        /// the IComparer interface as an argument, which performs the sort.
+        /// This method keeps track of the state in order to determine if to sort
+        /// in ascending or descending order.
+        /// Does not perform any sorting if the concrete class has not been initiated
+        /// with a sorting class.
         /// </summary>
         /// <param name="sorter">Sorting class that implements the IComparer interface.</param>
         public void Sort(IComparer<T> sorter)
@@ -229,7 +223,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Reverses the order of the items in the list.
+        /// Reverses the order of the items in the list.
         /// </summary>
         public void Reverse()
         {
@@ -237,9 +231,9 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Performs the last sort that was made. This method is used
-        ///   whenever animal objects are added, changed or deleted to preserve
-        ///   the correct order.
+        /// Performs the last sort that was made. This method is used
+        /// whenever animal objects are added, changed or deleted to preserve
+        /// the correct order.
         /// </summary>
         public void RepeatLatestSort()
         {
@@ -257,8 +251,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns an array with string representations of all objects
-        ///   stored int the list.
+        /// Returns an array with string representations of all objects
+        /// stored int the list.
         /// </summary>
         /// <returns>Array with string representations.</returns>
         public string[] ToStringArray()
@@ -274,8 +268,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a list with string representations of all objects
-        ///   stored int the list.
+        /// Returns a list with string representations of all objects
+        /// stored int the list.
         /// </summary>
         /// <returns>List with string representations.</returns>
         public List<string> ToStringList()

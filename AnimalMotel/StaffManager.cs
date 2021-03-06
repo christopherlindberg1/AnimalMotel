@@ -8,6 +8,5 @@ namespace AnimalMotel
 {
     public class StaffManager : ListManager<Staff>
     {
-        // No code needed atm. Only makes use of inherited members.
     }
 }

@@ -8,23 +8,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
-// Own namespaces
 using AnimalMotel.Enums;
 using AnimalMotel.Animals.Sorting;
-using AnimalMotel.Serialization;
 using AnimalMotel.Storage;
-using AnimalMotel.Animals.Species;
 using System.Runtime.Serialization;
 
 namespace AnimalMotel
 {
     /// <summary>
-    ///   Partial class containing all events for the main form.
+    /// Partial class containing all events for the main form.
     /// </summary>
     public partial class FormMain : Form
     {
         #region EventHandlers
+        private void SaveAppSettingsToStorage()
+        {
+            try
+            {
+                AppSettings.SaveSettingsToStorage();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         private void EventHandler_ListBoxCategoryIndexChange()
         {
@@ -89,6 +96,8 @@ namespace AnimalMotel
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+
+            AppSettings.LastGeneratedId = AnimalManager.LastGeneratedId;
         }
 
         private void EventHandler_SortAnimals(ColumnClickEventArgs e)
@@ -286,10 +295,15 @@ namespace AnimalMotel
                 return;
             }
 
+            // Serialize animal data
             try
             {
+                // Save animals
                 AnimalManager.BinarySerialize(fileDialog.FileName);
                 LastUsedPathToAnimalsFile = fileDialog.FileName;
+
+                // Save app settings
+                SaveAppSettingsToStorage();
             }
             catch (SerializationException ex)
             {
@@ -307,12 +321,14 @@ namespace AnimalMotel
             if (String.IsNullOrWhiteSpace(LastUsedPathToAnimalsFile))
             {
                 EventHandler_SaveAnimalsToFile_SaveAs();
+                SaveAppSettingsToStorage();
                 return;
             }
 
             try
             {
                 AnimalManager.BinarySerialize(LastUsedPathToAnimalsFile);
+                SaveAppSettingsToStorage();
                 MessageBox.Show(
                     "The animals have been saved.",
                     "Information",
@@ -343,13 +359,12 @@ namespace AnimalMotel
                 Close();
             }
         }
-
         #endregion
 
-
+        #region Events
         /// <summary>
-        ///   Event triggered when the selected index on listBoxCategory is changed.
-        ///   Updates the GUI accordingly.
+        /// Event triggered when the selected index on listBoxCategory is changed.
+        /// Updates the GUI accordingly.
         /// </summary>
         private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -357,8 +372,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Event triggered when the user clicks the checkbox for showing all animals.
-        ///   Updates the GUI accordingliy.
+        /// Event triggered when the user clicks the checkbox for showing all animals.
+        /// Updates the GUI accordingliy.
         /// </summary>
         private void checkBoxListAllAnimals_CheckedChanged(object sender, EventArgs e)
         {
@@ -366,8 +381,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Event triggered when the selected index for listBoxSpecies is changes.
-        ///   Updates the state of the GUI to match the selected item.
+        /// Event triggered when the selected index for listBoxSpecies is changes.
+        /// Updates the state of the GUI to match the selected item.
         /// </summary>
         private void listBoxSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -375,7 +390,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Click event for adding an animal.
+        /// Click event for adding an animal.
         /// </summary>
         private void btnAddAnimal_Click(object sender, EventArgs e)
         {
@@ -383,8 +398,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Event for sorting the animals by their attricutes when the 
-        ///   user clicks in a column heading.
+        /// Event for sorting the animals by their attricutes when the 
+        /// user clicks in a column heading.
         /// </summary>
         private void listViewAnimals_ColumnClick(object sender, ColumnClickEventArgs e)
         {
@@ -432,7 +447,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Clears everything in the form.
+        /// Clears everything in the form.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -442,8 +457,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Reads animal data from binary file.
-        ///   Clears existing animal data in GUI and replaces it with data from file.
+        /// Reads animal data from binary file.
+        /// Clears existing animal data in GUI and replaces it with data from file.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -453,7 +468,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Saves the current list if animals in a new binary file.
+        /// Saves the current list if animals in a new binary file.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -463,8 +478,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Reads recipe data from an XML file.
-        ///   Clears existing recipe data in GUI and replaces it with data from file.
+        /// Reads recipe data from an XML file.
+        /// Clears existing recipe data in GUI and replaces it with data from file.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -474,7 +489,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Saves current list of recipes in a new XML file.
+        /// Saves current list of recipes in a new XML file.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -483,10 +498,9 @@ namespace AnimalMotel
 
         }
 
-
         /// <summary>
-        ///   Event for saving animals and recipes when clicking the save option.
-        ///   Asks user to name files for animals and recipes if nothing has been saved before.
+        /// Event for saving animals and recipes when clicking the save option.
+        /// Asks user to name files for animals and recipes if nothing has been saved before.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -506,5 +520,6 @@ namespace AnimalMotel
         {
             EventHandler_ExitApp();
         }
+        #endregion
     }
 }

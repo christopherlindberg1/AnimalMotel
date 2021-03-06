@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AnimalMotel.Enums.Sorting
 {
     /// <summary>
-    ///   Enum with the possible sorting directions for comparable items.
+    /// Enum with the possible sorting directions for comparable items.
     /// </summary>
     public enum SortingDirections
     {

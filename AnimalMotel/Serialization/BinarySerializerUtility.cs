@@ -4,26 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using AnimalMotel.Animals.Species;
 
 namespace AnimalMotel.Serialization
 {
     /// <summary>
-    ///   Class used to serialize and deserialize objects
-    ///   using binary serialization.
+    /// Class used to serialize and deserialize objects
+    /// using binary serialization.
     /// </summary>
     public class BinarySerializerUtility
     {
         /// <summary>
-        ///   Serializes and object to a given file path
+        /// Serializes an object to a given file path
         /// </summary>
         /// <typeparam name="T">Type of object to be serialized</typeparam>
         /// <param name="obj">object to be serialized</param>
         /// <param name="filePath">Path to the file that stores the data</param>
-        /// <returns></returns>
         public static void Serialize<T>(string filePath, T obj)
         {
             FileStream fileStream = new FileStream(filePath, FileMode.Create);
@@ -46,7 +43,12 @@ namespace AnimalMotel.Serialization
             }
         }
 
-
+        /// <summary>
+        /// Deserializes an object from a file
+        /// </summary>
+        /// <typeparam name="T">Type of the object to deserialize</typeparam>
+        /// <param name="filePath">Path to the file to read from.</param>
+        /// <returns>Object of type T</returns>
         public static T Deserialize<T>(string filePath)
         {
             FileStream filestream = null;
@@ -57,31 +59,18 @@ namespace AnimalMotel.Serialization
                 throw new FileNotFoundException("The file is not found. ", filePath);
             }
 
-            int i = 0;
-
             try
             {
-                
                 filestream = new FileStream(filePath, FileMode.Open);
                 filestream.Position = 0;
-                i = 1;
-
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
-                i = 2;
-                
-
-                string info = binaryFormatter.ToString();
       
                 obj = binaryFormatter.Deserialize(filestream);
-                i = 3;
-
                 return (T)obj;
             }
             catch (Exception ex)
             {
-                
                 throw;
-                //throw new Exception($"Failed { i }");
             }
             finally
             {

@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Own namespaces
-using AnimalMotel.Animals;
-
 namespace AnimalMotel.Animals.Sorting
 {
     /// <summary>
-    ///   Class used for sorting animal objects by gender.
+    /// Class used for sorting animal objects by gender.
     /// </summary>
     public class SortAnimalByGender : IComparer<Animal>
     {

@@ -8,20 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
-// Own namespaces
 using AnimalMotel.Enums;
-using AnimalMotel.Storage;
-using AnimalMotel.Serialization;
-using AnimalMotel.Animals.Species;
 
 namespace AnimalMotel
 {
     public partial class FormMain : Form
     {
         /// <summary>
-        ///   Initializes the entire app to the
-        ///   starting state
+        /// Initializes the entire app to the
+        /// starting state
         /// </summary>
         private void InitializeApp()
         {
@@ -31,11 +26,12 @@ namespace AnimalMotel
 
         private void InitializeData()
         {
-            //AppSettings = AppSettings.GetSettingsFromStorage();
+            AppSettings = AppSettings.GetSettingsFromStorage();
+            AnimalManager.LastGeneratedId = AppSettings.LastGeneratedId;
         }
 
         /// <summary>
-        ///   Initializes the GUI of the app
+        /// Initializes the GUI of the app
         /// </summary>
         private void InitializeGUI()
         {
@@ -65,7 +61,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Initializes general elements like buttons on the main form.
+        /// Initializes general elements like buttons on the main form.
         /// </summary>
         private void InitializeGeneralElements()
         {
@@ -158,16 +154,7 @@ namespace AnimalMotel
             // Display grid lines.
             listViewAnimals.GridLines = true;
 
-            // Filling the app with sample data
-            //AnimalManager.FillManagerWithSampleData();
             AddAnimalsToGUIList();
-        }
-
-        private void InitializeStoragePaths()
-        {
-            // Streamreader for animal path file.
-            /*StreamReader sr = new StreamReader($"{ this._pathToPathsFolder }\\PathsToAnimalsFile.txt");
-            sr.Close();*/
         }
     }
 }

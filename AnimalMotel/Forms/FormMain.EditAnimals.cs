@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-// Own namespaces
 using AnimalMotel.Enums;
 using AnimalMotel.Animals.Species;
 using AnimalMotel.Animals.Categories;
@@ -17,13 +15,13 @@ using AnimalMotel.Animals.Categories;
 namespace AnimalMotel
 {
     /// <summary>
-    ///   Partial class responsible for functionality related to
-    ///   updateing and deleting animals.
+    /// Partial class responsible for functionality related to
+    /// updateing and deleting animals.
     /// </summary>
     public partial class FormMain : Form
     {
         /// <summary>
-        ///   Updates the GUI to match a specific specie.
+        /// Updates the GUI to match a specific specie.
         /// </summary>
         /// <param name="animalCategory">Category of the animal.</param>
         /// <param name="specie">Specie of the animal.</param>
@@ -35,7 +33,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Fills the input fields with data from an animal.
+        /// Fills the input fields with data from an animal.
         /// </summary>
         /// <param name="animal">Animal object.</param>
         private void FillGUIWithAnimalData(Animal animal)
@@ -51,7 +49,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Fills the GUI with general animal data from an animal object.
+        /// Fills the GUI with general animal data from an animal object.
         /// </summary>
         /// <param name="animal"></param>
         private void FillGUIWithGeneralAnimalData(Animal animal)
@@ -62,7 +60,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Fills the GUI with data that is specific to the animal's category.
+        /// Fills the GUI with data that is specific to the animal's category.
         /// </summary>
         /// <param name="category">The animal's category.</param>
         /// <param name="animal">Animal object.</param>
@@ -85,7 +83,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Fills the GUI with data that is specific the the animal's specie.
+        /// Fills the GUI with data that is specific the the animal's specie.
         /// </summary>
         /// <param name="animal">Animal object.</param>
         private void FillGUIWithSpecieSpecificData(Animal animal)
@@ -120,7 +118,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the animal category for a given animal specie.
+        /// Returns the animal category for a given animal specie.
         /// </summary>
         /// <param name="specie">Name of the specie.</param>
         /// <returns>Category value.</returns>
@@ -142,7 +140,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns the animal category for a given animal object.
+        /// Returns the animal category for a given animal object.
         /// </summary>
         /// <param name="animal">Animal object.</param>
         /// <returns>Category value.</returns>
@@ -152,7 +150,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Sets the gender in listBoxGender to match an animal.
+        /// Sets the gender in listBoxGender to match an animal.
         /// </summary>
         /// <param name="animal">Animal object.</param>
         private void SetListBoxGender(Animal animal)
@@ -172,7 +170,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates an animal to the new data submitted in the form.
+        /// Updates an animal to the new data submitted in the form.
         /// </summary>
         private void UpdateAnimal()
         {
@@ -196,7 +194,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates general animal data for an animal object.
+        /// Updates general animal data for an animal object.
         /// </summary>
         /// <param name="animal">Animal object.</param>
         /// <param name="category">category of the animal.</param>
@@ -212,7 +210,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates category specific data for an animal object.
+        /// Updates category specific data for an animal object.
         /// </summary>
         /// <param name="animal">Animal object.</param>
         /// <param name="animalData">User input data.</param>
@@ -241,7 +239,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Updates specie specific data for an animal object.
+        /// Updates specie specific data for an animal object.
         /// </summary>
         /// <param name="animal">Animal object.</param>
         /// <param name="animalData">User input data.</param>
@@ -279,7 +277,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Deletes marked animals.
+        /// Deletes marked animals.
         /// </summary>
         private void DeleteMarkedAnimals()
         {

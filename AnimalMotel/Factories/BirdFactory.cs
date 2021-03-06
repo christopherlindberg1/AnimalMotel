@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-// Own namespaces
 using AnimalMotel.Animals.Categories;
 using AnimalMotel.Animals.Species;
 using AnimalMotel.Enums;
@@ -13,13 +11,12 @@ using AnimalMotel.Enums;
 namespace AnimalMotel.Factories
 {
     /// <summary>
-    ///   Class responsible for creating objects that derive from the Bird class.
     /// </summary>
     public class BirdFactory
     {
         /// <summary>
-        ///   Creates an object for a specific Bird specie and assigns its values
-        ///   to the ones passed in.
+        /// Creates an object for a specific Bird specie and assigns its values
+        /// to the ones passed in.
         /// </summary>
         /// <param name="birdSpecie">Specie to create.</param>
         /// <param name="animalData">Data to assign to the object.</param>
@@ -41,7 +38,7 @@ namespace AnimalMotel.Factories
         }
 
         /// <summary>
-        ///   Creates an Eagle object with the data passed in.
+        /// Creates an Eagle object with the data passed in.
         /// </summary>
         /// <param name="animalData">Input data about the animal.</param>
         /// <returns>Eagle object.</returns>
@@ -59,7 +56,7 @@ namespace AnimalMotel.Factories
         }
 
         /// <summary>
-        ///   Creates an Pigeon object with the data passed in.
+        /// Creates an Pigeon object with the data passed in.
         /// </summary>
         /// <param name="animalData">Input data about the animal.</param>
         /// <returns>Pigeon object.</returns>

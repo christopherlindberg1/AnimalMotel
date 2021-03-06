@@ -96,9 +96,6 @@
     <Compile Include="Forms\FormRecipe.Designer.cs">
       <DependentUpon>FormRecipe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRecipe.init.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\FormRecipe.Validator.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -16,12 +16,14 @@ namespace AnimalMotel
 
 
 
+
         // ======================= Properties ======================= //
 
         private MessageHandler MessageHandler
         {
             get { return this._messageHandler; }
         }
+
 
 
         
@@ -66,6 +68,5 @@ namespace AnimalMotel
 
             return true;
         }
-
     }
 }

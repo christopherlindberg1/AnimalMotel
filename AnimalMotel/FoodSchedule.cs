@@ -14,6 +14,7 @@ namespace AnimalMotel
 
 
 
+
         // ======================= Properties ======================= //
 
         public List<string> FoodDescriptionList
@@ -36,7 +37,6 @@ namespace AnimalMotel
 
         // ======================= Methods ======================= //
 
-
         public FoodSchedule()
         {
             _foodDescriptionList = new List<string>();
@@ -48,8 +48,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Adds a food schedule item to the collection.
-        ///   Validates that it is not empty and that it does not already exist.
+        /// Adds a food schedule item to the collection.
+        /// Validates that it is not empty and that it does not already exist.
         /// </summary>
         /// <param name="item">Food schedule item to be added.</param>
         /// <returns>bool showing if item was added of not</returns>
@@ -74,8 +74,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Changes a food schedule item at a given index.
-        ///   Validates index and item.
+        /// Changes a food schedule item at a given index.
+        /// Validates index and item.
         /// </summary>
         /// <param name="item">Food schedule item.</param>
         /// <param name="index">Index for the food schedule item.</param>
@@ -98,8 +98,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Removed a food schedule item at a given index.
-        ///   Validates index.
+        /// Removed a food schedule item at a given index.
+        /// Validates index.
         /// </summary>
         /// <param name="index">Index for the food item.</param>
         /// <returns>bool showing if food schedule item got deleted or not.</returns>
@@ -116,8 +116,8 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a string with information that the animal requires
-        ///   no manual feeding.
+        /// Returns a string with information that the animal requires
+        /// no manual feeding.
         /// </summary>
         /// <returns>string with no feeding-information.</returns>
         public string DescribeNoFeedingRequired()
@@ -126,7 +126,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a specific food schedule item.
+        /// Returns a specific food schedule item.
         /// </summary>
         /// <param name="index">Index for the food schedule item.</param>
         /// <returns>Food schedule item.</returns>
@@ -141,7 +141,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns all food schedule descriptions as a single string.
+        /// Returns all food schedule descriptions as a single string.
         /// </summary>
         /// <returns>string with all food schedule descriptions.</returns>
         public override string ToString()
@@ -164,7 +164,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Validates that an index is within the range of the collection.
+        /// Validates that an index is within the range of the collection.
         /// </summary>
         /// <param name="index">index for the collection.</param>
         /// <returns>bool showing if index is withing the range of the collection or not.</returns>

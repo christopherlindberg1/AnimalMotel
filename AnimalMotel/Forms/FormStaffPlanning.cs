@@ -65,7 +65,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Adds a qualification to the storage and GUI.
+        /// Adds a qualification to the storage and GUI.
         /// </summary>
         private void AddQualification()
         {
@@ -73,7 +73,7 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Adds a qualification to the GUI.
+        /// Adds a qualification to the GUI.
         /// </summary>
         private void AddQualificationToGUIList()
         {
@@ -183,7 +183,6 @@ namespace AnimalMotel
 
             DeleteQualification();
             SetFormToDefaultState();
-
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -207,7 +206,5 @@ namespace AnimalMotel
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
-        
     }
 }

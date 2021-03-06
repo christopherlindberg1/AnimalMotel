@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-
-// Own namespaces
 using AnimalMotel.Enums;
 
 namespace AnimalMotel.Animals.Categories
@@ -14,6 +7,8 @@ namespace AnimalMotel.Animals.Categories
     public abstract class Bird : Animal
     {
         private float _flyingSpeed;
+
+
 
 
         // ======================= Properties ======================= //

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace AnimalMotel.Enums.Sorting
 {
     /// <summary>
-    ///   Enum containing all parameters that animals can
-    ///   get sorted by.
+    /// Enum containing all parameters that animals can
+    /// get sorted by.
     /// </summary>
     public enum SortingParameters
     {
