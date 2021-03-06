@@ -75,20 +75,23 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        /// 
+        /// Method used for deserializing AppSettings objects.
         /// </summary>
         /// <param name="info"></param>
         /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            //info.AddValue("CurrentFilePathForAnimals", CurrentFilePathForAnimals);
             info.AddValue("LastUsedFilePathForAnimals", LastUsedFilePathForAnimals);
             info.AddValue("LastUsedFilePathForRecipes", LastUsedFilePathForRecipes);
         }
 
+        /// <summary>
+        /// Constructor used for deserializing AppSettings objects
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public AppSettings(SerializationInfo info, StreamingContext context)
         {
-            //CurrentFilePathForAnimals = (string)info.GetValue("CurrentFilePathForAnimals", typeof(string));
             LastUsedFilePathForAnimals = (string)info.GetValue("LastUsedFilePathForAnimals", typeof(string));
             LastUsedFilePathForRecipes = (string)info.GetValue("LastUsedFilePathForRecipes", typeof(string));
         }

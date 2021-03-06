@@ -24,28 +24,27 @@ namespace AnimalMotel.Serialization
         /// <param name="obj">object to be serialized</param>
         /// <param name="filePath">Path to the file that stores the data</param>
         /// <returns></returns>
-        public static bool Serialize<T>(string filePath, T obj)
+        public static void Serialize<T>(string filePath, T obj)
         {
-            bool serializationOK = false;
-
-            FileStream filestream = null;
+            Stream stream = null;
 
             try
             {
-                filestream = new FileStream(filePath, FileMode.OpenOrCreate);
+                stream = File.Open(filePath, FileMode.Create);
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(filestream, obj);
+                binaryFormatter.Serialize(stream, obj);
             }
-            catch 
+            catch (Exception ex) 
             {
-                serializationOK = false;
+                throw;
             }
             finally
             {
-                filestream.Close();
+                if (stream != null)
+                {
+                    stream.Close();
+                }
             }
-
-            return serializationOK;
         }
 
 
@@ -65,10 +64,12 @@ namespace AnimalMotel.Serialization
             {
                 
                 filestream = new FileStream(filePath, FileMode.Open);
+                filestream.Position = 0;
                 i = 1;
 
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 i = 2;
+                
 
                 string info = binaryFormatter.ToString();
       
@@ -77,13 +78,18 @@ namespace AnimalMotel.Serialization
 
                 return (T)obj;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception($"Failed { i }");
+                
+                throw;
+                //throw new Exception($"Failed { i }");
             }
             finally
             {
-                filestream.Close();
+                if (filestream != null)
+                {
+                    filestream.Close();
+                }
             }
         }
     }

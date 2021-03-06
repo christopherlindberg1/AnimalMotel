@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -100,10 +101,10 @@ namespace AnimalMotel
 
         void BinarySerialize(string FileName);
 
-        void BinaryDeSerialize(string FileName);
+        void BinaryDeserialize(string FileName);
 
         void XMLSerialize(string FileName);
 
-        void XmlFileDeserialize(string FileName);
+        void XmlDeserialize(string FileName);
     }
 }

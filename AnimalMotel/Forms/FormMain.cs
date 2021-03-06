@@ -24,6 +24,8 @@ namespace AnimalMotel
     /// </summary>
     partial class FormMain : Form
     {
+        private AppSettings _appSettings;
+
         // Managers
         private readonly AnimalManager _animalManager = new AnimalManager();
         private readonly RecipeManager _recipeManager = new RecipeManager();
@@ -66,6 +68,7 @@ namespace AnimalMotel
             get { return _formStaffPlanning; }
             set { _formStaffPlanning = value; }
         }
+
 
 
 

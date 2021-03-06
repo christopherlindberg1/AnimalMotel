@@ -13,14 +13,16 @@ using AnimalMotel.Serialization;
 using System.Xml.Serialization;
 using AnimalMotel.Animals.Species;
 using AnimalMotel.Storage;
+using System.Runtime.Serialization;
 
 namespace AnimalMotel
 {
     public class ListManager<T> : IListManager<T>
     {
-        public List<T> _list = new List<T>();
-
+        private List<T> _list = new List<T>();
+        [NonSerialized]
         private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
+        [NonSerialized]
         private IComparer<T> _lastUsedSortingClass;
 
 
@@ -28,9 +30,24 @@ namespace AnimalMotel
 
         // ========================= Properties ========================= //
 
+        public List<T> List
+        {
+            get => _list;
+
+            set => _list = value ??
+                throw new ArgumentNullException("List cannot be null.");
+        }
+
         public int Count
         {
             get { return _list.Count; }
+        }
+
+        public SortingDirections LastUsedSortingDirection
+        {
+            get => _lastUsedSortingDirection;
+
+            set => _lastUsedSortingDirection = value;
         }
 
         public IComparer<T> LastUsedSortingClass
@@ -277,17 +294,17 @@ namespace AnimalMotel
         ///   Returns a copy of the list.
         /// </summary>
         /// <returns></returns>
-        public List<T> GetCopy()
-        {
-            List<T> copy = new List<T>();
+        //public List<T> GetCopy()
+        //{
+        //    List<T> copy = new List<T>();
 
-            foreach (T obj in _list)
-            {
-                copy.Add(obj);
-            }
+        //    foreach (T obj in _list)
+        //    {
+        //        copy.Add(obj);
+        //    }
 
-            return copy;
-        }
+        //    return copy;
+        //}
 
         /// <summary>
         /// Method for binary serializing of the objects in the list (used to serialize animals)
@@ -295,7 +312,14 @@ namespace AnimalMotel
         /// <param name="filePath">Path to a binary file where animals should be stored</param>
         public void BinarySerialize(string filePath)
         {
-            throw new NotImplementedException();
+            try
+            {
+                BinarySerializerUtility.Serialize<List<T>>(filePath, List);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -303,9 +327,9 @@ namespace AnimalMotel
         /// (used when deserializing animals)
         /// </summary>
         /// <param name="filePath">Path to the binary file with serialized animals</param>
-        public void BinaryDeSerialize(string filePath)
+        public void BinaryDeserialize(string filePath)
         {
-            throw new NotImplementedException();
+            List = BinarySerializerUtility.Deserialize<List<T>>(filePath);
         }
 
         /// <summary>
@@ -322,7 +346,7 @@ namespace AnimalMotel
         /// (used when deserializing animals)
         /// </summary>
         /// <param name="filename"></param>
-        public void XmlFileDeserialize(string filename)
+        public void XmlDeserialize(string filename)
         {
             throw new NotImplementedException();
         }

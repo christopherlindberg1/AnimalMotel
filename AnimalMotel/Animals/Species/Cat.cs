@@ -20,7 +20,8 @@ namespace AnimalMotel.Animals.Species
     {
         private int _lives;
         private FoodSchedule _foodSchedule;
-        int MyProperty { get; set; }
+
+
 
 
         // ======================= Properties ======================= //

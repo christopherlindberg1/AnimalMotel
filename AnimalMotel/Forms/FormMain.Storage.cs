@@ -21,8 +21,6 @@ namespace AnimalMotel
         private string _pathToAnimalsFile = null;
         private string _pathToRecipesFile = null;
         private string _pathToPathsFolder = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\AppData\\FilePaths"));
-        //private BinarySerializerUtility _binarySerializer = new BinarySerializerUtility();
-        //private XMLSerializerUtility _xmlSerializer = new XMLSerializerUtility();
 
 
 
@@ -39,9 +37,13 @@ namespace AnimalMotel
                 }
 
                 // Binary serialization
-                BinarySerializerUtility.Serialize(filePath, this.AnimalManager.GetCopy());
+                BinarySerializerUtility.Serialize<List<Animal>>(filePath, this.AnimalManager.List);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
         }
 
         private List<Animal> LoadAnimalsFromFile(string filePath)

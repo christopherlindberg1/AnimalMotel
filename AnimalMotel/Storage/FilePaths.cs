@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AnimalMotel.Storage
 {
     /// <summary>
-    /// Class containing file paths that are used withinthe app.
+    /// Class containing file paths that are used within the app.
     /// </summary>
     public class FilePaths
     {

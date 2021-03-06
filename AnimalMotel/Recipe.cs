@@ -57,13 +57,13 @@ namespace AnimalMotel
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            Name = (string)info.GetValue("Name", typeof(string));
-            Ingredients = (ListManager<string>)info.GetValue("Ingredients", typeof(ListManager<string>));
+            
         }
 
         /*public Recipe(SerializationInfo info, StreamingContext context)
         {
-
+        Name = (string)info.GetValue("Name", typeof(string));
+            Ingredients = (ListManager<string>)info.GetValue("Ingredients", typeof(ListManager<string>));
         }*/
     }
 }

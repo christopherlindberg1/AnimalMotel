@@ -24,7 +24,7 @@ namespace AnimalMotel.Serialization
                 // Catch more specific exception than this
                 catch (Exception ex)
                 {
-                    throw new InvalidOperationException();
+                    throw;
                 }
             }
         }

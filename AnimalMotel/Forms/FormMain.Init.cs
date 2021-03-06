@@ -26,7 +26,7 @@ namespace AnimalMotel
         private void InitializeApp()
         {
             InitializeGUI();
-            // InitializeData();
+            InitializeData();
 
             //TestMethod();
         }
@@ -210,7 +210,7 @@ namespace AnimalMotel
             listViewAnimals.GridLines = true;
 
             // Filling the app with sample data
-            AnimalManager.FillManagerWithSampleData();
+            //AnimalManager.FillManagerWithSampleData();
             AddAnimalsToGUIList();
         }
 

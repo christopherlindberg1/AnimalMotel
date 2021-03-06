@@ -13,7 +13,8 @@ using System.IO;
 using AnimalMotel.Enums;
 using AnimalMotel.Animals.Sorting;
 using AnimalMotel.Serialization;
-
+using AnimalMotel.Storage;
+using AnimalMotel.Animals.Species;
 
 namespace AnimalMotel
 {
@@ -291,29 +292,38 @@ namespace AnimalMotel
         /// <param name="e"></param>
         private void menuFileOpenBinaryFile_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Event for deserialization");
+
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\AppData\\Data"));
-            fileDialog.Title = "Chose file to open";
-            fileDialog.Filter = "Binary File | *.bin";
-            fileDialog.ShowDialog();
+            fileDialog.Title = "Choose file to open";
+            fileDialog.Filter = "Binary Files | *.bin";
+            
+            DialogResult result = fileDialog.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
 
             try
             {
-                List<Animal> animals = LoadAnimalsFromFile(fileDialog.FileName);
+                //List<Animal> animals = LoadAnimalsFromFile(fileDialog.FileName);
 
-                MessageBox.Show("Hello MF");
+                //AnimalManager.BinaryDeserialize(fileDialog.FileName);
 
-                this.AnimalManager.AddAll(animals);
+                AnimalManager.List = BinarySerializerUtility.Deserialize<List<Animal>>(fileDialog.FileName);
+
+                MessageBox.Show(AnimalManager.ListCount.ToString());
+
+                //this.AnimalManager.AddAll(animals);
 
                 AddAnimalsToGUIList();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         /// <summary>
@@ -323,10 +333,12 @@ namespace AnimalMotel
         /// <param name="e"></param>
         private void menuFileSaveAsBinaryFile_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Event for serialization");
+
             SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\Storage\\Data"));
+            fileDialog.InitialDirectory = FilePaths.AnimalDataFolderPath;
             fileDialog.Title = "Name the file for storing animal data";
-            fileDialog.Filter = "Binary File | *.bin";
+            fileDialog.Filter = "Binary Files | *.bin";
             
             DialogResult result = fileDialog.ShowDialog();
 
@@ -335,8 +347,20 @@ namespace AnimalMotel
                 return;
             }
 
+            MessageBox.Show(fileDialog.FileName);
 
-            SaveAnimalsToFile(fileDialog.FileName);
+            try
+            {
+                //AnimalManager.BinarySerialize(fileDialog.FileName);
+                //Cat cat = new Cat("Zimba", 10, Gender.Male, 20, 20, 30);
+
+                BinarySerializerUtility.Serialize<List<Animal>>(fileDialog.FileName, AnimalManager.List);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            //SaveAnimalsToFile(fileDialog.FileName);
         }
 
         /// <summary>
@@ -370,20 +394,7 @@ namespace AnimalMotel
         private void menuFileSave_Click(object sender, EventArgs e)
         {
             // Get file paths for animals and recipes.
-            while (String.IsNullOrWhiteSpace(this._pathToAnimalsFile))
-            {
-                this._pathToAnimalsFile = this.GetPathToAnimalsFile();
-            }
-            while (String.IsNullOrWhiteSpace(this._pathToRecipesFile))
-            {
-                this._pathToRecipesFile = this.GetPathToRecipesFile();
-            }
-
-
-
             
-
-
 
             
         }
