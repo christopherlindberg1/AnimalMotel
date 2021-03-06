@@ -1,19 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AnimalMotel
 {
-    public class FoodSchedule
+    [Serializable]
+    public class FoodSchedule : ISerializable
     {
-        private readonly List<string> _foodDescriptionList;
+        private List<string> _foodDescriptionList;
 
 
 
         // ======================= Properties ======================= //
 
+        public List<string> FoodDescriptionList
+        {
+            get => _foodDescriptionList;
+
+            set => _foodDescriptionList = value ??
+                throw new ArgumentNullException(
+                    "FoodDescriptionList",
+                    "FoodDescriptionList cannot be null.");
+        }
 
         public int NrOfFoodDescriptions
         {
@@ -165,6 +176,16 @@ namespace AnimalMotel
             }
 
             return false;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("FoodDescriptionList", FoodDescriptionList);
+        }
+
+        public FoodSchedule(SerializationInfo info, StreamingContext context)
+        {
+            FoodDescriptionList = (List<string>)info.GetValue("FoodDescriptionList", typeof(List<string>));
         }
     }
 }
