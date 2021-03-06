@@ -25,57 +25,13 @@ namespace AnimalMotel
         /// </summary>
         private void InitializeApp()
         {
-            InitializeGUI();
             InitializeData();
-
-            //TestMethod();
+            InitializeGUI();
         }
 
-        private void TestMethod()
+        private void InitializeData()
         {
-            string eagleFilePathXml = Path.GetFullPath(
-                    Path.Combine(FilePaths.AnimalDataFolderPath, @"eagle.xml"));
-
-            string eagleFilePathBin = Path.GetFullPath(
-                    Path.Combine(FilePaths.AnimalDataFolderPath, @"eagle.bin"));
-
-            // Serialize
-            try
-            {
-                Eagle eagle = new Eagle
-                {
-                    Name = "Chris",
-                    Age = 2,
-                    Gender = Enums.Gender.Male,
-                    FlyingSpeed = 10,
-                    ClawLength = 10,
-                };
-
-                BinarySerializerUtility.Serialize<Eagle>(eagleFilePathBin, eagle);
-                XMLSerializerUtility.Serialize<Eagle>(eagleFilePathXml, eagle);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                //throw;
-            }
-
-            // Deserialize
-            try
-            {
-                //Eagle eagleRevivedXml = XMLSerializerUtility.XmlDeserialize<Eagle>(eagleFilePathXml);
-                Eagle eagleRevivedBin = BinarySerializerUtility.Deserialize<Eagle>(eagleFilePathBin);
-
-                //MessageBox.Show(eagleRevivedXml.ToString());
-                MessageBox.Show(eagleRevivedBin.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                //throw;
-            }
-
-            Close();
+            //AppSettings = AppSettings.GetSettingsFromStorage();
         }
 
         /// <summary>
@@ -99,13 +55,6 @@ namespace AnimalMotel
             InitializeListViewAnimals();
 
             SetFormToDefaultState();
-
-            //SetSampleData();
-        }
-
-        private void InitializeData()
-        {
-            InitializeStoragePaths();
         }
 
         private void InitializeMenuStrip()
@@ -213,18 +162,6 @@ namespace AnimalMotel
             //AnimalManager.FillManagerWithSampleData();
             AddAnimalsToGUIList();
         }
-
-        //private void SetSampleData()
-        //{
-        //    textBoxName.Text = "Bosse";
-        //    textBoxAge.Text = "5";
-        //    listBoxGender.SelectedIndex = 1;
-        //    listBoxCategory.SelectedIndex = 0;
-        //    listBoxSpecies.SelectedIndex = 0;
-        //    textBoxNrOfTeeth.Text = "20";
-        //    textBoxClawLength.Text = "4";
-        //    textBoxFlyingSpeed.Text = "200";
-        //}
 
         private void InitializeStoragePaths()
         {

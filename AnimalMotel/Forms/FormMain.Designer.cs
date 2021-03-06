@@ -298,7 +298,6 @@
             this.listViewAnimals.UseCompatibleStateImageBehavior = false;
             this.listViewAnimals.View = System.Windows.Forms.View.Details;
             this.listViewAnimals.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewAnimals_ColumnClick);
-            this.listViewAnimals.SelectedIndexChanged += new System.EventHandler(this.listViewAnimals_SelectedIndexChanged);
             // 
             // id
             // 

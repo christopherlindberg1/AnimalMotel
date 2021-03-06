@@ -8,6 +8,6 @@ namespace AnimalMotel
 {
     public class RecipeManager : ListManager<Recipe>
     {
-        // No code needed atm. Only makes use of inherited members.
+
     }
 }

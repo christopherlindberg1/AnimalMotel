@@ -15,6 +15,7 @@ using AnimalMotel.Animals.Sorting;
 using AnimalMotel.Serialization;
 using AnimalMotel.Storage;
 using AnimalMotel.Animals.Species;
+using System.Runtime.Serialization;
 
 namespace AnimalMotel
 {
@@ -23,11 +24,9 @@ namespace AnimalMotel
     /// </summary>
     public partial class FormMain : Form
     {
-        /// <summary>
-        ///   Event triggered when the selected index on listBoxCategory is changed.
-        ///   Updates the GUI accordingly.
-        /// </summary>
-        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        #region EventHandlers
+
+        private void EventHandler_ListBoxCategoryIndexChange()
         {
             int selectedIndex = listBoxCategory.SelectedIndex;
 
@@ -44,11 +43,7 @@ namespace AnimalMotel
             }
         }
 
-        /// <summary>
-        ///   Event triggered when the user clicks the checkbox for showing all animals.
-        ///   Updates the GUI accordingliy.
-        /// </summary>
-        private void checkBoxListAllAnimals_CheckedChanged(object sender, EventArgs e)
+        private void EventHandler_CheckBoxListAllAnimals()
         {
             listBoxCategory.SelectedIndex = -1;
 
@@ -68,11 +63,7 @@ namespace AnimalMotel
             }
         }
 
-        /// <summary>
-        ///   Event triggered when the selected index for listBoxSpecies is changes.
-        ///   Updates the state of the GUI to match the selected item.
-        /// </summary>
-        private void listBoxSpecies_SelectedIndexChanged(object sender, EventArgs e)
+        private void EventHandler_ListBoxSpecieIndexChange()
         {
             if (listBoxSpecies.SelectedIndex != -1)
             {
@@ -83,10 +74,7 @@ namespace AnimalMotel
             }
         }
 
-        /// <summary>
-        ///   Click event for adding an animal.
-        /// </summary>
-        private void btnAddAnimal_Click(object sender, EventArgs e)
+        private void EventHandler_AddAnimal()
         {
             if (ValidateInput())
             {
@@ -103,11 +91,7 @@ namespace AnimalMotel
             }
         }
 
-        /// <summary>
-        ///   Event for sorting the animals by their attricutes when the 
-        ///   user clicks in a column heading.
-        /// </summary>
-        private void listViewAnimals_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void EventHandler_SortAnimals(ColumnClickEventArgs e)
         {
             int columnIndex = e.Column;
 
@@ -145,15 +129,7 @@ namespace AnimalMotel
             AddAnimalsToGUIList();
         }
 
-        private void listViewAnimals_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listViewAnimals.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-        }
-
-        private void btnUpdateAnimal_Click(object sender, EventArgs e)
+        private void EventHandler_UpdateAnimal()
         {
             // Check that an animal is selected.
             if (listViewAnimals.SelectedIndices.Count == 0)
@@ -187,7 +163,7 @@ namespace AnimalMotel
             FillGUIWithAnimalData(animal);
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void EventHandler_SaveAnimalUpdates()
         {
             if (listViewAnimals.SelectedItems.Count == 0
                 || listViewAnimals.SelectedItems.Count > 1)
@@ -211,7 +187,7 @@ namespace AnimalMotel
             }
         }
 
-        private void btnDeleteAnimal_Click(object sender, EventArgs e)
+        private void EventHandler_DeleteAnimal()
         {
             // Check that an animal is selected.
             if (listViewAnimals.SelectedIndices.Count == 0)
@@ -228,12 +204,7 @@ namespace AnimalMotel
             DeleteMarkedAnimals();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            SetFormToDefaultState();
-        }
-
-        private void btnAddFood_Click(object sender, EventArgs e)
+        private void EventHandler_AddFood()
         {
             DialogResult result = FormRecipe.ShowDialog();
 
@@ -244,7 +215,7 @@ namespace AnimalMotel
             }
         }
 
-        private void btnAddStaff_Click(object sender, EventArgs e)
+        private void EventHandler_AddStaff()
         {
             DialogResult result = FormStaffPlanning.ShowDialog();
 
@@ -253,6 +224,201 @@ namespace AnimalMotel
                 ShowStaffList();
                 AddStaff(FormStaffPlanning.Staff);
             }
+        }
+
+        private void EventHandler_RestartApp()
+        {
+            DialogResult result = MessageBox.Show(
+                "Sure you want to start over? Unsaved changes will be lost.",
+                "Warning",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Information);
+
+            if (result == DialogResult.OK)
+            {
+                ResetForm();
+            }
+        }
+
+        private void EventHandler_OpenAnimalFile()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\AppData\\Data"));
+            fileDialog.Title = "Choose file to open";
+            fileDialog.Filter = "Binary Files | *.bin";
+
+            DialogResult result = fileDialog.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            try
+            {
+                AnimalManager.BinaryDeserialize(fileDialog.FileName);
+                LastUsedPathToAnimalsFile = fileDialog.FileName;
+
+                AddAnimalsToGUIList();
+            }
+            catch (SerializationException ex)
+            {
+                MessageBox.Show("The file you chose does not have data in the correct format.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetType().Name);
+                MessageBox.Show("Something went wrong when reading the file.");
+            }
+        }
+
+        private void EventHandler_SaveAnimalsToFile_SaveAs()
+        {
+            SaveFileDialog fileDialog = new SaveFileDialog();
+            fileDialog.InitialDirectory = FilePaths.AnimalDataFolderPath;
+            fileDialog.Title = "Name the file for storing animal data";
+            fileDialog.Filter = "Binary Files | *.bin";
+
+            DialogResult result = fileDialog.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            try
+            {
+                AnimalManager.BinarySerialize(fileDialog.FileName);
+                LastUsedPathToAnimalsFile = fileDialog.FileName;
+            }
+            catch (SerializationException ex)
+            {
+                MessageBox.Show("The file you chose does not have data in the correct format.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetType().Name);
+                MessageBox.Show("Something went wrong when reading the file.");
+            }
+        }
+
+        private void EventHandler_SaveAnimalsToFile_Save()
+        {
+            if (String.IsNullOrWhiteSpace(LastUsedPathToAnimalsFile))
+            {
+                EventHandler_SaveAnimalsToFile_SaveAs();
+                return;
+            }
+
+            try
+            {
+                AnimalManager.BinarySerialize(LastUsedPathToAnimalsFile);
+                MessageBox.Show(
+                    "The animals have been saved.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (SerializationException ex)
+            {
+                MessageBox.Show("The file you chose does not have data in the correct format.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetType().Name);
+                MessageBox.Show("Something went wrong when reading the file.");
+            }
+        }
+
+        private void EventHandler_ExitApp()
+        {
+            DialogResult confirm = MessageBox.Show(
+                "Confirm that you want to exit.",
+                "Confirm",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Information);
+
+            if (confirm == DialogResult.OK)
+            {
+                Close();
+            }
+        }
+
+        #endregion
+
+
+        /// <summary>
+        ///   Event triggered when the selected index on listBoxCategory is changed.
+        ///   Updates the GUI accordingly.
+        /// </summary>
+        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EventHandler_ListBoxCategoryIndexChange();
+        }
+
+        /// <summary>
+        ///   Event triggered when the user clicks the checkbox for showing all animals.
+        ///   Updates the GUI accordingliy.
+        /// </summary>
+        private void checkBoxListAllAnimals_CheckedChanged(object sender, EventArgs e)
+        {
+            EventHandler_CheckBoxListAllAnimals();
+        }
+
+        /// <summary>
+        ///   Event triggered when the selected index for listBoxSpecies is changes.
+        ///   Updates the state of the GUI to match the selected item.
+        /// </summary>
+        private void listBoxSpecies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EventHandler_ListBoxSpecieIndexChange();
+        }
+
+        /// <summary>
+        ///   Click event for adding an animal.
+        /// </summary>
+        private void btnAddAnimal_Click(object sender, EventArgs e)
+        {
+            EventHandler_AddAnimal();
+        }
+
+        /// <summary>
+        ///   Event for sorting the animals by their attricutes when the 
+        ///   user clicks in a column heading.
+        /// </summary>
+        private void listViewAnimals_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            EventHandler_SortAnimals(e);
+        }
+
+        private void btnUpdateAnimal_Click(object sender, EventArgs e)
+        {
+            EventHandler_UpdateAnimal();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            EventHandler_SaveAnimalUpdates();
+        }
+
+        private void btnDeleteAnimal_Click(object sender, EventArgs e)
+        {
+            EventHandler_DeleteAnimal();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            SetFormToDefaultState();
+        }
+
+        private void btnAddFood_Click(object sender, EventArgs e)
+        {
+            EventHandler_AddFood();
+        }
+
+        private void btnAddStaff_Click(object sender, EventArgs e)
+        {
+            EventHandler_AddStaff();
         }
 
         private void lblShowFoods_Click(object sender, EventArgs e)
@@ -272,16 +438,7 @@ namespace AnimalMotel
         /// <param name="e"></param>
         private void menuFileNew_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(
-                "Sure you want to start over? Unsaved changes will be lost.",
-                "Warning",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Information);
-
-            if (result == DialogResult.OK)
-            {
-                ResetForm();
-            }
+            EventHandler_RestartApp();
         }
 
         /// <summary>
@@ -292,38 +449,7 @@ namespace AnimalMotel
         /// <param name="e"></param>
         private void menuFileOpenBinaryFile_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Event for deserialization");
-
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\AppData\\Data"));
-            fileDialog.Title = "Choose file to open";
-            fileDialog.Filter = "Binary Files | *.bin";
-            
-            DialogResult result = fileDialog.ShowDialog();
-
-            if (result == DialogResult.Cancel)
-            {
-                return;
-            }
-
-            try
-            {
-                //List<Animal> animals = LoadAnimalsFromFile(fileDialog.FileName);
-
-                //AnimalManager.BinaryDeserialize(fileDialog.FileName);
-
-                AnimalManager.List = BinarySerializerUtility.Deserialize<List<Animal>>(fileDialog.FileName);
-
-                MessageBox.Show(AnimalManager.ListCount.ToString());
-
-                //this.AnimalManager.AddAll(animals);
-
-                AddAnimalsToGUIList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            EventHandler_OpenAnimalFile();
         }
 
         /// <summary>
@@ -333,34 +459,7 @@ namespace AnimalMotel
         /// <param name="e"></param>
         private void menuFileSaveAsBinaryFile_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Event for serialization");
-
-            SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.InitialDirectory = FilePaths.AnimalDataFolderPath;
-            fileDialog.Title = "Name the file for storing animal data";
-            fileDialog.Filter = "Binary Files | *.bin";
-            
-            DialogResult result = fileDialog.ShowDialog();
-
-            if (result == DialogResult.Cancel)
-            {
-                return;
-            }
-
-            MessageBox.Show(fileDialog.FileName);
-
-            try
-            {
-                //AnimalManager.BinarySerialize(fileDialog.FileName);
-                //Cat cat = new Cat("Zimba", 10, Gender.Male, 20, 20, 30);
-
-                BinarySerializerUtility.Serialize<List<Animal>>(fileDialog.FileName, AnimalManager.List);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            //SaveAnimalsToFile(fileDialog.FileName);
+            EventHandler_SaveAnimalsToFile_SaveAs();
         }
 
         /// <summary>
@@ -394,28 +493,18 @@ namespace AnimalMotel
         private void menuFileSave_Click(object sender, EventArgs e)
         {
             // Get file paths for animals and recipes.
-            
+            if (String.IsNullOrEmpty(LastUsedPathToAnimalsFile))
+            {
+                EventHandler_SaveAnimalsToFile_SaveAs();
+                return;
+            }
 
-            
+            EventHandler_SaveAnimalsToFile_Save();
         }
-
-
-
 
         private void menuFileExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show(
-                "Confirm that you want to exit.",
-                "Confirm",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Information);
-
-            if (confirm == DialogResult.OK)
-            {
-                Close();
-            }
+            EventHandler_ExitApp();
         }
-
-        
     }
 }

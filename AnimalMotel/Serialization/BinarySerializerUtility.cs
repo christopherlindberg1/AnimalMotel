@@ -26,13 +26,12 @@ namespace AnimalMotel.Serialization
         /// <returns></returns>
         public static void Serialize<T>(string filePath, T obj)
         {
-            Stream stream = null;
+            FileStream fileStream = new FileStream(filePath, FileMode.Create);
 
             try
             {
-                stream = File.Open(filePath, FileMode.Create);
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(stream, obj);
+                binaryFormatter.Serialize(fileStream, obj);
             }
             catch (Exception ex) 
             {
@@ -40,9 +39,9 @@ namespace AnimalMotel.Serialization
             }
             finally
             {
-                if (stream != null)
+                if (fileStream != null)
                 {
-                    stream.Close();
+                    fileStream.Close();
                 }
             }
         }

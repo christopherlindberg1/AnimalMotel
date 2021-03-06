@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Eagle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Id>0</Id>
-  <Name>Chris</Name>
-  <Age>2</Age>
-  <Gender>Male</Gender>
-  <FlyingSpeed>10</FlyingSpeed>
-  <ClawLength>10</ClawLength>
-</Eagle>

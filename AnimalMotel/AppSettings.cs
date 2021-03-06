@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AnimalMotel.Serialization;
+using AnimalMotel.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -15,6 +17,7 @@ namespace AnimalMotel
     [Serializable()]
     public class AppSettings : ISerializable
     {
+        private int _lastGeneratedId;
         private string _lastUsedFilePathForAnimals;
         private string _lastUsedFilePathForRecipes;
 
@@ -27,6 +30,13 @@ namespace AnimalMotel
          * ===================  Properties  ===================
          * 
          */
+
+        private int LastGeneratedId
+        {
+            get => _lastGeneratedId;
+
+            set => _lastGeneratedId = value;
+        }
 
         public string LastUsedFilePathForAnimals
         {
@@ -66,13 +76,43 @@ namespace AnimalMotel
         }
 
         /// <summary>
+        /// Serializes the app settings.
+        /// </summary>
+        public static void SaveSettingsToStorage(AppSettings appSettings)
+        {
+            try
+            {
+                XMLSerializerUtility.Serialize<AppSettings>(FilePaths.AppSettingsFilePath, appSettings);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Deserializes the app settings.
+        /// </summary>
+        public static AppSettings GetSettingsFromStorage()
+        {
+            try
+            {
+                return XMLSerializerUtility.Deserialize<AppSettings>(FilePaths.AppSettingsFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Creates a deep copy of an AppSettings object.
         /// </summary>
         /// <param name="appSettings">AppSettings object to copy</param>
-        public AppSettings(AppSettings appSettings)
-        {
-            throw new NotImplementedException();
-        }
+        //public AppSettings(AppSettings appSettings)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         /// <summary>
         /// Method used for deserializing AppSettings objects.
@@ -81,8 +121,7 @@ namespace AnimalMotel
         /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("LastUsedFilePathForAnimals", LastUsedFilePathForAnimals);
-            info.AddValue("LastUsedFilePathForRecipes", LastUsedFilePathForRecipes);
+            info.AddValue("LastGeneratedId", LastGeneratedId);
         }
 
         /// <summary>

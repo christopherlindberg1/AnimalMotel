@@ -19,10 +19,6 @@ namespace AnimalMotel
     ///   Partial AnimalManager class. This file contains methods
     ///   used to manipulate the storage, but not sorting.
     /// </summary>
-    //[XmlInclude(typeof(Cat))]
-    //[XmlInclude(typeof(Dog))]
-    //[XmlInclude(typeof(Eagle))]
-    //[XmlInclude(typeof(Pigeon))]
     [Serializable]
     public class AnimalManager : ListManager<Animal>
     {
@@ -33,10 +29,10 @@ namespace AnimalMotel
 
         // ======================= Properties ======================= //
 
-        private static int LastGeneratedId
+        public static int LastGeneratedId
         {
             get { return AnimalManager._lastGeneratedId; }
-            set { AnimalManager._lastGeneratedId = value; }
+            private set { AnimalManager._lastGeneratedId = value; }
         }
 
         public int ListCount

@@ -291,22 +291,6 @@ namespace AnimalMotel
         }
 
         /// <summary>
-        ///   Returns a copy of the list.
-        /// </summary>
-        /// <returns></returns>
-        //public List<T> GetCopy()
-        //{
-        //    List<T> copy = new List<T>();
-
-        //    foreach (T obj in _list)
-        //    {
-        //        copy.Add(obj);
-        //    }
-
-        //    return copy;
-        //}
-
-        /// <summary>
         /// Method for binary serializing of the objects in the list (used to serialize animals)
         /// </summary>
         /// <param name="filePath">Path to a binary file where animals should be stored</param>

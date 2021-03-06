@@ -81,9 +81,6 @@
     <Compile Include="Forms\FormMain.Init.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormMain.Storage.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\FormMain.Valitator.cs">
       <SubType>Form</SubType>
     </Compile>

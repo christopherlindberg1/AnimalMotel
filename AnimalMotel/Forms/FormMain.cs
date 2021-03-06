@@ -26,6 +26,9 @@ namespace AnimalMotel
     {
         private AppSettings _appSettings;
 
+        private string _lastUsedPathToAnimalsFile = null;
+        private string _lastUsedPathToRecipeManagerFile = null;
+
         // Managers
         private readonly AnimalManager _animalManager = new AnimalManager();
         private readonly RecipeManager _recipeManager = new RecipeManager();
@@ -35,12 +38,42 @@ namespace AnimalMotel
         private FormRecipe _formRecipe = new FormRecipe();
         private FormStaffPlanning _formStaffPlanning = new FormStaffPlanning();
 
-        
+
 
 
 
 
         // ======================= Properties ======================= //
+
+        private AppSettings AppSettings
+        {
+            get => _appSettings;
+
+            set => _appSettings = value ??
+                throw new ArgumentNullException(
+                    "AppSettings",
+                    "AppSettings cannot be null.");
+        }
+
+        public string LastUsedPathToAnimalsFile
+        {
+            get => _lastUsedPathToAnimalsFile;
+
+            set => _lastUsedPathToAnimalsFile = value ??
+                throw new ArgumentNullException(
+                    "LastUsedPathToAnimalsFile",
+                    "LastUsedPathToAnimalsFile cannot be null.");
+        }
+
+        public string LastUsedPathToRecipeManagerFile
+        {
+            get => _lastUsedPathToRecipeManagerFile;
+
+            set => _lastUsedPathToRecipeManagerFile = value ??
+                throw new ArgumentNullException(
+                    "LastUsedPathToRecipeManagerFile",
+                    "LastUsedPathToRecipeManagerFile cannot be null.");
+        }
 
         private AnimalManager AnimalManager
         {
