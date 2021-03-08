@@ -12,7 +12,6 @@ namespace AnimalMotel
     /// Partial AnimalManager class. This file contains methods
     /// used to manipulate the storage, but not sorting.
     /// </summary>
-    [Serializable]
     public class AnimalManager : ListManager<Animal>
     {
         private static int _lastGeneratedId = 0;
@@ -65,16 +64,6 @@ namespace AnimalMotel
         {
             animal.Id = AnimalManager.GenerateUniqueId();
             Add(animal);
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("List", this.List);
-        }
-
-        public AnimalManager(SerializationInfo info, StreamingContext context)
-        {
-            this.List = (List<Animal>)info.GetValue("List", typeof(List<Animal>));
         }
     }
 }

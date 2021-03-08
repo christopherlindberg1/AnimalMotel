@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Recipe>
+    <Name>kjldsf</Name>
+    <Ingredients>
+      <List>
+        <string>jklbdngf</string>
+      </List>
+      <LastUsedSortingDirection>Asc</LastUsedSortingDirection>
+    </Ingredients>
+  </Recipe>
+</ArrayOfRecipe>

@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace AnimalMotel
 {
-    [Serializable()]
-    public class Recipe : ISerializable
+    [Serializable]
+    public class Recipe
     {
         private string _name;
+        [XmlIgnore]
         private ListManager<string> _ingredients = new ListManager<string>();
 
 
@@ -35,6 +37,11 @@ namespace AnimalMotel
 
         // ======================== Methods ======================== //
 
+        public Recipe()
+        {
+
+        }
+
         /// <summary>
         /// Returns a string representation of a recipe object.
         /// </summary>
@@ -55,9 +62,14 @@ namespace AnimalMotel
             return recipeString.ToString();
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            
-        }
+        //public void GetObjectData(SerializationInfo info, StreamingContext context)
+        //{
+        //    info.AddValue("Name", Name);
+        //}
+
+        //public Recipe(SerializationInfo info, StreamingContext context)
+        //{
+        //    Name = (string)info.GetValue("Name", typeof(string));
+        //}
     }
 }

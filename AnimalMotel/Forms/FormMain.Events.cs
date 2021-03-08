@@ -87,6 +87,7 @@ namespace AnimalMotel
             {
                 AddAnimal();
                 SetFormToDefaultState();
+                HasSavedData = false;
             }
             else
             {
@@ -95,6 +96,8 @@ namespace AnimalMotel
                     "Info",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                
+                return;
             }
 
             AppSettings.LastGeneratedId = AnimalManager.LastGeneratedId;
@@ -185,6 +188,7 @@ namespace AnimalMotel
             {
                 UpdateAnimal();
                 SetFormToDefaultState();
+                HasSavedData = false;
             }
             else
             {
@@ -211,6 +215,7 @@ namespace AnimalMotel
             }
 
             DeleteMarkedAnimals();
+            HasSavedData = false;
         }
 
         private void EventHandler_AddFood()
@@ -237,22 +242,35 @@ namespace AnimalMotel
 
         private void EventHandler_RestartApp()
         {
-            DialogResult result = MessageBox.Show(
-                "Sure you want to start over? Unsaved changes will be lost.",
-                "Warning",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Information);
-
-            if (result == DialogResult.OK)
+            if (HasSavedData == false)
             {
+                DialogResult result = MessageBox.Show(
+                    "Sure you want to start over? Unsaved changes will be lost.",
+                    "Warning",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Information);
+
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+
                 ResetForm();
+                HasSavedData = true;
+                return;
             }
+         
+            ResetForm();
+            HasSavedData = true;
+            LastUsedPathToAnimalsFile = null;
+
+            SetFormToDefaultState();
         }
 
         private void EventHandler_OpenAnimalFile()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..\\AppData\\Data"));
+            fileDialog.InitialDirectory = FilePaths.AnimalDataFolderPath;
             fileDialog.Title = "Choose file to open";
             fileDialog.Filter = "Binary Files | *.bin";
 
@@ -295,13 +313,14 @@ namespace AnimalMotel
                 return;
             }
 
-            // Serialize animal data
             try
             {
                 // Save animals
                 AnimalManager.BinarySerialize(fileDialog.FileName);
                 LastUsedPathToAnimalsFile = fileDialog.FileName;
-
+                
+                HasSavedData = true;
+                
                 // Save app settings
                 SaveAppSettingsToStorage();
             }
@@ -329,6 +348,9 @@ namespace AnimalMotel
             {
                 AnimalManager.BinarySerialize(LastUsedPathToAnimalsFile);
                 SaveAppSettingsToStorage();
+
+                HasSavedData = true;
+
                 MessageBox.Show(
                     "The animals have been saved.",
                     "Information",
@@ -341,6 +363,73 @@ namespace AnimalMotel
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.GetType().Name);
+                MessageBox.Show("Something went wrong when reading the file.");
+            }
+        }
+
+        private void EventHandler_SaveRecipesToFile()
+        {
+            SaveFileDialog fileDialog = new SaveFileDialog();
+            fileDialog.InitialDirectory = FilePaths.RecipesDataFolderPath;
+            fileDialog.Title = "Name the file for storing recipe data";
+            fileDialog.Filter = "XML Files | *.xml";
+
+            DialogResult result = fileDialog.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            try
+            {
+                // Save recipes
+                RecipeManager.XMLSerialize(fileDialog.FileName);
+                //LastUsedPathToAnimalsFile = fileDialog.FileName;
+            }
+            catch (SerializationException)
+            {
+                MessageBox.Show("The file you chose does not have data in the correct format.");
+            }
+            catch (Exception ex)
+            {
+                throw;
+                MessageBox.Show(ex.GetType().Name);
+                MessageBox.Show("Something went wrong when reading the file.");
+            }
+        }
+
+        private void EventHandler_OpenRecipesFile()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = FilePaths.RecipesDataFolderPath;
+            fileDialog.Title = "Choose file to open";
+            fileDialog.Filter = "XML Files | *.xml";
+
+            DialogResult result = fileDialog.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            try
+            {
+                // Load recipes
+                RecipeManager.XmlDeserialize(fileDialog.FileName);
+                AddRecipesToGUI();
+                MessageBox.Show(RecipeManager.List.Count.ToString());
+                //LastUsedPathToAnimalsFile = fileDialog.FileName;
+            }
+            catch (SerializationException)
+            {
+                throw;
+                MessageBox.Show("The file you chose does not have data in the correct format.");
+            }
+            catch (Exception ex)
+            {
+                throw;
                 MessageBox.Show(ex.GetType().Name);
                 MessageBox.Show("Something went wrong when reading the file.");
             }
@@ -485,7 +574,7 @@ namespace AnimalMotel
         /// <param name="e"></param>
         private void menuFileXMLImport_Click(object sender, EventArgs e)
         {
-
+            EventHandler_OpenRecipesFile();
         }
 
         /// <summary>
@@ -495,7 +584,7 @@ namespace AnimalMotel
         /// <param name="e"></param>
         private void menuFileXMLExport_Click(object sender, EventArgs e)
         {
-
+            EventHandler_SaveRecipesToFile();
         }
 
         /// <summary>

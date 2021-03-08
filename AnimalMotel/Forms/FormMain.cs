@@ -24,6 +24,7 @@ namespace AnimalMotel
     {
         private AppSettings _appSettings = new AppSettings();
 
+        private bool _hasSavedData = true;  // Set to false when dong CRUD
         private string _lastUsedPathToAnimalsFile = null;
         private string _lastUsedPathToRecipeManagerFile = null;
 
@@ -52,24 +53,24 @@ namespace AnimalMotel
                     "AppSettings cannot be null.");
         }
 
-        public string LastUsedPathToAnimalsFile
+        private bool HasSavedData
+        {
+            get => _hasSavedData;
+            set => _hasSavedData = value;
+        }
+
+        private string LastUsedPathToAnimalsFile
         {
             get => _lastUsedPathToAnimalsFile;
 
-            set => _lastUsedPathToAnimalsFile = value ??
-                throw new ArgumentNullException(
-                    "LastUsedPathToAnimalsFile",
-                    "LastUsedPathToAnimalsFile cannot be null.");
+            set => _lastUsedPathToAnimalsFile = value;
         }
 
-        public string LastUsedPathToRecipeManagerFile
+        private string LastUsedPathToRecipeManagerFile
         {
             get => _lastUsedPathToRecipeManagerFile;
 
-            set => _lastUsedPathToRecipeManagerFile = value ??
-                throw new ArgumentNullException(
-                    "LastUsedPathToRecipeManagerFile",
-                    "LastUsedPathToRecipeManagerFile cannot be null.");
+            set => _lastUsedPathToRecipeManagerFile = value;
         }
 
         private AnimalManager AnimalManager
@@ -635,6 +636,30 @@ namespace AnimalMotel
                 item.SubItems.Add(animal.GetSpecialCharacteristics());
 
                 listViewAnimals.Items.Add(item);
+            }
+        }
+
+        private void AddRecipesToGUI()
+        {
+            listBoxRecipes.Items.Clear();
+
+            //Animal animal;
+
+            for (int i = 0; i < RecipeManager.List.Count; i++)
+            {
+                //animal = AnimalManager.GetAt(i);
+                listBoxRecipes.Items.Add(RecipeManager.GetAt(i).ToString());
+
+                //ListViewItem item = new ListViewItem(
+                //    animal.Id.ToString());
+
+                //item.SubItems.Add(animal.GetSpecie());
+                //item.SubItems.Add(animal.Name);
+                //item.SubItems.Add(animal.Age.ToString());
+                //item.SubItems.Add(animal.Gender.ToString());
+                //item.SubItems.Add(animal.GetSpecialCharacteristics());
+
+                //listViewAnimals.Items.Add(item);
             }
         }
 

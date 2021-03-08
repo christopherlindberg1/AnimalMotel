@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using AnimalMotel.Enums.Sorting;
 using AnimalMotel.Serialization;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 namespace AnimalMotel
 {
@@ -44,6 +46,7 @@ namespace AnimalMotel
             set => _lastUsedSortingDirection = value;
         }
 
+        [XmlIgnore]
         public IComparer<T> LastUsedSortingClass
         {
             get
@@ -61,6 +64,11 @@ namespace AnimalMotel
 
 
         // ========================= Methods ========================= //
+
+        public ListManager()
+        {
+
+        }
 
         /// <summary>
         /// Indexer for getting the object at a given index.
@@ -314,9 +322,16 @@ namespace AnimalMotel
         /// Method for XML serialization of the objects in the list (used to serialize reciped)
         /// </summary>
         /// <param name="fileName">Path for where the file should be stored</param>
-        public void XMLSerialize(string fileName)
+        public void XMLSerialize(string filePath)
         {
-            throw new NotImplementedException();
+            try
+            {
+                XMLSerializerUtility.Serialize<List<T>>(filePath, List);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -324,9 +339,14 @@ namespace AnimalMotel
         /// (used when deserializing animals)
         /// </summary>
         /// <param name="filename"></param>
-        public void XmlDeserialize(string filename)
+        public void XmlDeserialize(string filePath)
         {
-            throw new NotImplementedException();
+            List = XMLSerializerUtility.Deserialize<List<T>>(filePath);
         }
+
+        //public void GetObjectData(SerializationInfo info, StreamingContext context)
+        //{
+        //    info.AddValue("List", List);
+        //}
     }
 }

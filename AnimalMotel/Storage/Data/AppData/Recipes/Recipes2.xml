@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Recipe>
+    <Name>cookie</Name>
+    <Ingredients>
+      <List>
+        <string>soda</string>
+        <string>powder</string>
+        <string>apple</string>
+      </List>
+      <LastUsedSortingDirection>Asc</LastUsedSortingDirection>
+    </Ingredients>
+  </Recipe>
+  <Recipe>
+    <Name>apple cider vinegar</Name>
+    <Ingredients>
+      <List>
+        <string>apple</string>
+        <string>cider</string>
+        <string>vinegar</string>
+      </List>
+      <LastUsedSortingDirection>Asc</LastUsedSortingDirection>
+    </Ingredients>
+  </Recipe>
+</ArrayOfRecipe>
